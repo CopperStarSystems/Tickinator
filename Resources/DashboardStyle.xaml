@@ -7,7 +7,9 @@
         <ResourceDictionary Source="Brushes.xaml" />
         <ResourceDictionary Source="DashboardTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <Style TargetType="{x:Type userControls:TeamDashboard}" x:Key="{x:Type userControls:TeamDashboard}">
+    <Style TargetType="{x:Type userControls:DashboardBase}" x:Key="DashboardBaseStyle">
         <Setter Property="Template" Value="{StaticResource DashboardTemplate}" />
     </Style>
+    <Style TargetType="{x:Type userControls:MyDashboard}" BasedOn="{StaticResource DashboardBaseStyle}"/>
+    <Style TargetType="{x:Type userControls:TeamDashboard}" BasedOn="{StaticResource DashboardBaseStyle}"/>
 </ResourceDictionary>

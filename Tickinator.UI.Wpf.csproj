@@ -58,6 +58,7 @@
     <Compile Include="UserControls\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\DashboardBase.cs" />
     <Compile Include="UserControls\MyDashboard.xaml.cs">
       <DependentUpon>MyDashboard.xaml</DependentUpon>
     </Compile>
