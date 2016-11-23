@@ -3,12 +3,8 @@
                     xmlns:local="clr-namespace:Tickinator.UI.Wpf.Resources"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:userControls="clr-namespace:Tickinator.UI.Wpf.UserControls">
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="Brushes.xaml" />
-        <ResourceDictionary Source="DashboardTemplate.xaml" />
-    </ResourceDictionary.MergedDictionaries>
     <Style TargetType="{x:Type userControls:DashboardBase}" x:Key="DashboardBaseStyle">
-        <Setter Property="Template" Value="{StaticResource DashboardTemplate}" />
+        <Setter Property="Template" Value="{DynamicResource DashboardTemplate}" />
     </Style>
     <Style TargetType="{x:Type userControls:MyDashboard}" BasedOn="{StaticResource DashboardBaseStyle}"/>
     <Style TargetType="{x:Type userControls:TeamDashboard}" BasedOn="{StaticResource DashboardBaseStyle}"/>

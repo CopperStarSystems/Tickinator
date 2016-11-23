@@ -4,6 +4,15 @@
              xmlns:local="clr-namespace:Tickinator.UI.Wpf"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="pack://application:,,,/Tickinator.UI.Wpf;component/Resources/DashboardStyle.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/Tickinator.UI.Wpf;component/Resources/Brushes.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/Tickinator.UI.Wpf;component/Resources/DashboardTemplate.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

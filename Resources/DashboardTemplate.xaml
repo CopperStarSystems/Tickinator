@@ -1,14 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Tickinator.UI.Wpf.Resources">
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="Brushes.xaml" />
-    </ResourceDictionary.MergedDictionaries>
     <ControlTemplate x:Key="DashboardTemplate">
         <Grid Margin="24">
-            <Border BorderThickness="2" Padding="10" Background="{StaticResource AccentBackgroundBrush}"
-                    BorderBrush="{StaticResource AccentBorderBrush}" CornerRadius="15">
-
+            <Border BorderThickness="2" Padding="10" Background="{DynamicResource AccentBackgroundBrush}"
+                    BorderBrush="{DynamicResource AccentBorderBrush}" CornerRadius="15">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -28,7 +24,6 @@
                     <Label Grid.Column="1" Grid.Row="2" Content="11" />
                     <Label Grid.Column="1" Grid.Row="3" Content="00:12:24" />
                 </Grid>
-
             </Border>
         </Grid>
     </ControlTemplate>
