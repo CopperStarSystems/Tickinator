@@ -136,6 +136,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Tickinator.ViewModel\Tickinator.ViewModel.csproj">
+      <Project>{f46bc8a1-4eee-48fb-a7f4-7656958bac6b}</Project>
+      <Name>Tickinator.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

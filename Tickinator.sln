@@ -11,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DesignDocuments", "DesignDo
 		DesignDocuments\TickinatorMockup.pdf = DesignDocuments\TickinatorMockup.pdf
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tickinator.ViewModel.Tests", "Tickinator.ViewModel.Tests\Tickinator.ViewModel.Tests.csproj", "{42188785-F082-4FB6-993E-44FD197FF399}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tickinator.ViewModel", "Tickinator.ViewModel\Tickinator.ViewModel.csproj", "{F46BC8A1-4EEE-48FB-A7F4-7656958BAC6B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{B7DB8E8E-255F-4241-8166-FEF5451E5F92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7DB8E8E-255F-4241-8166-FEF5451E5F92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7DB8E8E-255F-4241-8166-FEF5451E5F92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42188785-F082-4FB6-993E-44FD197FF399}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42188785-F082-4FB6-993E-44FD197FF399}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42188785-F082-4FB6-993E-44FD197FF399}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42188785-F082-4FB6-993E-44FD197FF399}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F46BC8A1-4EEE-48FB-A7F4-7656958BAC6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F46BC8A1-4EEE-48FB-A7F4-7656958BAC6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F46BC8A1-4EEE-48FB-A7F4-7656958BAC6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F46BC8A1-4EEE-48FB-A7F4-7656958BAC6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
