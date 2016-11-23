@@ -9,33 +9,9 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Tickinator.UI.Wpf;component/Resources/Brushes.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/Tickinator.UI.Wpf;component/Resources/DashboardStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Margin="24">
-        <Border BorderThickness="2" Padding="10" Background="{StaticResource AccentBackgroundBrush}" BorderBrush="{StaticResource AccentBorderBrush}" CornerRadius="15">
-
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Team Dashboard" FontSize="24"/>
-                <Label Grid.Column="0" Grid.Row="1" Content="Current Open Tickets:" />
-                <Label Grid.Column="0" Grid.Row="2" Content="Tickets Closed Today:" />
-                <Label Grid.Column="0" Grid.Row="3" Content="Average Ticket Duration:" />
-                <Label Grid.Column="1" Grid.Row="1" Content ="1"/>
-                <Label Grid.Column="1" Grid.Row="2" Content ="11"/>
-                <Label Grid.Column="1" Grid.Row="3" Content ="00:12:24"/>
-            </Grid>
-
-        </Border>
-    </Grid>
 </UserControl>

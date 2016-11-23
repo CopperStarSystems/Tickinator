@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Tickinator.UI.Wpf.Resources"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:userControls="clr-namespace:Tickinator.UI.Wpf.UserControls">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Brushes.xaml" />
+        <ResourceDictionary Source="DashboardTemplate.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <Style TargetType="{x:Type userControls:TeamDashboard}" x:Key="{x:Type userControls:TeamDashboard}">
+        <Setter Property="Template" Value="{StaticResource DashboardTemplate}" />
+    </Style>
+</ResourceDictionary>
