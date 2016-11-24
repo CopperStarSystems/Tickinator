@@ -3,27 +3,37 @@
 // 2016/11/23
 //  --------------------------------------------------------------------------------------
 
+using Moq;
 using NUnit.Framework;
 
 namespace Tickinator.ViewModel.Tests
 {
     [TestFixture]
-    public class MainViewModelTests
+    public class MainViewModelTests : TestBase<MainViewModel>
     {
-        MainViewModel systemUnderTest;
+        Mock<ITeamDashboardViewModel> mockTeamDashboardViewModel;
 
-        // This is just a stub test, we will remove it once
-        // concrete implementation begins.
         [Test]
-        public void Constructor_Always_Succeeds()
+        public void TeamDashboardViewModel_AfterConstruction_IsInjectedInstance()
         {
-            Assert.That(systemUnderTest, Is.Not.Null);
+            Assert.That(SystemUnderTest.TeamDashboardViewModel, Is.Not.Null);
         }
 
-        [SetUp]
-        public void SetUp()
+        [Test]
+        public void TeamDashboardViewModel_AfterConstruction_IsNotNull()
         {
-            systemUnderTest = new MainViewModel();
+            Assert.That(SystemUnderTest.TeamDashboardViewModel, Is.SameAs(mockTeamDashboardViewModel.Object));
+        }
+
+        protected override void CreateMocks()
+        {
+            base.CreateMocks();
+            mockTeamDashboardViewModel = CreateMock<ITeamDashboardViewModel>();
+        }
+
+        protected override MainViewModel CreateSystemUnderTest()
+        {
+            return new MainViewModel(mockTeamDashboardViewModel.Object);
         }
     }
 }

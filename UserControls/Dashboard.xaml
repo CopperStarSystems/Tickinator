@@ -11,7 +11,7 @@
             <ColumnDefinition Width="0.5*" />
             <ColumnDefinition Width="0.5*" />
         </Grid.ColumnDefinitions>
-        <local:TeamDashboard Grid.Column="0" Height="Auto" />
+        <local:TeamDashboard Grid.Column="0" DataContext="{Binding TeamDashboardViewModel}" />
         <local:MyDashboard Grid.Column="1" />
     </Grid>
 </UserControl>
