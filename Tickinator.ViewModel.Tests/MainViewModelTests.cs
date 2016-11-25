@@ -16,13 +16,13 @@ namespace Tickinator.ViewModel.Tests
         [Test]
         public void TeamDashboardViewModel_AfterConstruction_IsInjectedInstance()
         {
-            Assert.That(SystemUnderTest.TeamDashboardViewModel, Is.Not.Null);
+            Assert.That(SystemUnderTest.TeamDashboardViewModel, Is.SameAs(mockTeamDashboardViewModel.Object));
         }
 
         [Test]
         public void TeamDashboardViewModel_AfterConstruction_IsNotNull()
         {
-            Assert.That(SystemUnderTest.TeamDashboardViewModel, Is.SameAs(mockTeamDashboardViewModel.Object));
+            Assert.That(SystemUnderTest.TeamDashboardViewModel, Is.Not.Null);
         }
 
         protected override void CreateMocks()
