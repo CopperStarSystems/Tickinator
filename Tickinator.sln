@@ -15,6 +15,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tickinator.ViewModel.Tests"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tickinator.ViewModel", "Tickinator.ViewModel\Tickinator.ViewModel.csproj", "{F46BC8A1-4EEE-48FB-A7F4-7656958BAC6B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tickinator.Repository", "Tickinator.Repository\Tickinator.Repository.csproj", "{C8ED95D0-B6CC-4EA2-A0C8-94EAE0C2DF84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tickinator.Repository.Tests", "Tickinator.Repository.Tests\Tickinator.Repository.Tests.csproj", "{C050E93D-91D2-4936-ABFF-08BEB9E67C46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tickinator.Repository.MockData", "Tickinator.Repository.MockData\Tickinator.Repository.MockData.csproj", "{BA1B7A92-35B7-48DF-8DB2-4ED609106F48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +39,18 @@ Global
 		{F46BC8A1-4EEE-48FB-A7F4-7656958BAC6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F46BC8A1-4EEE-48FB-A7F4-7656958BAC6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F46BC8A1-4EEE-48FB-A7F4-7656958BAC6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8ED95D0-B6CC-4EA2-A0C8-94EAE0C2DF84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8ED95D0-B6CC-4EA2-A0C8-94EAE0C2DF84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8ED95D0-B6CC-4EA2-A0C8-94EAE0C2DF84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8ED95D0-B6CC-4EA2-A0C8-94EAE0C2DF84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C050E93D-91D2-4936-ABFF-08BEB9E67C46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C050E93D-91D2-4936-ABFF-08BEB9E67C46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C050E93D-91D2-4936-ABFF-08BEB9E67C46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C050E93D-91D2-4936-ABFF-08BEB9E67C46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA1B7A92-35B7-48DF-8DB2-4ED609106F48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA1B7A92-35B7-48DF-8DB2-4ED609106F48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA1B7A92-35B7-48DF-8DB2-4ED609106F48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA1B7A92-35B7-48DF-8DB2-4ED609106F48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

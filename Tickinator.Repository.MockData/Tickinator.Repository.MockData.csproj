@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F46BC8A1-4EEE-48FB-A7F4-7656958BAC6B}</ProjectGuid>
+    <ProjectGuid>{BA1B7A92-35B7-48DF-8DB2-4ED609106F48}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tickinator.ViewModel</RootNamespace>
-    <AssemblyName>Tickinator.ViewModel</AssemblyName>
+    <RootNamespace>Tickinator.Repository.MockData</RootNamespace>
+    <AssemblyName>Tickinator.Repository.MockData</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,14 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IMainViewModel.cs" />
-    <Compile Include="ITeamDashboardViewModel.cs" />
-    <Compile Include="IViewModel.cs" />
-    <Compile Include="MainViewModel.cs" />
-    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TeamDashboardViewModel.cs" />
-    <Compile Include="ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tickinator.Repository\Tickinator.Repository.csproj">
