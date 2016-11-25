@@ -15,9 +15,10 @@ namespace Tickinator.ViewModel.Tests
 
         protected MockRepository MockRepository { get; private set; }
 
-        protected void RecreateSystemUnderTest()
+        [Test]
+        public void Constructor_Always_PerformsExpectedWork()
         {
-            SystemUnderTest = CreateSystemUnderTest();
+            VerifyAllMocks();
         }
 
         [SetUp]
@@ -40,8 +41,18 @@ namespace Tickinator.ViewModel.Tests
 
         protected abstract T CreateSystemUnderTest();
 
+        protected void RecreateSystemUnderTest()
+        {
+            SystemUnderTest = CreateSystemUnderTest();
+        }
+
         protected virtual void SetupConstructorRequiredMocks()
         {
+        }
+
+        protected void VerifyAllMocks()
+        {
+            MockRepository.VerifyAll();
         }
 
         void CreateMockRepository()

@@ -3,41 +3,25 @@
 // 2016/11/23
 //  --------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
-using Tickinator.Model;
 using Tickinator.Repository;
 
 namespace Tickinator.ViewModel.Tests
 {
     [TestFixture]
-    public class TeamDashboardViewModelTests : TestBase<TeamDashboardViewModel>
+    public class TeamDashboardViewModelTests : DashboardViewModelBaseTests<TeamDashboardViewModel>
     {
         Mock<ITicketRepository> mockTicketRepository;
-        IList<Ticket> ticketList;
 
         [TestCase(1)]
         [TestCase(5)]
         [TestCase(25)]
-        public void OpenTicketCount_AfterConstruction_IsExpectedCount(int expectedOpenTicketCount)
+        public void OpenTicketCount_Always_ReturnsExpectedCount(int expectedOpenTicketCount)
         {
             AddTickets(expectedOpenTicketCount);
-            RecreateSystemUnderTest();
+            mockTicketRepository.Setup(p => p.GetAll()).Returns(Tickets);
             Assert.That(SystemUnderTest.OpenTicketCount, Is.EqualTo(expectedOpenTicketCount));
-        }
-
-        [Test]
-        public void Constructor_Always_Succeeds()
-        {
-            Assert.That(SystemUnderTest, Is.Not.Null);
-        }
-
-        [SetUp]
-        public override void SetUp()
-        {
-            ticketList = new List<Ticket>();
-            base.SetUp();
         }
 
         protected override void CreateMocks()
@@ -49,18 +33,6 @@ namespace Tickinator.ViewModel.Tests
         protected override TeamDashboardViewModel CreateSystemUnderTest()
         {
             return new TeamDashboardViewModel(mockTicketRepository.Object);
-        }
-
-        protected override void SetupConstructorRequiredMocks()
-        {
-            base.SetupConstructorRequiredMocks();
-            mockTicketRepository.Setup(p => p.GetAll()).Returns(ticketList);
-        }
-
-        void AddTickets(int ticketCount)
-        {
-            for (var ctr = 0; ctr < ticketCount; ctr++)
-                ticketList.Add(new Ticket {Id = ctr + 1});
         }
     }
 }

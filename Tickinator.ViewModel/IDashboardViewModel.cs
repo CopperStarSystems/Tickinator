@@ -1,10 +1,11 @@
 ﻿//  --------------------------------------------------------------------------------------
-// Tickinator.ViewModel.ITeamDashboardViewModel.cs
-// 2016/11/23
+// Tickinator.ViewModel.IDashboardViewModel.cs
+// 2016/11/25
 //  --------------------------------------------------------------------------------------
 namespace Tickinator.ViewModel
 {
-    public interface ITeamDashboardViewModel : IDashboardViewModel
+    public interface IDashboardViewModel : IViewModel
     {
+        int OpenTicketCount { get; }
     }
 }

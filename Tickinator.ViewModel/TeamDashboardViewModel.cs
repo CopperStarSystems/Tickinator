@@ -8,29 +8,17 @@ using Tickinator.Repository;
 
 namespace Tickinator.ViewModel
 {
-    public class TeamDashboardViewModel : ViewModelBase, ITeamDashboardViewModel
+    public class TeamDashboardViewModel : DashboardViewModelBase, ITeamDashboardViewModel
     {
-        readonly ITicketRepository ticketRepository;
-        int openTicketCount;
-
-        public TeamDashboardViewModel(ITicketRepository ticketRepository)
+        public TeamDashboardViewModel(ITicketRepository ticketRepository) : base(ticketRepository)
         {
-            this.ticketRepository = ticketRepository;
-            OpenTicketCount = ticketRepository.GetAll().Count();
         }
 
-        public int OpenTicketCount
+        public override int OpenTicketCount
         {
             get
             {
-                return openTicketCount;
-            }
-            set
-            {
-                openTicketCount = value;
-                // RaisePropertyChanged will notify the WPF binding subsystem
-                // that it needs to update the UI.
-                RaisePropertyChanged(nameof(OpenTicketCount));
+                return Repository.GetAll().Count();
             }
         }
     }

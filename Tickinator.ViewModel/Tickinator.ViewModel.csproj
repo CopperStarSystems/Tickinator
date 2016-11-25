@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DashboardViewModelBase.cs" />
+    <Compile Include="IDashboardViewModel.cs" />
     <Compile Include="IMainViewModel.cs" />
     <Compile Include="ITeamDashboardViewModel.cs" />
     <Compile Include="IViewModel.cs" />
