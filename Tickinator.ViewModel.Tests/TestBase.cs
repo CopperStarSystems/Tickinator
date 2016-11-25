@@ -15,8 +15,13 @@ namespace Tickinator.ViewModel.Tests
 
         protected MockRepository MockRepository { get; private set; }
 
+        protected void RecreateSystemUnderTest()
+        {
+            SystemUnderTest = CreateSystemUnderTest();
+        }
+
         [SetUp]
-        public void SetUp()
+        public virtual void SetUp()
         {
             CreateMockRepository();
             CreateMocks();

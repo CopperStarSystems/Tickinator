@@ -61,6 +61,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Tickinator.Model\Tickinator.Model.csproj">
+      <Project>{00DEE704-461C-470E-88DE-79248081DDAD}</Project>
+      <Name>Tickinator.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tickinator.Repository\Tickinator.Repository.csproj">
       <Project>{C8ED95D0-B6CC-4EA2-A0C8-94EAE0C2DF84}</Project>
       <Name>Tickinator.Repository</Name>
