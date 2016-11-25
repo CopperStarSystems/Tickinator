@@ -8,10 +8,10 @@ using Tickinator.Model;
 
 namespace Tickinator.Repository.MockData
 {
+    // Eventually we will put mock data in this class for 
+    // development-time use.
     public class TicketRepository : ITicketRepository
     {
-// Eventually we will put mock data in this class for 
-        // development-time use.
         public IEnumerable<Ticket> GetAll()
         {
             // Eventually we will put mock data in this class for 
