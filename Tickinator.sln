@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tickinator.Repository.Tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tickinator.Repository.MockData", "Tickinator.Repository.MockData\Tickinator.Repository.MockData.csproj", "{BA1B7A92-35B7-48DF-8DB2-4ED609106F48}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tickinator.Model", "Tickinator.Model\Tickinator.Model.csproj", "{00DEE704-461C-470E-88DE-79248081DDAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{BA1B7A92-35B7-48DF-8DB2-4ED609106F48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA1B7A92-35B7-48DF-8DB2-4ED609106F48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA1B7A92-35B7-48DF-8DB2-4ED609106F48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00DEE704-461C-470E-88DE-79248081DDAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00DEE704-461C-470E-88DE-79248081DDAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00DEE704-461C-470E-88DE-79248081DDAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00DEE704-461C-470E-88DE-79248081DDAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

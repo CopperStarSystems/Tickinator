@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C8ED95D0-B6CC-4EA2-A0C8-94EAE0C2DF84}</ProjectGuid>
+    <ProjectGuid>{00DEE704-461C-470E-88DE-79248081DDAD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tickinator.Repository</RootNamespace>
-    <AssemblyName>Tickinator.Repository</AssemblyName>
+    <RootNamespace>Tickinator.Model</RootNamespace>
+    <AssemblyName>Tickinator.Model</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,15 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IRepository.cs" />
-    <Compile Include="ITicketRepository.cs" />
+    <Compile Include="IModel.cs" />
+    <Compile Include="ModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Tickinator.Model\Tickinator.Model.csproj">
-      <Project>{00dee704-461c-470e-88de-79248081ddad}</Project>
-      <Name>Tickinator.Model</Name>
-    </ProjectReference>
+    <Compile Include="Ticket.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
