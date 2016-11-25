@@ -3,6 +3,7 @@
 // 2016/11/25
 //  --------------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using Tickinator.Model;
 
@@ -25,19 +26,19 @@ namespace Tickinator.Repository.MockData
             return tickets;
         }
 
-        Ticket CreateTicket(int id)
+        Ticket CreateTicket(int id, DateTime? dateClosed)
         {
-            return new Ticket {Id = id};
+            return new Ticket {Id = id, DateClosed = dateClosed};
         }
 
         void Seed()
         {
             tickets = new List<Ticket>();
-            tickets.Add(CreateTicket(1));
-            tickets.Add(CreateTicket(2));
-            tickets.Add(CreateTicket(3));
-            tickets.Add(CreateTicket(4));
-            tickets.Add(CreateTicket(5));
+            tickets.Add(CreateTicket(1, DateTime.Today));
+            tickets.Add(CreateTicket(2, DateTime.Today.AddDays(-1)));
+            tickets.Add(CreateTicket(3, DateTime.Today));
+            tickets.Add(CreateTicket(4, DateTime.Today.AddDays(-2)));
+            tickets.Add(CreateTicket(5, DateTime.Today.AddDays(-2)));
         }
     }
 }

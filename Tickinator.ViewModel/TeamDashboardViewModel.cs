@@ -3,6 +3,7 @@
 // 2016/11/23
 //  --------------------------------------------------------------------------------------
 
+using System;
 using System.Linq;
 using Tickinator.Repository;
 
@@ -19,6 +20,14 @@ namespace Tickinator.ViewModel
             get
             {
                 return Repository.GetAll().Count();
+            }
+        }
+
+        public override int ClosedTodayCount
+        {
+            get
+            {
+                return Repository.GetAll().Count(p => p.DateClosed.HasValue && (p.DateClosed.Value == DateTime.Today));
             }
         }
     }

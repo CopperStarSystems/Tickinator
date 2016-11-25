@@ -16,6 +16,8 @@ namespace Tickinator.ViewModel
 
         public abstract int OpenTicketCount { get; }
 
+        public abstract int ClosedTodayCount { get; }
+
         protected ITicketRepository Repository { get; private set; }
     }
 }

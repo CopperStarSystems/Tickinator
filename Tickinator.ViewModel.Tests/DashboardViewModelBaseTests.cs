@@ -3,6 +3,7 @@
 // 2016/11/25
 //  --------------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 using Tickinator.Model;
@@ -19,6 +20,11 @@ namespace Tickinator.ViewModel.Tests
         {
             Tickets = new List<Ticket>();
             base.SetUp();
+        }
+
+        protected void AddTicket(int id, DateTime? dateClosed)
+        {
+            Tickets.Add(new Ticket {Id = id, DateClosed = dateClosed});
         }
 
         protected void AddTickets(int ticketCount)
