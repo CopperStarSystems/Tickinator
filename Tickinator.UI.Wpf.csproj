@@ -137,6 +137,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Tickinator.Repository.MockData\Tickinator.Repository.MockData.csproj">
+      <Project>{BA1B7A92-35B7-48DF-8DB2-4ED609106F48}</Project>
+      <Name>Tickinator.Repository.MockData</Name>
+    </ProjectReference>
+    <ProjectReference Include="Tickinator.Repository\Tickinator.Repository.csproj">
+      <Project>{c8ed95d0-b6cc-4ea2-a0c8-94eae0c2df84}</Project>
+      <Name>Tickinator.Repository</Name>
+    </ProjectReference>
     <ProjectReference Include="Tickinator.ViewModel\Tickinator.ViewModel.csproj">
       <Project>{f46bc8a1-4eee-48fb-a7f4-7656958bac6b}</Project>
       <Name>Tickinator.ViewModel</Name>
