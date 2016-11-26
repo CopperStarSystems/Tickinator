@@ -22,7 +22,7 @@
                     <Label Grid.Column="0" Grid.Row="3" Content="Average Ticket Duration:" />
                     <Label Grid.Column="1" Grid.Row="1" Content="{Binding OpenTicketCount}" />
                     <Label Grid.Column="1" Grid.Row="2" Content="{Binding ClosedTodayCount}" />
-                    <Label Grid.Column="1" Grid.Row="3" Content="00:12:24" />
+                    <Label Grid.Column="1" Grid.Row="3" Content="{Binding AverageTicketDuration}" />
                 </Grid>
             </Border>
         </Grid>

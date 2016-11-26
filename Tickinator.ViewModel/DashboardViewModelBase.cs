@@ -3,6 +3,7 @@
 // 2016/11/25
 //  --------------------------------------------------------------------------------------
 
+using System;
 using Tickinator.Repository;
 
 namespace Tickinator.ViewModel
@@ -17,6 +18,8 @@ namespace Tickinator.ViewModel
         public abstract int OpenTicketCount { get; }
 
         public abstract int ClosedTodayCount { get; }
+
+        public abstract TimeSpan AverageTicketDuration { get; }
 
         protected ITicketRepository Repository { get; private set; }
     }

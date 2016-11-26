@@ -26,19 +26,19 @@ namespace Tickinator.Repository.MockData
             return tickets;
         }
 
-        Ticket CreateTicket(int id, DateTime? dateClosed)
+        Ticket CreateTicket(int id, DateTime? dateClosed, DateTime dateOpened)
         {
-            return new Ticket {Id = id, DateClosed = dateClosed};
+            return new Ticket {Id = id, DateClosed = dateClosed, DateOpened = dateOpened};
         }
 
         void Seed()
         {
             tickets = new List<Ticket>();
-            tickets.Add(CreateTicket(1, DateTime.Today));
-            tickets.Add(CreateTicket(2, DateTime.Today.AddDays(-1)));
-            tickets.Add(CreateTicket(3, DateTime.Today));
-            tickets.Add(CreateTicket(4, DateTime.Today.AddDays(-2)));
-            tickets.Add(CreateTicket(5, DateTime.Today.AddDays(-2)));
+            tickets.Add(CreateTicket(1, DateTime.Today, DateTime.Today.AddHours(-1)));
+            tickets.Add(CreateTicket(2, DateTime.Today.AddDays(-1), DateTime.Today.AddDays(-1.25)));
+            tickets.Add(CreateTicket(3, null, DateTime.Now.AddHours(-1)));
+            tickets.Add(CreateTicket(4, DateTime.Today.AddDays(-2), DateTime.Today.AddDays(-2.5)));
+            tickets.Add(CreateTicket(5, DateTime.Today.AddDays(-2), DateTime.Today.AddDays(-3)));
         }
     }
 }

@@ -39,6 +39,17 @@ namespace Tickinator.ViewModel.Tests
             Assert.That(SystemUnderTest.OpenTicketCount, Is.EqualTo(expectedOpenTicketCount));
         }
 
+        [TestCase(1, 0)]
+        [TestCase(5, 2)]
+        [TestCase(25, 24)]
+        public void AverageTicketDuration_Always_ReturnsExpectedCount(int totalTicketCount, int expectedClosedTodayCount)
+        {
+            SetupTicketsForClosedTodayCountTest(totalTicketCount, expectedClosedTodayCount);
+            SetupMockTicketRepository();
+            Assert.That(SystemUnderTest.AverageTicketDuration, Is.EqualTo(expectedClosedTodayCount));
+        }
+
+
         [SetUp]
         public override void SetUp()
         {
@@ -46,9 +57,9 @@ namespace Tickinator.ViewModel.Tests
             base.SetUp();
         }
 
-        protected void AddTicket(int id, DateTime? dateClosed)
+        protected void AddTicket(int id, DateTime? dateClosed, DateTime dateOpened)
         {
-            Tickets.Add(new Ticket {Id = id, DateClosed = dateClosed});
+            Tickets.Add(new Ticket {Id = id, DateClosed = dateClosed, DateOpened = dateOpened});
         }
 
         protected void AddTickets(int ticketCount)
@@ -74,11 +85,11 @@ namespace Tickinator.ViewModel.Tests
 
             // Create open tickets (i.e. null DateClosed)
             for (var ctr = 0; ctr < totalTicketCount - expectedClosedTodayCount; ctr++)
-                AddTicket(ctr + 1, null);
+                AddTicket(ctr + 1, null, DateTime.Today);
 
             // Create tickets with closed date of today
             for (var ctr = openTicketCount; ctr < totalTicketCount; ctr++)
-                AddTicket(ctr + 1, DateTime.Today);
+                AddTicket(ctr + 1, DateTime.Today, DateTime.Today.AddHours(-1));
         }
     }
 }

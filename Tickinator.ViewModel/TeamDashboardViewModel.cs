@@ -4,7 +4,9 @@
 //  --------------------------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using Tickinator.Model;
 using Tickinator.Repository;
 
 namespace Tickinator.ViewModel
@@ -27,8 +29,23 @@ namespace Tickinator.ViewModel
         {
             get
             {
-                return Repository.GetAll().Count(p => p.DateClosed.HasValue && (p.DateClosed.Value == DateTime.Today));
+                return GetTicketsClosedToday().Count();
             }
+        }
+
+        public override TimeSpan AverageTicketDuration
+        {
+            get
+            {
+                var ticketDurations = GetTicketsClosedToday().Select(p => p.DateClosed - p.DateOpened);
+                var averageDuration = ticketDurations.Average((p) => p.Value.TotalMilliseconds);
+                return TimeSpan.FromMilliseconds(averageDuration);
+            }
+        }
+
+        IEnumerable<Ticket> GetTicketsClosedToday()
+        {
+            return Repository.GetAll().Where(p => p.DateClosed.HasValue && (p.DateClosed.Value == DateTime.Today));
         }
     }
 }

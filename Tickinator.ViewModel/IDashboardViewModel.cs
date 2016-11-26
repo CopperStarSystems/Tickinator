@@ -3,6 +3,8 @@
 // 2016/11/25
 //  --------------------------------------------------------------------------------------
 
+using System;
+
 namespace Tickinator.ViewModel
 {
     public interface IDashboardViewModel : IViewModel
@@ -10,5 +12,7 @@ namespace Tickinator.ViewModel
         int OpenTicketCount { get; }
 
         int ClosedTodayCount { get; }
+
+        TimeSpan AverageTicketDuration { get; }
     }
 }
