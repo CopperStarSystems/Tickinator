@@ -2,6 +2,7 @@
 using Tickinator.Repository.MockData;
 using Tickinator.ViewModel;
 using Tickinator.ViewModel.Dashboard;
+using Tickinator.ViewModel.User;
 
 namespace Tickinator.UI.Wpf
 {
@@ -32,7 +33,8 @@ namespace Tickinator.UI.Wpf
             // injecting for us, but we're going with a manual approach at first.
             var ticketRepository = new TicketRepository();
             var teamDashboardViewModel = new TeamDashboardViewModel(ticketRepository);
-            var myDashboardViewModel = new MyDashboardViewModel(ticketRepository);
+            var currentUser = new CurrentUserViewModel(1);
+            var myDashboardViewModel = new MyDashboardViewModel(ticketRepository, currentUser);
             var mainViewModel = new MainViewModel(teamDashboardViewModel, myDashboardViewModel);
             return mainViewModel;
         }

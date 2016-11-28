@@ -8,13 +8,18 @@ using System.Collections.Generic;
 using System.Linq;
 using Tickinator.Model;
 using Tickinator.Repository;
+using Tickinator.ViewModel.User;
 
 namespace Tickinator.ViewModel.Dashboard
 {
     public class MyDashboardViewModel : DashboardViewModelBase, IMyDashboardViewModel
     {
-        public MyDashboardViewModel(ITicketRepository ticketRepository) : base(ticketRepository)
+        readonly ICurrentUserViewModel currentUserViewModel;
+
+        public MyDashboardViewModel(ITicketRepository ticketRepository, ICurrentUserViewModel currentUserViewModel)
+            : base(ticketRepository)
         {
+            this.currentUserViewModel = currentUserViewModel;
         }
 
         protected override IEnumerable<Ticket> GetOpenTickets()
@@ -26,7 +31,10 @@ namespace Tickinator.ViewModel.Dashboard
         {
             return
                 Repository.GetAll()
-                    .Where(p => p.DateClosed.HasValue && (p.DateClosed.Value == DateTime.Today) && (p.AssignedToId == 1));
+                    .Where(
+                        p =>
+                            p.DateClosed.HasValue && (p.DateClosed.Value == DateTime.Today) &&
+                            (p.AssignedToId == currentUserViewModel.Id));
         }
     }
 }

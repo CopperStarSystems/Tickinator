@@ -38,6 +38,7 @@ namespace Tickinator.ViewModel.Tests.Dashboard
         {
             SetupTicketsForClosedTodayCountTest(totalTicketCount, expectedClosedTodayCount);
             SetupMockTicketRepository();
+            SetupMocksForClosedTodayCountTest();
             Assert.That(SystemUnderTest.ClosedTodayCount, Is.EqualTo(expectedClosedTodayCount));
         }
 
@@ -58,21 +59,31 @@ namespace Tickinator.ViewModel.Tests.Dashboard
             base.SetUp();
         }
 
-        protected void AddTicket(int id, DateTime? dateClosed, DateTime dateOpened)
+        protected void AddTicket(int id, DateTime? dateClosed, DateTime dateOpened, int assignedToId = 1)
         {
-            Tickets.Add(new Ticket {Id = id, DateClosed = dateClosed, DateOpened = dateOpened, AssignedToId = 1});
+            Tickets.Add(new Ticket
+            {
+                Id = id,
+                DateClosed = dateClosed,
+                DateOpened = dateOpened,
+                AssignedToId = assignedToId
+            });
         }
 
-        protected void AddTickets(int ticketCount)
+        protected void AddTickets(int ticketCount, DateTime? dateClosed = null, int assignedToId = 1)
         {
             for (var ctr = 0; ctr < ticketCount; ctr++)
-                Tickets.Add(new Ticket {Id = ctr + 1, AssignedToId = 1});
+                AddTicket(ctr + 1, dateClosed, DateTime.Today.AddDays(-1), assignedToId);
         }
 
         protected override void CreateMocks()
         {
             base.CreateMocks();
             MockTicketRepository = CreateMock<ITicketRepository>();
+        }
+
+        protected virtual void SetupMocksForClosedTodayCountTest()
+        {
         }
 
         void SetupMockTicketRepository()
