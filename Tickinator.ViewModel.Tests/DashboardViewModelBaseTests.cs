@@ -19,6 +19,17 @@ namespace Tickinator.ViewModel.Tests
 
         protected Mock<ITicketRepository> MockTicketRepository { get; private set; }
 
+        [TestCase(1)]
+        [TestCase(5)]
+        [TestCase(25)]
+        public void AverageTicketDuration_Always_ReturnsExpectedDuration(int closedTodayCount)
+        {
+            var duration = SetupTicketsForAverageDurationTest(closedTodayCount);
+            SetupMockTicketRepository();
+            var expectedDuration = TimeSpan.FromMilliseconds(duration);
+            Assert.That(SystemUnderTest.AverageTicketDuration, Is.EqualTo(expectedDuration));
+        }
+
         [TestCase(1, 0)]
         [TestCase(5, 2)]
         [TestCase(25, 24)]
@@ -38,17 +49,6 @@ namespace Tickinator.ViewModel.Tests
             SetupMockTicketRepository();
             Assert.That(SystemUnderTest.OpenTicketCount, Is.EqualTo(expectedOpenTicketCount));
         }
-
-        [TestCase(1, 0)]
-        [TestCase(5, 2)]
-        [TestCase(25, 24)]
-        public void AverageTicketDuration_Always_ReturnsExpectedCount(int totalTicketCount, int expectedClosedTodayCount)
-        {
-            SetupTicketsForClosedTodayCountTest(totalTicketCount, expectedClosedTodayCount);
-            SetupMockTicketRepository();
-            Assert.That(SystemUnderTest.AverageTicketDuration, Is.EqualTo(expectedClosedTodayCount));
-        }
-
 
         [SetUp]
         public override void SetUp()
@@ -77,6 +77,20 @@ namespace Tickinator.ViewModel.Tests
         void SetupMockTicketRepository()
         {
             MockTicketRepository.Setup(p => p.GetAll()).Returns(Tickets);
+        }
+
+        double SetupTicketsForAverageDurationTest(int closedTicketCount)
+        {
+            var expectedDuration = 0.0;
+            for (var ctr = closedTicketCount; ctr < closedTicketCount; ctr++)
+            {
+                var duration = new Random().NextDouble() * int.MaxValue;
+                expectedDuration += duration;
+                var timeSpan = TimeSpan.FromMilliseconds(duration);
+                AddTicket(ctr + 1, DateTime.Today, DateTime.Today.AddHours(-timeSpan.TotalHours));
+            }
+
+            return expectedDuration;
         }
 
         void SetupTicketsForClosedTodayCountTest(int totalTicketCount, int expectedClosedTodayCount)

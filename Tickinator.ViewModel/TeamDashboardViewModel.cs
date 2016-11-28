@@ -37,10 +37,23 @@ namespace Tickinator.ViewModel
         {
             get
             {
-                var ticketDurations = GetTicketsClosedToday().Select(p => p.DateClosed - p.DateOpened);
-                var averageDuration = ticketDurations.Average((p) => p.Value.TotalMilliseconds);
+                if (!GetTicketsClosedToday().Select(p => p.DateClosed - p.DateOpened).Any(p => p.HasValue))
+                    return TimeSpan.Zero;
+
+                var averageDuration = CalculateAverageDuration();
                 return TimeSpan.FromMilliseconds(averageDuration);
             }
+        }
+
+        double CalculateAverageDuration()
+        {
+            var ticketDurations = GetTicketsClosedToday()
+                .Select(p => p.DateClosed - p.DateOpened)
+                .Where(p => p.HasValue);
+            var averageDuration = 0.0;
+
+            averageDuration = ticketDurations.Average(p => p.Value.TotalMilliseconds);
+            return averageDuration;
         }
 
         IEnumerable<Ticket> GetTicketsClosedToday()
