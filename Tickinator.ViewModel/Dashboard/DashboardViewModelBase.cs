@@ -8,8 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Tickinator.Model;
 using Tickinator.Repository;
+using Tickinator.ViewModel.Core;
 
-namespace Tickinator.ViewModel
+namespace Tickinator.ViewModel.Dashboard
 {
     public abstract class DashboardViewModelBase : ViewModelBase, IDashboardViewModel
     {

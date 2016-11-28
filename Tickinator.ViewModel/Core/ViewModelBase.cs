@@ -7,7 +7,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Tickinator.ViewModel.Annotations;
 
-namespace Tickinator.ViewModel
+namespace Tickinator.ViewModel.Core
 {
     public abstract class ViewModelBase : IViewModel
     {

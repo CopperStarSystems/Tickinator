@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using Tickinator.Repository.MockData;
 using Tickinator.ViewModel;
+using Tickinator.ViewModel.Dashboard;
 
 namespace Tickinator.UI.Wpf
 {

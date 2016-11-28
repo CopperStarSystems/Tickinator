@@ -5,6 +5,7 @@
 
 using Moq;
 using NUnit.Framework;
+using Tickinator.ViewModel.Dashboard;
 
 namespace Tickinator.ViewModel.Tests
 {

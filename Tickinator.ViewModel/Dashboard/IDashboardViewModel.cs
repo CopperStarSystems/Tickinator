@@ -4,8 +4,9 @@
 //  --------------------------------------------------------------------------------------
 
 using System;
+using Tickinator.ViewModel.Core;
 
-namespace Tickinator.ViewModel
+namespace Tickinator.ViewModel.Dashboard
 {
     public interface IDashboardViewModel : IViewModel
     {

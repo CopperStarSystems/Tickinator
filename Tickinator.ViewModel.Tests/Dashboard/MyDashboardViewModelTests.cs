@@ -2,7 +2,10 @@
 // Tickinator.ViewModel.Tests.MyDashboardViewModelTests.cs
 // 2016/11/28
 //  --------------------------------------------------------------------------------------
-namespace Tickinator.ViewModel.Tests
+
+using Tickinator.ViewModel.Dashboard;
+
+namespace Tickinator.ViewModel.Tests.Dashboard
 {
     public class MyDashboardViewModelTests : DashboardViewModelBaseTests<MyDashboardViewModel>
     {

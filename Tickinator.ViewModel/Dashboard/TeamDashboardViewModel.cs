@@ -9,7 +9,7 @@ using System.Linq;
 using Tickinator.Model;
 using Tickinator.Repository;
 
-namespace Tickinator.ViewModel
+namespace Tickinator.ViewModel.Dashboard
 {
     public class TeamDashboardViewModel : DashboardViewModelBase, ITeamDashboardViewModel
     {

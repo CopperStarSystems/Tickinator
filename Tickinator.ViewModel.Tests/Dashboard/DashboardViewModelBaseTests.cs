@@ -9,8 +9,9 @@ using Moq;
 using NUnit.Framework;
 using Tickinator.Model;
 using Tickinator.Repository;
+using Tickinator.ViewModel.Dashboard;
 
-namespace Tickinator.ViewModel.Tests
+namespace Tickinator.ViewModel.Tests.Dashboard
 {
     [TestFixture]
     public abstract class DashboardViewModelBaseTests<T> : TestBase<T> where T : IDashboardViewModel

@@ -5,7 +5,7 @@
 
 using System.ComponentModel;
 
-namespace Tickinator.ViewModel
+namespace Tickinator.ViewModel.Core
 {
     // This is just a marker interface identifying ViewModel types
     public interface IViewModel : INotifyPropertyChanged
