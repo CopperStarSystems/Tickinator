@@ -1,14 +1,11 @@
 ﻿//  --------------------------------------------------------------------------------------
-// Tickinator.ViewModel.IMainViewModel.cs
-// 2016/11/23
+// Tickinator.ViewModel.IMyDashboardViewModel.cs
+// 2016/11/28
 //  --------------------------------------------------------------------------------------
-
 namespace Tickinator.ViewModel
 {
-    public interface IMainViewModel : IViewModel
+    public interface IMyDashboardViewModel : IDashboardViewModel
     {
-        ITeamDashboardViewModel TeamDashboardViewModel { get; }
-
-        IMyDashboardViewModel MyDashboardViewModel { get; }
+        
     }
 }

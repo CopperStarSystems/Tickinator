@@ -43,9 +43,11 @@
     <Compile Include="DashboardViewModelBase.cs" />
     <Compile Include="IDashboardViewModel.cs" />
     <Compile Include="IMainViewModel.cs" />
+    <Compile Include="IMyDashboardViewModel.cs" />
     <Compile Include="ITeamDashboardViewModel.cs" />
     <Compile Include="IViewModel.cs" />
     <Compile Include="MainViewModel.cs" />
+    <Compile Include="MyDashboardViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TeamDashboardViewModel.cs" />

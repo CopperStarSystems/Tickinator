@@ -31,7 +31,8 @@ namespace Tickinator.UI.Wpf
             // injecting for us, but we're going with a manual approach at first.
             var ticketRepository = new TicketRepository();
             var teamDashboardViewModel = new TeamDashboardViewModel(ticketRepository);
-            var mainViewModel = new MainViewModel(teamDashboardViewModel);
+            var myDashboardViewModel = new MyDashboardViewModel(ticketRepository);
+            var mainViewModel = new MainViewModel(teamDashboardViewModel, myDashboardViewModel);
             return mainViewModel;
         }
     }

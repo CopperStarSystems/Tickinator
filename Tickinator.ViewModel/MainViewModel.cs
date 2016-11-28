@@ -7,11 +7,13 @@ namespace Tickinator.ViewModel
 {
     public class MainViewModel : ViewModelBase, IMainViewModel
     {
-        public MainViewModel(ITeamDashboardViewModel teamDashboardViewModel)
+        public MainViewModel(ITeamDashboardViewModel teamDashboardViewModel, IMyDashboardViewModel myDashboardViewModel)
         {
             TeamDashboardViewModel = teamDashboardViewModel;
+            MyDashboardViewModel = myDashboardViewModel;
         }
 
         public ITeamDashboardViewModel TeamDashboardViewModel { get; }
+        public IMyDashboardViewModel MyDashboardViewModel { get; }
     }
 }

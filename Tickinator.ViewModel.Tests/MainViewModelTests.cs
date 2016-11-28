@@ -11,6 +11,7 @@ namespace Tickinator.ViewModel.Tests
     [TestFixture]
     public class MainViewModelTests : TestBase<MainViewModel>
     {
+        Mock<IMyDashboardViewModel> mockMyDashboardViewModel;
         Mock<ITeamDashboardViewModel> mockTeamDashboardViewModel;
 
         [Test]
@@ -29,11 +30,12 @@ namespace Tickinator.ViewModel.Tests
         {
             base.CreateMocks();
             mockTeamDashboardViewModel = CreateMock<ITeamDashboardViewModel>();
+            mockMyDashboardViewModel = CreateMock<IMyDashboardViewModel>();
         }
 
         protected override MainViewModel CreateSystemUnderTest()
         {
-            return new MainViewModel(mockTeamDashboardViewModel.Object);
+            return new MainViewModel(mockTeamDashboardViewModel.Object, mockMyDashboardViewModel.Object);
         }
     }
 }
