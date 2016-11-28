@@ -4,6 +4,7 @@
 //  --------------------------------------------------------------------------------------
 
 using System.Collections.ObjectModel;
+using Tickinator.Model;
 using Tickinator.Repository;
 using Tickinator.ViewModel.Core;
 
@@ -17,7 +18,7 @@ namespace Tickinator.ViewModel.TicketList
             foreach (var ticket in ticketRepository.GetAll())
                 // Normally we would use a factory to create TicketListItemViewModel instances...
                 // We'll do a manual factory in our next checkin.
-                TodaysTickets.Add(new TicketListItemViewModel());
+                TodaysTickets.Add(new TicketListItemViewModel(ticket));
         }
 
         public ObservableCollection<ITicketListItemViewModel> TodaysTickets { get; }
