@@ -6,7 +6,24 @@
              xmlns:local="clr-namespace:Tickinator.UI.Wpf.UserControls"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="CheckBox">
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
-        <Label Content="Today's Tickets" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" LastChildFill="True">
+            <Label DockPanel.Dock="Left" Content="Today's Tickets:" Margin="0 0 5 0" />
+            <CheckBox DockPanel.Dock="Left" Content="Show only open tickets" IsChecked="True" Margin="5 0 5 0" />
+            <CheckBox DockPanel.Dock="Left" Content="Show only my tickets" Margin="5 0 5 0" />
+        </DockPanel>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding TodaysTickets}" />
     </Grid>
 </UserControl>

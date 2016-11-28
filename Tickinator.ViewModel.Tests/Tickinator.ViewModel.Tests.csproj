@@ -58,6 +58,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Dashboard\TeamDashboardViewModelTests.cs" />
     <Compile Include="TestBase.cs" />
+    <Compile Include="TicketList\TicketListItemViewModelTests.cs" />
+    <Compile Include="TicketList\TodaysTicketsListViewModelTests.cs" />
     <Compile Include="User\CurrentUserViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -5,6 +5,7 @@
 
 using Tickinator.ViewModel.Core;
 using Tickinator.ViewModel.Dashboard;
+using Tickinator.ViewModel.TicketList;
 
 namespace Tickinator.ViewModel
 {
@@ -13,5 +14,7 @@ namespace Tickinator.ViewModel
         ITeamDashboardViewModel TeamDashboardViewModel { get; }
 
         IMyDashboardViewModel MyDashboardViewModel { get; }
+
+        ITodaysTicketsListViewModel TodaysTicketsViewModel { get; }
     }
 }

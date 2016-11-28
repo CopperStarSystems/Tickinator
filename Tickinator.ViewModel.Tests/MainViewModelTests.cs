@@ -6,6 +6,7 @@
 using Moq;
 using NUnit.Framework;
 using Tickinator.ViewModel.Dashboard;
+using Tickinator.ViewModel.TicketList;
 
 namespace Tickinator.ViewModel.Tests
 {
@@ -14,6 +15,7 @@ namespace Tickinator.ViewModel.Tests
     {
         Mock<IMyDashboardViewModel> mockMyDashboardViewModel;
         Mock<ITeamDashboardViewModel> mockTeamDashboardViewModel;
+        Mock<ITodaysTicketsListViewModel> mockTodaysTicketsViewModel;
 
         [Test]
         public void TeamDashboardViewModel_AfterConstruction_IsInjectedInstance()
@@ -27,16 +29,24 @@ namespace Tickinator.ViewModel.Tests
             Assert.That(SystemUnderTest.TeamDashboardViewModel, Is.Not.Null);
         }
 
+        [Test]
+        public void TodaysTicketsViewModel_AfterConstruction_IsInjectedInstance()
+        {
+            Assert.That(SystemUnderTest.TodaysTicketsViewModel, Is.SameAs(mockTodaysTicketsViewModel.Object));
+        }
+
         protected override void CreateMocks()
         {
             base.CreateMocks();
             mockTeamDashboardViewModel = CreateMock<ITeamDashboardViewModel>();
             mockMyDashboardViewModel = CreateMock<IMyDashboardViewModel>();
+            mockTodaysTicketsViewModel = CreateMock<ITodaysTicketsListViewModel>();
         }
 
         protected override MainViewModel CreateSystemUnderTest()
         {
-            return new MainViewModel(mockTeamDashboardViewModel.Object, mockMyDashboardViewModel.Object);
+            return new MainViewModel(mockTeamDashboardViewModel.Object, mockMyDashboardViewModel.Object,
+                mockTodaysTicketsViewModel.Object);
         }
     }
 }

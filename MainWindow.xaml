@@ -15,6 +15,6 @@
         </Grid.RowDefinitions>
 
         <userControls:Dashboard Grid.Row="0" />
-        <userControls:TodaysTickets Grid.Row="1" />
+        <userControls:TodaysTickets Grid.Row="1" DataContext="{Binding TodaysTicketsViewModel}" />
     </Grid>
 </Window>
