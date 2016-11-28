@@ -17,46 +17,12 @@ namespace Tickinator.ViewModel
         {
         }
 
-        public override int OpenTicketCount
+        protected override IEnumerable<Ticket> GetOpenTickets()
         {
-            get
-            {
-                return Repository.GetAll().Count();
-            }
+            return Repository.GetAll().Where(p => !p.DateClosed.HasValue);
         }
 
-        public override int ClosedTodayCount
-        {
-            get
-            {
-                return GetTicketsClosedToday().Count();
-            }
-        }
-
-        public override TimeSpan AverageTicketDuration
-        {
-            get
-            {
-                if (!GetTicketsClosedToday().Select(p => p.DateClosed - p.DateOpened).Any(p => p.HasValue))
-                    return TimeSpan.Zero;
-
-                var averageDuration = CalculateAverageDuration();
-                return TimeSpan.FromMilliseconds(averageDuration);
-            }
-        }
-
-        double CalculateAverageDuration()
-        {
-            var ticketDurations = GetTicketsClosedToday()
-                .Select(p => p.DateClosed - p.DateOpened)
-                .Where(p => p.HasValue);
-            var averageDuration = 0.0;
-
-            averageDuration = ticketDurations.Average(p => p.Value.TotalMilliseconds);
-            return averageDuration;
-        }
-
-        IEnumerable<Ticket> GetTicketsClosedToday()
+        protected override IEnumerable<Ticket> GetTodaysClosedTickets()
         {
             return Repository.GetAll().Where(p => p.DateClosed.HasValue && (p.DateClosed.Value == DateTime.Today));
         }

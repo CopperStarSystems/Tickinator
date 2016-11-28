@@ -9,8 +9,6 @@ using Tickinator.Model;
 
 namespace Tickinator.Repository.MockData
 {
-    // Eventually we will put mock data in this class for 
-    // development-time use.
     public class TicketRepository : ITicketRepository
     {
         IList<Ticket> tickets;
@@ -28,7 +26,7 @@ namespace Tickinator.Repository.MockData
 
         Ticket CreateTicket(int id, DateTime? dateClosed, DateTime dateOpened)
         {
-            return new Ticket {Id = id, DateClosed = dateClosed, DateOpened = dateOpened};
+            return new Ticket {Id = id, DateClosed = dateClosed, DateOpened = dateOpened, AssignedToId = 1};
         }
 
         void Seed()

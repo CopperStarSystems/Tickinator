@@ -12,5 +12,7 @@ namespace Tickinator.Model
         public DateTime? DateClosed { get; set; }
 
         public DateTime DateOpened { get; set; }
+
+        public int AssignedToId { get; set; }
     }
 }

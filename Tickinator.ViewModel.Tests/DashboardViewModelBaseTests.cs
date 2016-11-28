@@ -59,13 +59,13 @@ namespace Tickinator.ViewModel.Tests
 
         protected void AddTicket(int id, DateTime? dateClosed, DateTime dateOpened)
         {
-            Tickets.Add(new Ticket {Id = id, DateClosed = dateClosed, DateOpened = dateOpened});
+            Tickets.Add(new Ticket {Id = id, DateClosed = dateClosed, DateOpened = dateOpened, AssignedToId = 1});
         }
 
         protected void AddTickets(int ticketCount)
         {
             for (var ctr = 0; ctr < ticketCount; ctr++)
-                Tickets.Add(new Ticket {Id = ctr + 1});
+                Tickets.Add(new Ticket {Id = ctr + 1, AssignedToId = 1});
         }
 
         protected override void CreateMocks()
@@ -84,7 +84,7 @@ namespace Tickinator.ViewModel.Tests
             var expectedDuration = 0.0;
             for (var ctr = closedTicketCount; ctr < closedTicketCount; ctr++)
             {
-                var duration = new Random().NextDouble() * int.MaxValue;
+                var duration = new Random().NextDouble()*int.MaxValue;
                 expectedDuration += duration;
                 var timeSpan = TimeSpan.FromMilliseconds(duration);
                 AddTicket(ctr + 1, DateTime.Today, DateTime.Today.AddHours(-timeSpan.TotalHours));

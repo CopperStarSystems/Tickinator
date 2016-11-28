@@ -4,6 +4,9 @@
 //  --------------------------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using Tickinator.Model;
 using Tickinator.Repository;
 
 namespace Tickinator.ViewModel
@@ -14,8 +17,16 @@ namespace Tickinator.ViewModel
         {
         }
 
-        public override int OpenTicketCount { get; }
-        public override int ClosedTodayCount { get; }
-        public override TimeSpan AverageTicketDuration { get; }
+        protected override IEnumerable<Ticket> GetOpenTickets()
+        {
+            return Repository.GetAll().Where(p => p.AssignedToId == 1);
+        }
+
+        protected override IEnumerable<Ticket> GetTodaysClosedTickets()
+        {
+            return
+                Repository.GetAll()
+                    .Where(p => p.DateClosed.HasValue && (p.DateClosed.Value == DateTime.Today) && (p.AssignedToId == 1));
+        }
     }
 }
