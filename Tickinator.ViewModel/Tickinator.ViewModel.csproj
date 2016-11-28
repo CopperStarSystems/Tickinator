@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="Dashboard\DashboardViewModelBase.cs" />
     <Compile Include="Dashboard\IDashboardViewModel.cs" />
+    <Compile Include="Factory\ITicketListItemViewModelFactory.cs" />
+    <Compile Include="Factory\TicketListItemViewModelFactory.cs" />
     <Compile Include="IMainViewModel.cs" />
     <Compile Include="Dashboard\IMyDashboardViewModel.cs" />
     <Compile Include="Dashboard\ITeamDashboardViewModel.cs" />

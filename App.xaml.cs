@@ -2,6 +2,7 @@
 using Tickinator.Repository.MockData;
 using Tickinator.ViewModel;
 using Tickinator.ViewModel.Dashboard;
+using Tickinator.ViewModel.Factory;
 using Tickinator.ViewModel.TicketList;
 using Tickinator.ViewModel.User;
 
@@ -36,7 +37,8 @@ namespace Tickinator.UI.Wpf
             var teamDashboardViewModel = new TeamDashboardViewModel(ticketRepository);
             var currentUser = new CurrentUserViewModel(1);
             var myDashboardViewModel = new MyDashboardViewModel(ticketRepository, currentUser);
-            var todaysTicketsViewModel = new TodaysTicketsListViewModel(ticketRepository);
+            var ticketListItemViewModelFactory = new TicketListItemViewModelFactory();
+            var todaysTicketsViewModel = new TodaysTicketsListViewModel(ticketRepository, ticketListItemViewModelFactory);
             var mainViewModel = new MainViewModel(teamDashboardViewModel, myDashboardViewModel, todaysTicketsViewModel);
             return mainViewModel;
         }
