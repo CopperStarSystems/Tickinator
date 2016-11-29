@@ -64,6 +64,7 @@
     <Compile Include="Command\CommandBase.cs" />
     <Compile Include="Command\ComposableCommand.cs" />
     <Compile Include="Command\ComposableCommandFactory.cs" />
+    <Compile Include="Command\GenericCommandBase.cs" />
     <Compile Include="Command\ICanExecute.cs" />
     <Compile Include="Command\IComposableCommand.cs" />
     <Compile Include="Command\IComposableCommandFactory.cs" />

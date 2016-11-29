@@ -7,9 +7,9 @@ using Tickinator.ViewModel.Command;
 
 namespace Tickinator.ViewModel.TicketList
 {
-    public class ShowTicketDetailsCommand : CommandBase, IShowTicketDetailsCommand
+    public class ShowTicketDetailsCommand : GenericCommandBase<TicketListItemViewModel>, IShowTicketDetailsCommand
     {
-        public override void Execute(object parameter)
+        protected override void ExecuteInternal(TicketListItemViewModel parameter)
         {
         }
     }
