@@ -60,6 +60,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command\CanExecuteBase.cs" />
+    <Compile Include="Command\CommandBase.cs" />
+    <Compile Include="Command\ComposableCommand.cs" />
+    <Compile Include="Command\ICanExecute.cs" />
+    <Compile Include="Command\IComposableCommand.cs" />
+    <Compile Include="Command\IExecute.cs" />
     <Compile Include="Dashboard\DashboardViewModelBase.cs" />
     <Compile Include="Dashboard\IDashboardViewModel.cs" />
     <Compile Include="Factory\ITicketListItemViewModelFactory.cs" />

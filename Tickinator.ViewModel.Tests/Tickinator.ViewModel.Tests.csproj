@@ -72,6 +72,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command\CommandBaseTests.cs" />
+    <Compile Include="Command\ComposableCommandTests.cs" />
+    <Compile Include="Common\MockEventHandler.cs" />
     <Compile Include="Dashboard\DashboardViewModelBaseTests.cs" />
     <Compile Include="MainViewModelTests.cs" />
     <Compile Include="Dashboard\MyDashboardViewModelTests.cs" />
@@ -99,6 +102,7 @@
       <Name>Tickinator.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

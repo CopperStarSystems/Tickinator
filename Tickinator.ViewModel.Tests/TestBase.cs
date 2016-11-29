@@ -28,6 +28,7 @@ namespace Tickinator.ViewModel.Tests
             CreateMocks();
             SetupConstructorRequiredMocks();
             SystemUnderTest = CreateSystemUnderTest();
+            SetupMocksAfterConstruction();
         }
 
         protected Mock<TMock> CreateMock<TMock>() where TMock : class
@@ -47,6 +48,10 @@ namespace Tickinator.ViewModel.Tests
         }
 
         protected virtual void SetupConstructorRequiredMocks()
+        {
+        }
+
+        protected virtual void SetupMocksAfterConstruction()
         {
         }
 
