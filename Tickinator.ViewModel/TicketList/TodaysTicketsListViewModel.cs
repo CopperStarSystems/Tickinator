@@ -4,6 +4,7 @@
 //  --------------------------------------------------------------------------------------
 
 using System.Collections.ObjectModel;
+using GalaSoft.MvvmLight;
 using Tickinator.Repository;
 using Tickinator.ViewModel.Core;
 using Tickinator.ViewModel.Factory;

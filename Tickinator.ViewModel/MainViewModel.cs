@@ -3,6 +3,7 @@
 // 2016/11/23
 //  --------------------------------------------------------------------------------------
 
+using GalaSoft.MvvmLight;
 using Tickinator.ViewModel.Core;
 using Tickinator.ViewModel.Dashboard;
 using Tickinator.ViewModel.TicketList;

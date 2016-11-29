@@ -3,6 +3,7 @@
 // 2016/11/28
 //  --------------------------------------------------------------------------------------
 
+using GalaSoft.MvvmLight;
 using Tickinator.ViewModel.Core;
 
 namespace Tickinator.ViewModel.User
