@@ -12,11 +12,11 @@ using Tickinator.ViewModel.Factory;
 
 namespace Tickinator.ViewModel.TicketList
 {
-    public class TodaysTicketsListViewModel : ViewModelBase, ITodaysTicketsListViewModel
+    public class TicketListViewModel : ViewModelBase, ITicketListViewModel
     {
         ITicketListItemViewModel selectedItem;
 
-        public TodaysTicketsListViewModel(ITicketRepository ticketRepository,
+        public TicketListViewModel(ITicketRepository ticketRepository,
             ITicketListItemViewModelFactory ticketListItemViewModelFactory)
         {
             TodaysTickets = new ObservableCollection<ITicketListItemViewModel>();

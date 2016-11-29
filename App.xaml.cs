@@ -38,7 +38,7 @@ namespace Tickinator.UI.Wpf
             var currentUser = new CurrentUserViewModel(1);
             var myDashboardViewModel = new MyDashboardViewModel(ticketRepository, currentUser);
             var ticketListItemViewModelFactory = new TicketListItemViewModelFactory();
-            var todaysTicketsViewModel = new TodaysTicketsListViewModel(ticketRepository, ticketListItemViewModelFactory);
+            var todaysTicketsViewModel = new TicketListViewModel(ticketRepository, ticketListItemViewModelFactory);
             var mainViewModel = new MainViewModel(teamDashboardViewModel, myDashboardViewModel, todaysTicketsViewModel);
             return mainViewModel;
         }

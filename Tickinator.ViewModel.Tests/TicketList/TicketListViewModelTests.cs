@@ -14,7 +14,7 @@ using Tickinator.ViewModel.TicketList;
 namespace Tickinator.ViewModel.Tests.TicketList
 {
     [TestFixture]
-    public class TodaysTicketsListViewModelTests : TestBase<TodaysTicketsListViewModel>
+    public class TicketListViewModelTests : TestBase<TicketListViewModel>
     {
         Mock<ITicketListItemViewModelFactory> mockTicketListItemViewModelFactory;
         Mock<ITicketRepository> mockTicketRepository;
@@ -32,9 +32,9 @@ namespace Tickinator.ViewModel.Tests.TicketList
             mockTicketListItemViewModelFactory = CreateMock<ITicketListItemViewModelFactory>();
         }
 
-        protected override TodaysTicketsListViewModel CreateSystemUnderTest()
+        protected override TicketListViewModel CreateSystemUnderTest()
         {
-            return new TodaysTicketsListViewModel(mockTicketRepository.Object, mockTicketListItemViewModelFactory.Object);
+            return new TicketListViewModel(mockTicketRepository.Object, mockTicketListItemViewModelFactory.Object);
         }
 
         protected override void SetupConstructorRequiredMocks()

@@ -8,7 +8,7 @@ using Tickinator.ViewModel.Core;
 
 namespace Tickinator.ViewModel.TicketList
 {
-    public interface ITodaysTicketsListViewModel : IViewModel
+    public interface ITicketListViewModel : IViewModel
     {
         ObservableCollection<ITicketListItemViewModel> TodaysTickets { get; }
     }

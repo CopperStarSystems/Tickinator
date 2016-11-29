@@ -15,6 +15,6 @@ namespace Tickinator.ViewModel
 
         IMyDashboardViewModel MyDashboardViewModel { get; }
 
-        ITodaysTicketsListViewModel TodaysTicketsViewModel { get; }
+        ITicketListViewModel TodaysTicketsViewModel { get; }
     }
 }

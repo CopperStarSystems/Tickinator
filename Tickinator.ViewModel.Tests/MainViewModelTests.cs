@@ -15,7 +15,7 @@ namespace Tickinator.ViewModel.Tests
     {
         Mock<IMyDashboardViewModel> mockMyDashboardViewModel;
         Mock<ITeamDashboardViewModel> mockTeamDashboardViewModel;
-        Mock<ITodaysTicketsListViewModel> mockTodaysTicketsViewModel;
+        Mock<ITicketListViewModel> mockTodaysTicketsViewModel;
 
         [Test]
         public void TeamDashboardViewModel_AfterConstruction_IsInjectedInstance()
@@ -40,7 +40,7 @@ namespace Tickinator.ViewModel.Tests
             base.CreateMocks();
             mockTeamDashboardViewModel = CreateMock<ITeamDashboardViewModel>();
             mockMyDashboardViewModel = CreateMock<IMyDashboardViewModel>();
-            mockTodaysTicketsViewModel = CreateMock<ITodaysTicketsListViewModel>();
+            mockTodaysTicketsViewModel = CreateMock<ITicketListViewModel>();
         }
 
         protected override MainViewModel CreateSystemUnderTest()

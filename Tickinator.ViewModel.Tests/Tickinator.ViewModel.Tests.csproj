@@ -79,7 +79,7 @@
     <Compile Include="Dashboard\TeamDashboardViewModelTests.cs" />
     <Compile Include="TestBase.cs" />
     <Compile Include="TicketList\TicketListItemViewModelTests.cs" />
-    <Compile Include="TicketList\TodaysTicketsListViewModelTests.cs" />
+    <Compile Include="TicketList\TicketListViewModelTests.cs" />
     <Compile Include="User\CurrentUserViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>

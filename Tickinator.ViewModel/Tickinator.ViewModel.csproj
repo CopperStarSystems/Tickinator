@@ -74,9 +74,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Dashboard\TeamDashboardViewModel.cs" />
     <Compile Include="TicketList\ITicketListItemViewModel.cs" />
-    <Compile Include="TicketList\ITodaysTicketsListViewModel.cs" />
+    <Compile Include="TicketList\ITicketListViewModel.cs" />
     <Compile Include="TicketList\TicketListItemViewModel.cs" />
-    <Compile Include="TicketList\TodaysTicketsListViewModel.cs" />
+    <Compile Include="TicketList\TicketListViewModel.cs" />
     <Compile Include="User\CurrentUserViewModel.cs" />
     <Compile Include="User\ICurrentUserViewModel.cs" />
   </ItemGroup>
