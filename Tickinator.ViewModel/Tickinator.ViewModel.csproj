@@ -63,8 +63,10 @@
     <Compile Include="Command\CanExecuteBase.cs" />
     <Compile Include="Command\CommandBase.cs" />
     <Compile Include="Command\ComposableCommand.cs" />
+    <Compile Include="Command\ComposableCommandFactory.cs" />
     <Compile Include="Command\ICanExecute.cs" />
     <Compile Include="Command\IComposableCommand.cs" />
+    <Compile Include="Command\IComposableCommandFactory.cs" />
     <Compile Include="Command\IExecute.cs" />
     <Compile Include="Dashboard\DashboardViewModelBase.cs" />
     <Compile Include="Dashboard\IDashboardViewModel.cs" />
@@ -79,8 +81,10 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Dashboard\TeamDashboardViewModel.cs" />
+    <Compile Include="TicketList\IShowTicketDetailsCommand.cs" />
     <Compile Include="TicketList\ITicketListItemViewModel.cs" />
     <Compile Include="TicketList\ITicketListViewModel.cs" />
+    <Compile Include="TicketList\ShowTicketDetailsCommand.cs" />
     <Compile Include="TicketList\TicketListItemViewModel.cs" />
     <Compile Include="TicketList\TicketListViewModel.cs" />
     <Compile Include="User\CurrentUserViewModel.cs" />

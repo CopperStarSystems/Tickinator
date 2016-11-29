@@ -4,6 +4,7 @@
 //  --------------------------------------------------------------------------------------
 
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using Tickinator.ViewModel.Core;
 
 namespace Tickinator.ViewModel.TicketList
@@ -11,5 +12,7 @@ namespace Tickinator.ViewModel.TicketList
     public interface ITicketListViewModel : IViewModel
     {
         ObservableCollection<ITicketListItemViewModel> TodaysTickets { get; }
+
+        ICommand ShowTicketDetailsCommand { get; }
     }
 }

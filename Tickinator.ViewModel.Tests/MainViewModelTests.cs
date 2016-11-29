@@ -14,24 +14,28 @@ namespace Tickinator.ViewModel.Tests
     public class MainViewModelTests : TestBase<MainViewModel>
     {
         Mock<IMyDashboardViewModel> mockMyDashboardViewModel;
+
         Mock<ITeamDashboardViewModel> mockTeamDashboardViewModel;
         Mock<ITicketListViewModel> mockTodaysTicketsViewModel;
 
         [Test]
-        public void TeamDashboardViewModel_AfterConstruction_IsInjectedInstance()
+        public void MyDashboardViewModel_AfterConstruction_IsExpectedValue()
         {
+            Assert.That(SystemUnderTest.MyDashboardViewModel, Is.Not.Null);
+            Assert.That(SystemUnderTest.MyDashboardViewModel, Is.SameAs(mockMyDashboardViewModel.Object));
+        }
+
+        [Test]
+        public void TeamDashboardViewModel_AfterConstruction_IsExpectedValue()
+        {
+            Assert.That(SystemUnderTest.TeamDashboardViewModel, Is.Not.Null);
             Assert.That(SystemUnderTest.TeamDashboardViewModel, Is.SameAs(mockTeamDashboardViewModel.Object));
         }
 
         [Test]
-        public void TeamDashboardViewModel_AfterConstruction_IsNotNull()
+        public void TodaysTicketsViewModel_AfterConstruction_ExpectedValue()
         {
-            Assert.That(SystemUnderTest.TeamDashboardViewModel, Is.Not.Null);
-        }
-
-        [Test]
-        public void TodaysTicketsViewModel_AfterConstruction_IsInjectedInstance()
-        {
+            Assert.That(SystemUnderTest.TodaysTicketsViewModel, Is.Not.Null);
             Assert.That(SystemUnderTest.TodaysTicketsViewModel, Is.SameAs(mockTodaysTicketsViewModel.Object));
         }
 

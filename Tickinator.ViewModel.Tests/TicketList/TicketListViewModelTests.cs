@@ -16,8 +16,16 @@ namespace Tickinator.ViewModel.Tests.TicketList
     [TestFixture]
     public class TicketListViewModelTests : TestBase<TicketListViewModel>
     {
+        Mock<IShowTicketDetailsCommand> mockShowTicketDetailsCommand;
         Mock<ITicketListItemViewModelFactory> mockTicketListItemViewModelFactory;
         Mock<ITicketRepository> mockTicketRepository;
+
+        [Test]
+        public void ShowTicketDetailsCommand_AfterConstruction_IsExpectedValue()
+        {
+            Assert.That(SystemUnderTest.ShowTicketDetailsCommand, Is.Not.Null);
+            Assert.That(SystemUnderTest.ShowTicketDetailsCommand, Is.SameAs(mockShowTicketDetailsCommand.Object));
+        }
 
         [Test]
         public void TodaysTickets_AfterConstruction_IsNotNull()
@@ -30,11 +38,13 @@ namespace Tickinator.ViewModel.Tests.TicketList
             base.CreateMocks();
             mockTicketRepository = CreateMock<ITicketRepository>();
             mockTicketListItemViewModelFactory = CreateMock<ITicketListItemViewModelFactory>();
+            mockShowTicketDetailsCommand = CreateMock<IShowTicketDetailsCommand>();
         }
 
         protected override TicketListViewModel CreateSystemUnderTest()
         {
-            return new TicketListViewModel(mockTicketRepository.Object, mockTicketListItemViewModelFactory.Object);
+            return new TicketListViewModel(mockTicketRepository.Object, mockTicketListItemViewModelFactory.Object,
+                mockShowTicketDetailsCommand.Object);
         }
 
         protected override void SetupConstructorRequiredMocks()
