@@ -5,6 +5,7 @@
 
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
+using Tickinator.Model;
 using Tickinator.Repository;
 using Tickinator.ViewModel.Core;
 using Tickinator.ViewModel.Factory;
@@ -13,6 +14,8 @@ namespace Tickinator.ViewModel.TicketList
 {
     public class TodaysTicketsListViewModel : ViewModelBase, ITodaysTicketsListViewModel
     {
+        ITicketListItemViewModel selectedItem;
+
         public TodaysTicketsListViewModel(ITicketRepository ticketRepository,
             ITicketListItemViewModelFactory ticketListItemViewModelFactory)
         {
@@ -24,5 +27,18 @@ namespace Tickinator.ViewModel.TicketList
         }
 
         public ObservableCollection<ITicketListItemViewModel> TodaysTickets { get; }
+
+        public ITicketListItemViewModel SelectedItem
+        {
+            get
+            {
+                return selectedItem;
+            }
+            set
+            {
+                selectedItem = value;
+                RaisePropertyChanged(nameof(SelectedItem));
+            }
+        }
     }
 }

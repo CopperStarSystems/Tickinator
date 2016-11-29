@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Tickinator.UI.Wpf.UserControls"
+             xmlns:infrastructure="clr-namespace:Tickinator.UI.Wpf.Infrastructure"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -24,20 +25,21 @@
             <CheckBox DockPanel.Dock="Left" Content="Show only open tickets" IsChecked="True" Margin="5 0 5 0" />
             <CheckBox DockPanel.Dock="Left" Content="Show only my tickets" Margin="5 0 5 0" />
         </DockPanel>
-        <DataGrid Grid.Row="1" ItemsSource="{Binding TodaysTickets}" AutoGenerateColumns="False">
+        <DataGrid Grid.Row="1" ItemsSource="{Binding TodaysTickets}" AutoGenerateColumns="False" SelectionMode="Single"
+                  SelectedItem="{Binding SelectedItem}" MouseDoubleClick="{infrastructure:EventBinding ShowTicketDetailCommand}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
                 <DataGridTemplateColumn Header="Date Opened">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <DatePicker SelectedDate="{Binding DateOpened}"/>
+                            <DatePicker SelectedDate="{Binding DateOpened}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="Date Closed">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <DatePicker SelectedDate="{Binding DateClosed}"/>
+                            <DatePicker SelectedDate="{Binding DateClosed}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
