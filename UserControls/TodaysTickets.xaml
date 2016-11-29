@@ -24,6 +24,24 @@
             <CheckBox DockPanel.Dock="Left" Content="Show only open tickets" IsChecked="True" Margin="5 0 5 0" />
             <CheckBox DockPanel.Dock="Left" Content="Show only my tickets" Margin="5 0 5 0" />
         </DockPanel>
-        <DataGrid Grid.Row="1" ItemsSource="{Binding TodaysTickets}" />
+        <DataGrid Grid.Row="1" ItemsSource="{Binding TodaysTickets}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                <DataGridTemplateColumn Header="Date Opened">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding DateOpened}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Date Closed">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding DateClosed}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>
