@@ -7,14 +7,16 @@ using Moq;
 using NUnit.Framework;
 using Tickinator.ViewModel.Dashboard;
 using Tickinator.ViewModel.TicketList;
+using Tickinator.ViewModel.User;
 
 namespace Tickinator.ViewModel.Tests
 {
     [TestFixture]
     public class MainViewModelTests : TestBase<MainViewModel>
     {
+        Mock<ICurrentUserViewModel> mockCurrentUserViewModel;
         Mock<IMyDashboardViewModel> mockMyDashboardViewModel;
-
+        Mock<IMyDashboardViewModelFactory> mockMyDashboardViewModelFactory;
         Mock<ITeamDashboardViewModel> mockTeamDashboardViewModel;
         Mock<ITicketListViewModel> mockTodaysTicketsViewModel;
 
@@ -43,14 +45,23 @@ namespace Tickinator.ViewModel.Tests
         {
             base.CreateMocks();
             mockTeamDashboardViewModel = CreateMock<ITeamDashboardViewModel>();
+            mockMyDashboardViewModelFactory = CreateMock<IMyDashboardViewModelFactory>();
             mockMyDashboardViewModel = CreateMock<IMyDashboardViewModel>();
             mockTodaysTicketsViewModel = CreateMock<ITicketListViewModel>();
+            mockCurrentUserViewModel = CreateMock<ICurrentUserViewModel>();
         }
 
         protected override MainViewModel CreateSystemUnderTest()
         {
-            return new MainViewModel(mockTeamDashboardViewModel.Object, mockMyDashboardViewModel.Object,
-                mockTodaysTicketsViewModel.Object);
+            return new MainViewModel(mockTeamDashboardViewModel.Object, mockMyDashboardViewModelFactory.Object,
+                mockTodaysTicketsViewModel.Object, mockCurrentUserViewModel.Object);
+        }
+
+        protected override void SetupConstructorRequiredMocks()
+        {
+            base.SetupConstructorRequiredMocks();
+            mockMyDashboardViewModelFactory.Setup(p => p.Create(mockCurrentUserViewModel.Object))
+                .Returns(mockMyDashboardViewModel.Object);
         }
     }
 }

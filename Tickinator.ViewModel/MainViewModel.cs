@@ -4,19 +4,20 @@
 //  --------------------------------------------------------------------------------------
 
 using GalaSoft.MvvmLight;
-using Tickinator.ViewModel.Core;
 using Tickinator.ViewModel.Dashboard;
 using Tickinator.ViewModel.TicketList;
+using Tickinator.ViewModel.User;
 
 namespace Tickinator.ViewModel
 {
     public class MainViewModel : ViewModelBase, IMainViewModel
     {
-        public MainViewModel(ITeamDashboardViewModel teamDashboardViewModel, IMyDashboardViewModel myDashboardViewModel,
-            ITicketListViewModel todaysTicketsListViewModel)
+        public MainViewModel(ITeamDashboardViewModel teamDashboardViewModel,
+            IMyDashboardViewModelFactory myDashboardViewModelFactory, ITicketListViewModel todaysTicketsListViewModel,
+            ICurrentUserViewModel currentUserViewModel)
         {
             TeamDashboardViewModel = teamDashboardViewModel;
-            MyDashboardViewModel = myDashboardViewModel;
+            MyDashboardViewModel = myDashboardViewModelFactory.Create(currentUserViewModel);
             TodaysTicketsViewModel = todaysTicketsListViewModel;
         }
 

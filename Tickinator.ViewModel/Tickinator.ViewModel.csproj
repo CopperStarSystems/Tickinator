@@ -63,7 +63,6 @@
     <Compile Include="Command\CanExecuteBase.cs" />
     <Compile Include="Command\CommandBase.cs" />
     <Compile Include="Command\ComposableCommand.cs" />
-    <Compile Include="Command\ComposableCommandFactory.cs" />
     <Compile Include="Command\GenericCommandBase.cs" />
     <Compile Include="Command\ICanExecute.cs" />
     <Compile Include="Command\IComposableCommand.cs" />
@@ -72,12 +71,13 @@
     <Compile Include="Core\IView.cs" />
     <Compile Include="Dashboard\DashboardViewModelBase.cs" />
     <Compile Include="Dashboard\IDashboardViewModel.cs" />
+    <Compile Include="Dashboard\IMyDashboardViewModelFactory.cs" />
     <Compile Include="Factory\ITicketListItemViewModelFactory.cs" />
-    <Compile Include="Factory\TicketListItemViewModelFactory.cs" />
     <Compile Include="IMainViewModel.cs" />
     <Compile Include="Dashboard\IMyDashboardViewModel.cs" />
     <Compile Include="Dashboard\ITeamDashboardViewModel.cs" />
     <Compile Include="Core\IViewModel.cs" />
+    <Compile Include="IMainViewModelFactory.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="Dashboard\MyDashboardViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
@@ -92,6 +92,8 @@
     <Compile Include="TicketList\TicketListViewModel.cs" />
     <Compile Include="User\CurrentUserViewModel.cs" />
     <Compile Include="User\ICurrentUserViewModel.cs" />
+    <Compile Include="User\ICurrentUserViewModelFactory.cs" />
+    <Compile Include="View\IMainWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tickinator.Model\Tickinator.Model.csproj">
@@ -106,6 +108,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
