@@ -7,18 +7,26 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
+using Tickinator.Model;
+using Tickinator.ViewModel.Command;
 using Tickinator.ViewModel.StatusList;
 
 namespace Tickinator.ViewModel.TicketDetails
 {
     public class TicketDetailsViewModel : ViewModelBase, ITicketDetailsViewModel
     {
+        readonly Ticket ticket;
         int assignedToId;
         DateTime? dateClosed;
         DateTime dateOpened;
         int id;
-
         IEnumerable<IStatusListItemViewModel> statuses;
+
+        public TicketDetailsViewModel(Ticket ticket, ICloseCommand closeCommand)
+        {
+            this.ticket = ticket;
+            CloseCommand = closeCommand;
+        }
 
         public IEnumerable<IStatusListItemViewModel> Statuses
         {
@@ -39,11 +47,11 @@ namespace Tickinator.ViewModel.TicketDetails
         {
             get
             {
-                return dateClosed;
+                return ticket.DateClosed;
             }
             set
             {
-                dateClosed = value;
+                ticket.DateClosed = value;
                 RaisePropertyChanged(nameof(DateClosed));
             }
         }
@@ -52,11 +60,11 @@ namespace Tickinator.ViewModel.TicketDetails
         {
             get
             {
-                return dateOpened;
+                return ticket.DateOpened;
             }
             set
             {
-                dateOpened = value;
+                ticket.DateOpened = value;
                 RaisePropertyChanged(nameof(DateOpened));
             }
         }
@@ -65,11 +73,11 @@ namespace Tickinator.ViewModel.TicketDetails
         {
             get
             {
-                return assignedToId;
+                return ticket.AssignedToId;
             }
             set
             {
-                assignedToId = value;
+                ticket.AssignedToId = value;
                 RaisePropertyChanged(nameof(AssignedToId));
             }
         }
@@ -78,11 +86,11 @@ namespace Tickinator.ViewModel.TicketDetails
         {
             get
             {
-                return id;
+                return ticket.Id;
             }
             set
             {
-                id = value;
+                ticket.Id = value;
                 RaisePropertyChanged(nameof(Id));
             }
         }
