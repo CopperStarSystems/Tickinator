@@ -4,8 +4,6 @@
 //  --------------------------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using Tickinator.ViewModel.StatusList;
 
 namespace Tickinator.ViewModel.TicketList
 {
@@ -18,7 +16,5 @@ namespace Tickinator.ViewModel.TicketList
         DateTime DateOpened { get; set; }
 
         int AssignedToId { get; set; }
-
-        IEnumerable<IStatusListItemViewModel> Statuses { get; }
     }
 }

@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tickinator.Repository.MockD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tickinator.Model", "Tickinator.Model\Tickinator.Model.csproj", "{00DEE704-461C-470E-88DE-79248081DDAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tickinator.Common", "..\Tickinator.Common\Tickinator.Common.csproj", "{5810E2D3-A19B-4663-80EC-884A3C08A7CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tickinator.Common", "Tickinator.Common\Tickinator.Common.csproj", "{5810E2D3-A19B-4663-80EC-884A3C08A7CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

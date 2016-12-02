@@ -5,7 +5,7 @@
 
 namespace Tickinator.ViewModel.View.Core
 {
-    public interface IView
+    public interface IView : IClosable
     {
         object DataContext { get; set; }
 
