@@ -5,7 +5,6 @@
 
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using Tickinator.ViewModel.Core;
 
 namespace Tickinator.ViewModel.TicketList
 {

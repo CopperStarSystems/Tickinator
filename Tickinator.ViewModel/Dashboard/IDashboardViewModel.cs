@@ -4,7 +4,6 @@
 //  --------------------------------------------------------------------------------------
 
 using System;
-using Tickinator.ViewModel.Core;
 
 namespace Tickinator.ViewModel.Dashboard
 {

@@ -6,7 +6,7 @@
 using System;
 using System.Windows.Input;
 
-namespace Tickinator.ViewModel.Command
+namespace Tickinator.ViewModel.Command.Core
 {
     public abstract class CommandBase : ICommand
     {

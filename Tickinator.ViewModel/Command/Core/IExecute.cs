@@ -1,13 +1,11 @@
 ﻿//  --------------------------------------------------------------------------------------
-// Tickinator.ViewModel.IMainWindow.cs
+// Tickinator.ViewModel.IExecute.cs
 // 2016/11/29
 //  --------------------------------------------------------------------------------------
-
-using Tickinator.ViewModel.View.Core;
-
-namespace Tickinator.ViewModel.View
+namespace Tickinator.ViewModel.Command.Core
 {
-    public interface IMainWindow : IView
+    public interface IExecute
     {
+        void Execute(object parameter);
     }
 }

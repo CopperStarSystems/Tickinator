@@ -8,7 +8,7 @@ using Moq;
 using NUnit.Framework;
 using Tickinator.Model;
 using Tickinator.Repository;
-using Tickinator.ViewModel.Factory;
+using Tickinator.ViewModel.Command;
 using Tickinator.ViewModel.TicketList;
 
 namespace Tickinator.ViewModel.Tests.TicketList

@@ -5,7 +5,7 @@
 
 using System;
 
-namespace Tickinator.ViewModel.Command
+namespace Tickinator.ViewModel.Command.Core
 {
     public abstract class CanExecuteBase : ICanExecute
     {

@@ -1,13 +1,14 @@
 ﻿//  --------------------------------------------------------------------------------------
-// Tickinator.ViewModel.IShowTicketDetailsCommand.cs
-// 2016/11/29
+// Tickinator.ViewModel.ITicketListItemViewModelFactory.cs
+// 2016/11/28
 //  --------------------------------------------------------------------------------------
 
-using System.Windows.Input;
+using Tickinator.Model;
 
 namespace Tickinator.ViewModel.TicketList
 {
-    public interface IShowTicketDetailsCommand : ICommand
+    public interface ITicketListItemViewModelFactory
     {
+        ITicketListItemViewModel Create(Ticket ticket);
     }
 }

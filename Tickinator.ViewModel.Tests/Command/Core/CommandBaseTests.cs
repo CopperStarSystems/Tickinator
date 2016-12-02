@@ -6,10 +6,10 @@
 using System;
 using System.Windows.Input;
 using NUnit.Framework;
-using Tickinator.ViewModel.Command;
+using Tickinator.ViewModel.Command.Core;
 using Tickinator.ViewModel.Tests.Common;
 
-namespace Tickinator.ViewModel.Tests.Command
+namespace Tickinator.ViewModel.Tests.Command.Core
 {
     public abstract class CommandBaseTests<T> : TestBase<T> where T : CommandBase, ICommand
     {

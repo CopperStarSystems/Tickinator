@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using Tickinator.Repository;
-using Tickinator.ViewModel.Factory;
+using Tickinator.ViewModel.Command;
 
 namespace Tickinator.ViewModel.TicketList
 {

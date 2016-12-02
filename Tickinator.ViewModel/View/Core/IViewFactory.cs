@@ -1,13 +1,12 @@
 ﻿//  --------------------------------------------------------------------------------------
-// Tickinator.ViewModel.IComposableCommand.cs
-// 2016/11/29
+// Tickinator.ViewModel.IViewFactory.cs
+// 2016/12/02
 //  --------------------------------------------------------------------------------------
 
-using System.Windows.Input;
-
-namespace Tickinator.ViewModel.Command
+namespace Tickinator.ViewModel.View.Core
 {
-    public interface IComposableCommand : ICommand
+    public interface IViewFactory
     {
+        T Create<T>() where T : IView;
     }
 }

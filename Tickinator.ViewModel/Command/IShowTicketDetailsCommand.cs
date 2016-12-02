@@ -1,16 +1,13 @@
 ﻿//  --------------------------------------------------------------------------------------
-// Tickinator.ViewModel.IView.cs
+// Tickinator.ViewModel.IShowTicketDetailsCommand.cs
 // 2016/11/29
 //  --------------------------------------------------------------------------------------
 
-namespace Tickinator.ViewModel.Core
+using System.Windows.Input;
+
+namespace Tickinator.ViewModel.Command
 {
-    public interface IView
+    public interface IShowTicketDetailsCommand : ICommand
     {
-        object DataContext { get; set; }
-
-        void Show();
-
-        bool? ShowDialog();
     }
 }

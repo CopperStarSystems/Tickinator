@@ -3,7 +3,6 @@
 // 2016/11/23
 //  --------------------------------------------------------------------------------------
 
-using Tickinator.ViewModel.Core;
 using Tickinator.ViewModel.Dashboard;
 using Tickinator.ViewModel.TicketList;
 

@@ -4,7 +4,6 @@
 //  --------------------------------------------------------------------------------------
 
 using GalaSoft.MvvmLight;
-using Tickinator.ViewModel.Core;
 
 namespace Tickinator.ViewModel.User
 {

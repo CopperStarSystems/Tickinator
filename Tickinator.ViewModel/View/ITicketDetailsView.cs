@@ -3,7 +3,7 @@
 // 2016/11/29
 //  --------------------------------------------------------------------------------------
 
-using Tickinator.ViewModel.Core;
+using Tickinator.ViewModel.View.Core;
 
 namespace Tickinator.ViewModel.View
 {

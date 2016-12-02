@@ -72,8 +72,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Command\CommandBaseTests.cs" />
-    <Compile Include="Command\ComposableCommandTests.cs" />
+    <Compile Include="Command\Core\CommandBaseTests.cs" />
+    <Compile Include="Command\Core\ComposableCommandTests.cs" />
     <Compile Include="Common\MockEventHandler.cs" />
     <Compile Include="Dashboard\DashboardViewModelBaseTests.cs" />
     <Compile Include="MainViewModelTests.cs" />
@@ -81,7 +81,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Dashboard\TeamDashboardViewModelTests.cs" />
     <Compile Include="TestBase.cs" />
-    <Compile Include="TicketList\ShowTicketDetailsCommandTests.cs" />
+    <Compile Include="Command\ShowTicketDetailsCommandTests.cs" />
     <Compile Include="TicketList\TicketListItemViewModelTests.cs" />
     <Compile Include="TicketList\TicketListViewModelTests.cs" />
     <Compile Include="User\CurrentUserViewModelTests.cs" />

@@ -5,12 +5,13 @@
 
 using Moq;
 using NUnit.Framework;
-using Tickinator.ViewModel.Core;
-using Tickinator.ViewModel.Tests.Command;
+using Tickinator.ViewModel.Command;
+using Tickinator.ViewModel.Tests.Command.Core;
 using Tickinator.ViewModel.TicketList;
 using Tickinator.ViewModel.View;
+using Tickinator.ViewModel.View.Core;
 
-namespace Tickinator.ViewModel.Tests.TicketList
+namespace Tickinator.ViewModel.Tests.Command
 {
     [TestFixture]
     public class ShowTicketDetailsCommandTests : CommandBaseTests<ShowTicketDetailsCommand>

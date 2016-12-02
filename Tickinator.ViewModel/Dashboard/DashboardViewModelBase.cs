@@ -9,7 +9,6 @@ using System.Linq;
 using GalaSoft.MvvmLight;
 using Tickinator.Model;
 using Tickinator.Repository;
-using Tickinator.ViewModel.Core;
 
 namespace Tickinator.ViewModel.Dashboard
 {

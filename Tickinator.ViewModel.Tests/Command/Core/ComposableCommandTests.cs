@@ -1,11 +1,11 @@
 ﻿//  --------------------------------------------------------------------------------------
-// Tickinator.ViewModel.IExecute.cs
+// Tickinator.ViewModel.Tests.ComposableCommandTests.cs
 // 2016/11/29
 //  --------------------------------------------------------------------------------------
-namespace Tickinator.ViewModel.Command
+namespace Tickinator.ViewModel.Tests.Command.Core
 {
-    public interface IExecute
+    public class ComposableCommandTests
     {
-        void Execute(object parameter);
+        
     }
 }
