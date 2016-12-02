@@ -1,19 +1,21 @@
-﻿<UserControl x:Class="Tickinator.UI.Wpf.UserControls.TodaysTickets"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Tickinator.UI.Wpf.UserControls"
              xmlns:infrastructure="clr-namespace:Tickinator.UI.Wpf.Infrastructure"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:Custom="http://www.galasoft.ch/mvvmlight" x:Class="Tickinator.UI.Wpf.UserControls.TodaysTickets"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <ResourceDictionary>
-            <Style TargetType="CheckBox">
+            <Style TargetType="{x:Type CheckBox}">
                 <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -26,7 +28,7 @@
             <CheckBox DockPanel.Dock="Left" Content="Show only my tickets" Margin="5 0 5 0" />
         </DockPanel>
         <DataGrid Grid.Row="1" ItemsSource="{Binding TodaysTickets}" AutoGenerateColumns="False" SelectionMode="Single"
-                  SelectedItem="{Binding SelectedItem}" MouseDoubleClick="{infrastructure:EventBinding ShowTicketDetailsCommand}">
+                  SelectedItem="{Binding SelectedItem}" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
                 <DataGridTemplateColumn Header="Date Opened">
@@ -44,6 +46,11 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <Custom:EventToCommand Command="{Binding ShowTicketDetailsCommand}" CommandParameter="{Binding SelectedItem}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
         </DataGrid>
     </Grid>
 </UserControl>

@@ -89,7 +89,6 @@
     <Compile Include="Bootstrap\UiAssemblyInstaller.cs" />
     <Compile Include="Bootstrap\Bootstrapper.cs" />
     <Compile Include="Bootstrap\ViewModelAssemblyInstaller.cs" />
-    <Compile Include="Infrastructure\EventBindingExtension.cs" />
     <Compile Include="Infrastructure\WindsorContainerHelper.cs" />
     <Compile Include="TicketDetailsView.xaml.cs">
       <DependentUpon>TicketDetailsView.xaml</DependentUpon>
