@@ -7,6 +7,7 @@ using Castle.Facilities.TypedFactory;
 using Castle.MicroKernel.Registration;
 using Tickinator.ViewModel;
 using Tickinator.ViewModel.Command;
+using Tickinator.ViewModel.Core;
 using Tickinator.ViewModel.Dashboard;
 using Tickinator.ViewModel.Factory;
 using Tickinator.ViewModel.User;
@@ -34,6 +35,7 @@ namespace Tickinator.UI.Wpf.Bootstrap
             Container.Register(Component.For<ITicketListItemViewModelFactory>().AsFactory());
             Container.Register(Component.For<IComposableCommandFactory>().AsFactory());
             Container.Register(Component.For<IMyDashboardViewModelFactory>().AsFactory());
+            Container.Register(Component.For<IViewFactory>().AsFactory());
         }
     }
 }

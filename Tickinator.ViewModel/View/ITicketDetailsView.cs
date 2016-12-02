@@ -1,16 +1,13 @@
 ﻿//  --------------------------------------------------------------------------------------
-// Tickinator.ViewModel.IView.cs
+// Tickinator.ViewModel.ITicketDetailsView.cs
 // 2016/11/29
 //  --------------------------------------------------------------------------------------
 
-namespace Tickinator.ViewModel.Core
+using Tickinator.ViewModel.Core;
+
+namespace Tickinator.ViewModel.View
 {
-    public interface IView
+    public interface ITicketDetailsView : IView
     {
-        object DataContext { get; set; }
-
-        void Show();
-
-        bool? ShowDialog();
     }
 }

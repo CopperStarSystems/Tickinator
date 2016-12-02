@@ -1,13 +1,12 @@
 ﻿//  --------------------------------------------------------------------------------------
-// Tickinator.ViewModel.ITicketDetailsView.cs
-// 2016/11/29
+// Tickinator.ViewModel.IViewFactory.cs
+// 2016/12/02
 //  --------------------------------------------------------------------------------------
 
-using Tickinator.ViewModel.Core;
-
-namespace Tickinator.ViewModel.TicketList
+namespace Tickinator.ViewModel.Core
 {
-    public interface ITicketDetailsView : IView
+    public interface IViewFactory
     {
+        T Create<T>() where T : IView;
     }
 }
