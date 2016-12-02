@@ -4,18 +4,22 @@
 //  --------------------------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using GalaSoft.MvvmLight;
 using Tickinator.Model;
+using Tickinator.ViewModel.StatusList;
 
 namespace Tickinator.ViewModel.TicketList
 {
     public class TicketListItemViewModel : ViewModelBase, ITicketListItemViewModel
     {
+        readonly IStatusListProvider statusListProvider;
         readonly Ticket ticket;
 
-        public TicketListItemViewModel(Ticket ticket)
+        public TicketListItemViewModel(Ticket ticket, IStatusListProvider statusListProvider)
         {
             this.ticket = ticket;
+            this.statusListProvider = statusListProvider;
         }
 
         public int Id
@@ -69,5 +73,7 @@ namespace Tickinator.ViewModel.TicketList
                 RaisePropertyChanged(nameof(AssignedToId));
             }
         }
+
+        public IEnumerable<IStatusListItemViewModel> Statuses { get; }
     }
 }

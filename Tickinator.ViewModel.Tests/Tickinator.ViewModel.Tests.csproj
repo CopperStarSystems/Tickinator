@@ -80,6 +80,8 @@
     <Compile Include="Dashboard\MyDashboardViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Dashboard\TeamDashboardViewModelTests.cs" />
+    <Compile Include="StatusList\StatusListItemViewModelTests.cs" />
+    <Compile Include="StatusList\StatusListProviderTests.cs" />
     <Compile Include="TestBase.cs" />
     <Compile Include="Command\ShowTicketDetailsCommandTests.cs" />
     <Compile Include="TicketList\TicketListItemViewModelTests.cs" />
