@@ -13,13 +13,13 @@ namespace Tickinator.ViewModel.TicketList
 {
     public class TicketListItemViewModel : ViewModelBase, ITicketListItemViewModel
     {
-        readonly IStatusListProvider statusListProvider;
         readonly Ticket ticket;
+        IEnumerable<IStatusListItemViewModel> statuses;
 
         public TicketListItemViewModel(Ticket ticket, IStatusListProvider statusListProvider)
         {
             this.ticket = ticket;
-            this.statusListProvider = statusListProvider;
+            Statuses = statusListProvider.GetStatuses();
         }
 
         public int Id
@@ -74,6 +74,17 @@ namespace Tickinator.ViewModel.TicketList
             }
         }
 
-        public IEnumerable<IStatusListItemViewModel> Statuses { get; }
+        public IEnumerable<IStatusListItemViewModel> Statuses
+        {
+            get
+            {
+                return statuses;
+            }
+            private set
+            {
+                statuses = value;
+                RaisePropertyChanged(nameof(Statuses));
+            }
+        }
     }
 }

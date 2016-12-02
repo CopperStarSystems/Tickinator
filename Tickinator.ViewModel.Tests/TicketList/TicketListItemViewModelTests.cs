@@ -5,8 +5,10 @@
 
 using System;
 using System.Collections.Generic;
+using Moq;
 using NUnit.Framework;
 using Tickinator.Model;
+using Tickinator.ViewModel.StatusList;
 using Tickinator.ViewModel.TicketList;
 
 namespace Tickinator.ViewModel.Tests.TicketList
@@ -14,6 +16,7 @@ namespace Tickinator.ViewModel.Tests.TicketList
     [TestFixture]
     public class TicketListItemViewModelTests : TestBase<TicketListItemViewModel>
     {
+        Mock<IStatusListProvider> mockStatusListProvider;
         Ticket ticket;
 
         static IEnumerable<TestCaseData> ConstructorInjectionTestData
@@ -38,9 +41,21 @@ namespace Tickinator.ViewModel.Tests.TicketList
             Assert.That(SystemUnderTest.Id, Is.EqualTo(id));
         }
 
+        protected override void SetupConstructorRequiredMocks()
+        {
+            base.SetupConstructorRequiredMocks();
+            mockStatusListProvider.Setup(p => p.GetStatuses()).Returns(new List<IStatusListItemViewModel>());
+        }
+
+        protected override void CreateMocks()
+        {
+            base.CreateMocks();
+            mockStatusListProvider = CreateMock<IStatusListProvider>();
+        }
+
         protected override TicketListItemViewModel CreateSystemUnderTest()
         {
-            return new TicketListItemViewModel(ticket);
+            return new TicketListItemViewModel(ticket, mockStatusListProvider.Object);
         }
 
         void CreateTicket(DateTime dateOpened, DateTime? dateClosed, int assignedToId, int id)
