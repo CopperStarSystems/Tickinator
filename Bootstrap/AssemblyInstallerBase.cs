@@ -3,6 +3,11 @@
 // 2016/11/29
 //  --------------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using Castle.Facilities.TypedFactory;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
@@ -35,10 +40,12 @@ namespace Tickinator.UI.Wpf.Bootstrap
             return assemblyRegistration;
         }
 
-        protected virtual void RegisterFactories()
+        Type[] GetFactoryTypesForAssembly()
         {
-            // Do nothing by default (at least for now).  Derived classes
-            // that need to register factories will have to do that manually for now.
+            // This is an example of convention-based registration.  We ask the assembly
+            // for all interface types whose name ends in "Factory".
+            var assembly = Assembly.Load(AssemblyName);
+            return assembly.GetTypes().Where(p => p.IsInterface && p.Name.EndsWith("Factory")).ToArray();
         }
 
         void InstallInternal()
@@ -55,6 +62,19 @@ namespace Tickinator.UI.Wpf.Bootstrap
             var basedOnDescriptor =
                 Classes.FromAssemblyNamed(AssemblyName).Pick().WithService.DefaultInterfaces().LifestyleTransient();
             Container.Register(RegisterAssemblyTypeOverrides(basedOnDescriptor));
+        }
+
+        void RegisterFactories()
+        {
+            var factories = GetFactoryTypesForAssembly();
+
+            RegisterTypesAsFactories(factories);
+        }
+
+        void RegisterTypesAsFactories(IEnumerable<Type> factories)
+        {
+            foreach (var factory in factories)
+                Container.Register(Component.For(factory).AsFactory());
         }
     }
 }
