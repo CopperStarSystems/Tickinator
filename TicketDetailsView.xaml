@@ -7,6 +7,45 @@
         mc:Ignorable="d"
         Title="TicketDetailsView" Height="300" Width="300">
     <Grid>
-        <Label Content="Ticket Details:" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Content="Ticket Details:" />
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <!-- Labels -->
+            <Label Grid.Column="0" Grid.Row="0" Content="Ticket Number:" />
+            <Label Grid.Column="0" Grid.Row="1" Content="Date:" />
+            <Label Grid.Column="0" Grid.Row="2" Content="Status:" />
+            <Label Grid.Column="0" Grid.Row="3" Content="Assigned To:" />
+
+            <!-- Controls -->
+            <Label Grid.Column="1" Grid.Row="0" Content="{Binding Id}" />
+            <Label Grid.Column="1" Grid.Row="1" Content="{Binding DateOpened}" />
+            <!-- We will implement the ComboBoxes and tab control in a future checkin. -->
+            <ComboBox Grid.Column="1" Grid.Row="2" />
+            <ComboBox Grid.Column="1" Grid.Row="3" />
+            <TabControl Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" >
+                <TabItem Header="Summary"/>
+                <TabItem Header="History"/>
+                <TabItem Header="Notes"/>
+            </TabControl>
+            <DockPanel Grid.Column="1" Grid.Row="5" LastChildFill="False">
+                <Button DockPanel.Dock="Right" Content="_Save" />
+                <Button DockPanel.Dock="Right" Content="_Cancel" />
+            </DockPanel>
+        </Grid>
     </Grid>
 </Window>
