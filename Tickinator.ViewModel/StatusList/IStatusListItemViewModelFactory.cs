@@ -9,6 +9,6 @@ namespace Tickinator.ViewModel.StatusList
 {
     public interface IStatusListItemViewModelFactory
     {
-        IStatusListItemViewModel Create(StatusEnum status);
+        IStatusListItemViewModel Create(StatusEnum statusEnum);
     }
 }
