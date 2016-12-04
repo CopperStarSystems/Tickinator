@@ -37,7 +37,7 @@
             <!-- We will implement the ComboBoxes and tab control in a future checkin. -->
             <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Statuses}" SelectedItem="{Binding Status}"
                       DisplayMemberPath="DisplayText" />
-            <ComboBox Grid.Column="1" Grid.Row="3" />
+            <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Technicians}" SelectedItem="{Binding AssignedTo}" DisplayMemberPath="FullName"/>
             <TabControl Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2">
                 <TabItem Header="Summary" />
                 <TabItem Header="History" />
