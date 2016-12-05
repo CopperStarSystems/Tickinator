@@ -10,6 +10,7 @@ using GalaSoft.MvvmLight;
 using Tickinator.Model;
 using Tickinator.ViewModel.Command;
 using Tickinator.ViewModel.StatusList;
+using Tickinator.ViewModel.TechnicianList;
 
 namespace Tickinator.ViewModel.TicketDetails
 {
@@ -22,10 +23,11 @@ namespace Tickinator.ViewModel.TicketDetails
         int id;
         IEnumerable<IStatusListItemViewModel> statuses;
 
-        public TicketDetailsViewModel(Ticket ticket, ICloseCommand closeCommand)
+        public TicketDetailsViewModel(Ticket ticket, ICloseCommand closeCommand, IStatusListProvider statusListProvider)
         {
             this.ticket = ticket;
             CloseCommand = closeCommand;
+            Statuses = statusListProvider.GetStatuses();
         }
 
         public IEnumerable<IStatusListItemViewModel> Statuses
@@ -40,6 +42,8 @@ namespace Tickinator.ViewModel.TicketDetails
                 RaisePropertyChanged(nameof(Statuses));
             }
         }
+
+        public IEnumerable<ITechnicianListItemViewModel> Technicians { get; }
 
         public ICommand CloseCommand { get; }
 

@@ -76,6 +76,8 @@
     <Compile Include="StatusList\IStatusListProvider.cs" />
     <Compile Include="StatusList\StatusListItemViewModel.cs" />
     <Compile Include="StatusList\StatusListProvider.cs" />
+    <Compile Include="TechnicianList\ITechnicianListItemViewModel.cs" />
+    <Compile Include="TechnicianList\TechnicianListItemViewModel.cs" />
     <Compile Include="TicketDetails\ITicketDetailsViewModel.cs" />
     <Compile Include="TicketDetails\ITicketDetailsViewModelFactory.cs" />
     <Compile Include="TicketDetails\TicketDetailsViewModel.cs" />
