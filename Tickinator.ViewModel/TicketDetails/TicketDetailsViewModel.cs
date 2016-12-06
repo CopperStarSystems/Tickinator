@@ -24,11 +24,13 @@ namespace Tickinator.ViewModel.TicketDetails
 
         IEnumerable<IStatusListItemViewModel> statuses;
 
-        public TicketDetailsViewModel(Ticket ticket, ICloseCommand closeCommand, IStatusListProvider statusListProvider)
+        public TicketDetailsViewModel(Ticket ticket, ICloseCommand closeCommand, IStatusListProvider statusListProvider,
+            ITechnicianListProvider technicianListProvider)
         {
             this.ticket = ticket;
             CloseCommand = closeCommand;
             Statuses = statusListProvider.GetStatuses();
+            Technicians = technicianListProvider.GetTechnicians();
         }
 
         public int AssignedToId
