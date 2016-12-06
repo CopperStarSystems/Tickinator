@@ -11,6 +11,12 @@ namespace Tickinator.ViewModel.Tests
     [TestFixture]
     public abstract class TestBase<T>
     {
+        [Test]
+        public void Constructor_Always_PerformsExpectedWork()
+        {
+            VerifyAllMocks();
+        }
+
         [SetUp]
         public virtual void SetUp()
         {
@@ -20,10 +26,6 @@ namespace Tickinator.ViewModel.Tests
             SystemUnderTest = CreateSystemUnderTest();
             SetupMocksAfterConstruction();
         }
-
-        protected T SystemUnderTest { get; private set; }
-
-        protected MockRepository MockRepository { get; private set; }
 
         protected Mock<TMock> CreateMock<TMock>() where TMock : class
         {
@@ -35,6 +37,8 @@ namespace Tickinator.ViewModel.Tests
         }
 
         protected abstract T CreateSystemUnderTest();
+
+        protected MockRepository MockRepository { get; private set; }
 
         protected void RecreateSystemUnderTest()
         {
@@ -49,6 +53,8 @@ namespace Tickinator.ViewModel.Tests
         {
         }
 
+        protected T SystemUnderTest { get; private set; }
+
         protected void VerifyAllMocks()
         {
             MockRepository.VerifyAll();
@@ -57,12 +63,6 @@ namespace Tickinator.ViewModel.Tests
         void CreateMockRepository()
         {
             MockRepository = new MockRepository(MockBehavior.Strict);
-        }
-
-        [Test]
-        public void Constructor_Always_PerformsExpectedWork()
-        {
-            VerifyAllMocks();
         }
     }
 }

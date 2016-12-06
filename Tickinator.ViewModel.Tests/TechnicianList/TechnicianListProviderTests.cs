@@ -16,33 +16,15 @@ namespace Tickinator.ViewModel.Tests.TechnicianList
     [TestFixture]
     public class TechnicianListProviderTests : TestBase<TechnicianListProvider>
     {
-        Mock<ITechnicianRepository> mockTechnicianRepository;
         Mock<ITechnicianListItemViewModelFactory> mockListItemViewModelFactory;
+        Mock<ITechnicianRepository> mockTechnicianRepository;
         List<Technician> technicians;
-        protected override void CreateMocks()
-        {
-            base.CreateMocks();
-            technicians=new List<Technician>();
-            mockTechnicianRepository = CreateMock<ITechnicianRepository>();
-            mockListItemViewModelFactory = CreateMock<ITechnicianListItemViewModelFactory>();
-        }
-
-        protected override void SetupConstructorRequiredMocks()
-        {
-            base.SetupConstructorRequiredMocks();
-            mockTechnicianRepository.Setup(p => p.GetAll()).Returns(technicians);
-        }
-
-        protected override TechnicianListProvider CreateSystemUnderTest()
-        {
-            return new TechnicianListProvider(mockTechnicianRepository.Object, mockListItemViewModelFactory.Object);
-        }
 
         [TestCase(3)]
         [TestCase(10)]
         public void GetTechnicians_Always_ReturnsExpectedValue(int technicianCount)
         {
-            for (int i = 0; i < technicianCount; i++)
+            for (var i = 0; i < technicianCount; i++)
             {
                 var technician = new Technician();
                 technicians.Add(technician);
@@ -52,6 +34,25 @@ namespace Tickinator.ViewModel.Tests.TechnicianList
             RecreateSystemUnderTest();
             Assert.That(SystemUnderTest.GetTechnicians(), Is.Not.Null);
             Assert.That(SystemUnderTest.GetTechnicians().Count(), Is.EqualTo(technicianCount));
+        }
+
+        protected override void CreateMocks()
+        {
+            base.CreateMocks();
+            technicians = new List<Technician>();
+            mockTechnicianRepository = CreateMock<ITechnicianRepository>();
+            mockListItemViewModelFactory = CreateMock<ITechnicianListItemViewModelFactory>();
+        }
+
+        protected override TechnicianListProvider CreateSystemUnderTest()
+        {
+            return new TechnicianListProvider(mockTechnicianRepository.Object, mockListItemViewModelFactory.Object);
+        }
+
+        protected override void SetupConstructorRequiredMocks()
+        {
+            base.SetupConstructorRequiredMocks();
+            mockTechnicianRepository.Setup(p => p.GetAll()).Returns(technicians);
         }
     }
 }

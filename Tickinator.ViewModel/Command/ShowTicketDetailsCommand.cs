@@ -1,6 +1,6 @@
 ﻿//  --------------------------------------------------------------------------------------
 // Tickinator.ViewModel.ShowTicketDetailsCommand.cs
-// 2016/11/29
+// 2016/12/02
 //  --------------------------------------------------------------------------------------
 
 using System;
@@ -24,8 +24,9 @@ namespace Tickinator.ViewModel.Command
         readonly IViewFactory viewFactory;
 
         public ShowTicketDetailsCommand(IViewFactory viewFactory,
-            ITicketDetailsViewModelFactory ticketDetailsViewModelFactory, ITicketRepository ticketRepository,
-            ICloseCommandFactory closeCommandFactory, ISelectedItem<ITicketListItemViewModel> selectedItem)
+                                        ITicketDetailsViewModelFactory ticketDetailsViewModelFactory,
+                                        ITicketRepository ticketRepository, ICloseCommandFactory closeCommandFactory,
+                                        ISelectedItem<ITicketListItemViewModel> selectedItem)
         {
             this.viewFactory = viewFactory;
             this.ticketDetailsViewModelFactory = ticketDetailsViewModelFactory;
@@ -38,11 +39,6 @@ namespace Tickinator.ViewModel.Command
         public override bool CanExecute(object parameter)
         {
             return selectedItem.SelectedItem != null;
-        }
-
-        void HandleSelectedItemChanged(object sender, EventArgs e)
-        {
-            RaiseCanExecuteChanged();
         }
 
         protected override void ExecuteInternal(ITicketListItemViewModel parameter)
@@ -65,6 +61,11 @@ namespace Tickinator.ViewModel.Command
             var ticket = ticketRepository.GetAll().FirstOrDefault(p => p.Id == parameter.Id);
             var viewModel = ticketDetailsViewModelFactory.Create(ticket, closeCommand);
             return viewModel;
+        }
+
+        void HandleSelectedItemChanged(object sender, EventArgs e)
+        {
+            RaiseCanExecuteChanged();
         }
     }
 }

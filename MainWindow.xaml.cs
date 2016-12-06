@@ -1,4 +1,9 @@
-﻿using System.Windows;
+﻿//  --------------------------------------------------------------------------------------
+// Tickinator.UI.Wpf.MainWindow.xaml.cs
+// 2016/11/23
+//  --------------------------------------------------------------------------------------
+
+using System.Windows;
 using Tickinator.ViewModel.View;
 
 namespace Tickinator.UI.Wpf

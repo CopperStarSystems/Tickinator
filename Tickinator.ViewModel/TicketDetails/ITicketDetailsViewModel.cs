@@ -13,12 +13,18 @@ namespace Tickinator.ViewModel.TicketDetails
 {
     public interface ITicketDetailsViewModel : IViewModel
     {
-        int AssignedToId { get; set; }
         ICommand CloseCommand { get; }
-        DateTime? DateClosed { get; set; }
-        DateTime DateOpened { get; set; }
-        int Id { get; set; }
+
         IEnumerable<IStatusListItemViewModel> Statuses { get; }
+
         IEnumerable<ITechnicianListItemViewModel> Technicians { get; }
+
+        int AssignedToId { get; set; }
+
+        DateTime? DateClosed { get; set; }
+
+        DateTime DateOpened { get; set; }
+
+        int Id { get; set; }
     }
 }

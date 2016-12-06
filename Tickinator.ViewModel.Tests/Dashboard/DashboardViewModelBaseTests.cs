@@ -1,6 +1,6 @@
 ﻿//  --------------------------------------------------------------------------------------
 // Tickinator.ViewModel.Tests.DashboardViewModelBaseTests.cs
-// 2016/11/25
+// 2016/11/28
 //  --------------------------------------------------------------------------------------
 
 using System;
@@ -16,17 +16,6 @@ namespace Tickinator.ViewModel.Tests.Dashboard
     [TestFixture]
     public abstract class DashboardViewModelBaseTests<T> : TestBase<T> where T : IDashboardViewModel
     {
-        [SetUp]
-        public override void SetUp()
-        {
-            Tickets = new List<Ticket>();
-            base.SetUp();
-        }
-
-        protected IList<Ticket> Tickets { get; private set; }
-
-        protected Mock<ITicketRepository> MockTicketRepository { get; private set; }
-
         [TestCase(1)]
         [TestCase(5)]
         [TestCase(25)]
@@ -59,15 +48,22 @@ namespace Tickinator.ViewModel.Tests.Dashboard
             Assert.That(SystemUnderTest.OpenTicketCount, Is.EqualTo(expectedOpenTicketCount));
         }
 
+        [SetUp]
+        public override void SetUp()
+        {
+            Tickets = new List<Ticket>();
+            base.SetUp();
+        }
+
         protected void AddTicket(int id, DateTime? dateClosed, DateTime dateOpened, int assignedToId = 1)
         {
             Tickets.Add(new Ticket
-            {
-                Id = id,
-                DateClosed = dateClosed,
-                DateOpened = dateOpened,
-                AssignedToId = assignedToId
-            });
+                        {
+                            Id = id,
+                            DateClosed = dateClosed,
+                            DateOpened = dateOpened,
+                            AssignedToId = assignedToId
+                        });
         }
 
         protected void AddTickets(int ticketCount, DateTime? dateClosed = null, int assignedToId = 1)
@@ -82,9 +78,13 @@ namespace Tickinator.ViewModel.Tests.Dashboard
             MockTicketRepository = CreateMock<ITicketRepository>();
         }
 
+        protected Mock<ITicketRepository> MockTicketRepository { get; private set; }
+
         protected virtual void SetupMocksForClosedTodayCountTest()
         {
         }
+
+        protected IList<Ticket> Tickets { get; private set; }
 
         void SetupMockTicketRepository()
         {

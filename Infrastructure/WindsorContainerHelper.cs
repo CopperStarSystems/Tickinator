@@ -15,7 +15,7 @@ namespace Tickinator.UI.Wpf.Infrastructure
         {
             var propertyInjector =
                 container.Kernel.ComponentModelBuilder.Contributors.OfType<PropertiesDependenciesModelInspector>()
-                    .Single();
+                         .Single();
             container.Kernel.ComponentModelBuilder.RemoveContributor(propertyInjector);
         }
     }

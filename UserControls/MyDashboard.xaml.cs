@@ -1,4 +1,9 @@
-﻿namespace Tickinator.UI.Wpf.UserControls
+﻿//  --------------------------------------------------------------------------------------
+// Tickinator.UI.Wpf.MyDashboard.xaml.cs
+// 2016/11/23
+//  --------------------------------------------------------------------------------------
+
+namespace Tickinator.UI.Wpf.UserControls
 {
     /// <summary>
     ///     Interaction logic for MyDashboard.xaml

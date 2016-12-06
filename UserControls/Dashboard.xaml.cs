@@ -1,4 +1,9 @@
-﻿using System.Windows.Controls;
+﻿//  --------------------------------------------------------------------------------------
+// Tickinator.UI.Wpf.Dashboard.xaml.cs
+// 2016/11/23
+//  --------------------------------------------------------------------------------------
+
+using System.Windows.Controls;
 
 namespace Tickinator.UI.Wpf.UserControls
 {

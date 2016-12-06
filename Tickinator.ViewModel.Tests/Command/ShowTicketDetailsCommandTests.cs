@@ -1,6 +1,6 @@
 ﻿//  --------------------------------------------------------------------------------------
 // Tickinator.ViewModel.Tests.ShowTicketDetailsCommandTests.cs
-// 2016/11/29
+// 2016/12/02
 //  --------------------------------------------------------------------------------------
 
 using System;
@@ -22,26 +22,17 @@ namespace Tickinator.ViewModel.Tests.Command
     [TestFixture]
     public class ShowTicketDetailsCommandTests : CommandBaseTests<ShowTicketDetailsCommand>
     {
+        int invocationCount;
         Mock<ICloseCommand> mockCloseCommand;
         Mock<ICloseCommandFactory> mockCloseCommandFactory;
+        Mock<ISelectedItem<ITicketListItemViewModel>> mockSelectedItem;
         Mock<ITicketDetailsView> mockTicketDetailsView;
         Mock<ITicketDetailsViewModel> mockTicketDetailsViewModel;
         Mock<ITicketDetailsViewModelFactory> mockTicketDetailsViewModelFactory;
         Mock<ITicketRepository> mockTicketRepository;
         Mock<IViewFactory> mockViewFactory;
         Mock<ITicketListItemViewModel> mockViewModel;
-        Mock<ISelectedItem<ITicketListItemViewModel>> mockSelectedItem;
         IList<Ticket> tickets;
-
-        [TestCase(1)]
-        [TestCase(3)]
-        public void Execute_Always_PerformsExpectedWork(int ticketId)
-        {
-            CreateTickets();
-            SetupMocksForExecuteTest(ticketId);
-            Execute(mockViewModel.Object);
-            MockRepository.VerifyAll();
-        }
 
         static IEnumerable<TestCaseData> CanExecuteTestData
         {
@@ -54,17 +45,29 @@ namespace Tickinator.ViewModel.Tests.Command
 
         [TestCaseSource(nameof(CanExecuteTestData))]
         public void CanExecute_Always_ReturnsExpectedResult(ITicketListItemViewModel ticketListItemViewModel,
-            bool expectedResult)
+                                                            bool expectedResult)
         {
             mockSelectedItem.Setup(p => p.SelectedItem).Returns(ticketListItemViewModel);
             Assert.That(CanExecute(), Is.EqualTo(expectedResult));
         }
 
-        int invocationCount;
-
-        void CanExecuteChangedHandler(object sender, EventArgs e)
+        [Test]
+        public void Command_WhenSelectedItemChanges_RaisesCanExecuteChanged()
         {
-            invocationCount++;
+            invocationCount = 0;
+            SystemUnderTest.CanExecuteChanged += CanExecuteChangedHandler;
+            mockSelectedItem.Raise(p => p.SelectedItemChanged += null, EventArgs.Empty);
+            Assert.That(invocationCount, Is.EqualTo(1));
+        }
+
+        [TestCase(1)]
+        [TestCase(3)]
+        public void Execute_Always_PerformsExpectedWork(int ticketId)
+        {
+            CreateTickets();
+            SetupMocksForExecuteTest(ticketId);
+            Execute(mockViewModel.Object);
+            MockRepository.VerifyAll();
         }
 
         protected override void CreateMocks()
@@ -84,7 +87,13 @@ namespace Tickinator.ViewModel.Tests.Command
         protected override ShowTicketDetailsCommand CreateSystemUnderTest()
         {
             return new ShowTicketDetailsCommand(mockViewFactory.Object, mockTicketDetailsViewModelFactory.Object,
-                mockTicketRepository.Object, mockCloseCommandFactory.Object, mockSelectedItem.Object);
+                                                mockTicketRepository.Object, mockCloseCommandFactory.Object,
+                                                mockSelectedItem.Object);
+        }
+
+        void CanExecuteChangedHandler(object sender, EventArgs e)
+        {
+            invocationCount++;
         }
 
         void CreateTickets()
@@ -101,21 +110,11 @@ namespace Tickinator.ViewModel.Tests.Command
             mockTicketRepository.Setup(p => p.GetAll()).Returns(tickets);
             mockViewModel.SetupGet(p => p.Id).Returns(ticketId);
             mockTicketDetailsViewModelFactory.Setup(p => p.Create(tickets[ticketId - 1], mockCloseCommand.Object))
-                .Returns(mockTicketDetailsViewModel.Object);
+                                             .Returns(mockTicketDetailsViewModel.Object);
             mockTicketDetailsView.SetupSet(p => p.DataContext = mockTicketDetailsViewModel.Object);
             mockCloseCommandFactory.Setup(p => p.Create(mockTicketDetailsView.Object)).Returns(mockCloseCommand.Object);
             mockSelectedItem.SetupGet(p => p.SelectedItem).Returns(new TicketListItemViewModel(null));
             mockTicketDetailsView.Setup(p => p.ShowDialog()).Returns(true);
-        }
-
-        [Test]
-        public void Command_WhenSelectedItemChanges_RaisesCanExecuteChanged()
-        {
-            invocationCount = 0;
-            SystemUnderTest.CanExecuteChanged += CanExecuteChangedHandler;
-            var ticketListItem = new TicketListItemViewModel(null);
-            mockSelectedItem.Raise(p=>p.SelectedItemChanged += null, EventArgs.Empty);
-            Assert.That(invocationCount, Is.EqualTo(1));
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿//  --------------------------------------------------------------------------------------
 // Tickinator.ViewModel.DashboardViewModelBase.cs
-// 2016/11/25
+// 2016/11/28
 //  --------------------------------------------------------------------------------------
 
 using System;
@@ -14,11 +14,6 @@ namespace Tickinator.ViewModel.Dashboard
 {
     public abstract class DashboardViewModelBase : ViewModelBase, IDashboardViewModel
     {
-        protected DashboardViewModelBase(ITicketRepository ticketRepository)
-        {
-            Repository = ticketRepository;
-        }
-
         public TimeSpan AverageTicketDuration
         {
             get
@@ -30,25 +25,24 @@ namespace Tickinator.ViewModel.Dashboard
 
         public int ClosedTodayCount
         {
-            get
-            {
-                return GetTodaysClosedTickets().Count();
-            }
+            get { return GetTodaysClosedTickets().Count(); }
         }
 
         public int OpenTicketCount
         {
-            get
-            {
-                return GetOpenTickets().Count();
-            }
+            get { return GetOpenTickets().Count(); }
         }
 
-        protected ITicketRepository Repository { get; private set; }
+        protected DashboardViewModelBase(ITicketRepository ticketRepository)
+        {
+            Repository = ticketRepository;
+        }
 
         protected abstract IEnumerable<Ticket> GetOpenTickets();
 
         protected abstract IEnumerable<Ticket> GetTodaysClosedTickets();
+
+        protected ITicketRepository Repository { get; private set; }
 
         double CalculateAverageDuration()
         {

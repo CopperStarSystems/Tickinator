@@ -1,4 +1,9 @@
-﻿using System.Windows;
+﻿//  --------------------------------------------------------------------------------------
+// Tickinator.UI.Wpf.App.xaml.cs
+// 2016/11/23
+//  --------------------------------------------------------------------------------------
+
+using System.Windows;
 using Castle.Windsor;
 using Tickinator.UI.Wpf.Bootstrap;
 using Tickinator.ViewModel;

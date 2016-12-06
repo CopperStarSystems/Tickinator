@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------
-// Tickinator.ViewModel.TodaysTicketsListViewModel.cs
+// Tickinator.ViewModel.TicketListViewModel.cs
 // 2016/11/28
 //  --------------------------------------------------------------------------------------
 
@@ -14,11 +14,17 @@ namespace Tickinator.ViewModel.TicketList
 {
     public class TicketListViewModel : ViewModelBase, ITicketListViewModel
     {
+        public event EventHandler SelectedItemChanged;
+
         ITicketListItemViewModel selectedItem;
 
+        public ICommand ShowTicketDetailsCommand { get; }
+
+        public ObservableCollection<ITicketListItemViewModel> TodaysTickets { get; }
+
         public TicketListViewModel(ITicketRepository ticketRepository,
-            ITicketListItemViewModelFactory ticketListItemViewModelFactory,
-            IShowTicketDetailsCommandFactory showTicketDetailsCommandFactory)
+                                   ITicketListItemViewModelFactory ticketListItemViewModelFactory,
+                                   IShowTicketDetailsCommandFactory showTicketDetailsCommandFactory)
         {
             TodaysTickets = new ObservableCollection<ITicketListItemViewModel>();
             foreach (var ticket in ticketRepository.GetAll())
@@ -28,10 +34,7 @@ namespace Tickinator.ViewModel.TicketList
 
         public ITicketListItemViewModel SelectedItem
         {
-            get
-            {
-                return selectedItem;
-            }
+            get { return selectedItem; }
             set
             {
                 selectedItem = value;
@@ -39,12 +42,6 @@ namespace Tickinator.ViewModel.TicketList
                 RaiseSelectedItemChanged();
             }
         }
-
-        public ICommand ShowTicketDetailsCommand { get; }
-
-        public ObservableCollection<ITicketListItemViewModel> TodaysTickets { get; }
-
-        public event EventHandler SelectedItemChanged;
 
         void RaiseSelectedItemChanged()
         {

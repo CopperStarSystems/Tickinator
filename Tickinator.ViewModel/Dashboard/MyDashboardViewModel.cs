@@ -31,10 +31,10 @@ namespace Tickinator.ViewModel.Dashboard
         {
             return
                 Repository.GetAll()
-                    .Where(
-                        p =>
-                            p.DateClosed.HasValue && (p.DateClosed.Value == DateTime.Today) &&
-                            (p.AssignedToId == currentUserViewModel.Id));
+                          .Where(
+                              p =>
+                                  p.DateClosed.HasValue && (p.DateClosed.Value == DateTime.Today) &&
+                                  (p.AssignedToId == currentUserViewModel.Id));
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------
-// Tickinator.ViewModel.Tests.TodaysTicketsListViewModel.cs
+// Tickinator.ViewModel.Tests.TicketListViewModelTests.cs
 // 2016/11/28
 //  --------------------------------------------------------------------------------------
 
@@ -18,56 +18,11 @@ namespace Tickinator.ViewModel.Tests.TicketList
     [TestFixture]
     public class TicketListViewModelTests : TestBase<TicketListViewModel>
     {
+        int invocationCount;
         Mock<IShowTicketDetailsCommand> mockShowTicketDetailsCommand;
         Mock<IShowTicketDetailsCommandFactory> mockShowTicketDetailsCommandFactory;
         Mock<ITicketListItemViewModelFactory> mockTicketListItemViewModelFactory;
         Mock<ITicketRepository> mockTicketRepository;
-
-        protected override void CreateMocks()
-        {
-            base.CreateMocks();
-            mockTicketRepository = CreateMock<ITicketRepository>();
-            mockTicketListItemViewModelFactory = CreateMock<ITicketListItemViewModelFactory>();
-            mockShowTicketDetailsCommand = CreateMock<IShowTicketDetailsCommand>();
-            mockShowTicketDetailsCommandFactory = CreateMock<IShowTicketDetailsCommandFactory>();
-        }
-
-        protected override TicketListViewModel CreateSystemUnderTest()
-        {
-            return new TicketListViewModel(mockTicketRepository.Object, mockTicketListItemViewModelFactory.Object,
-                mockShowTicketDetailsCommandFactory.Object);
-        }
-
-        int invocationCount;
-
-        void HandleSelectedItemChanged(object sender, EventArgs e)
-        {
-            invocationCount++;
-        }
-
-        protected override void SetupConstructorRequiredMocks()
-        {
-            base.SetupConstructorRequiredMocks();
-            var tickets = new List<Ticket> {new Ticket(), new Ticket(), new Ticket()};
-            SetupTicketRepository(tickets);
-            SetupListItemFactory(tickets);
-            mockShowTicketDetailsCommandFactory.Setup(p => p.Create(It.IsAny<ISelectedItem<ITicketListItemViewModel>>()))
-                .Returns(mockShowTicketDetailsCommand.Object);
-        }
-
-        void SetupListItemFactory(List<Ticket> tickets)
-        {
-            foreach (var ticket in tickets)
-            {
-                var mockListItemViewModel = CreateMock<ITicketListItemViewModel>();
-                mockTicketListItemViewModelFactory.Setup(p => p.Create(ticket)).Returns(mockListItemViewModel.Object);
-            }
-        }
-
-        void SetupTicketRepository(List<Ticket> tickets)
-        {
-            mockTicketRepository.Setup(p => p.GetAll()).Returns(tickets);
-        }
 
         [Test]
         public void SelectedItem_WhenSet_RaisesSelectedItemChanged()
@@ -88,6 +43,50 @@ namespace Tickinator.ViewModel.Tests.TicketList
         public void TodaysTickets_AfterConstruction_IsNotNull()
         {
             Assert.That(SystemUnderTest.TodaysTickets, Is.Not.Null);
+        }
+
+        protected override void CreateMocks()
+        {
+            base.CreateMocks();
+            mockTicketRepository = CreateMock<ITicketRepository>();
+            mockTicketListItemViewModelFactory = CreateMock<ITicketListItemViewModelFactory>();
+            mockShowTicketDetailsCommand = CreateMock<IShowTicketDetailsCommand>();
+            mockShowTicketDetailsCommandFactory = CreateMock<IShowTicketDetailsCommandFactory>();
+        }
+
+        protected override TicketListViewModel CreateSystemUnderTest()
+        {
+            return new TicketListViewModel(mockTicketRepository.Object, mockTicketListItemViewModelFactory.Object,
+                                           mockShowTicketDetailsCommandFactory.Object);
+        }
+
+        protected override void SetupConstructorRequiredMocks()
+        {
+            base.SetupConstructorRequiredMocks();
+            var tickets = new List<Ticket> {new Ticket(), new Ticket(), new Ticket()};
+            SetupTicketRepository(tickets);
+            SetupListItemFactory(tickets);
+            mockShowTicketDetailsCommandFactory.Setup(p => p.Create(It.IsAny<ISelectedItem<ITicketListItemViewModel>>()))
+                                               .Returns(mockShowTicketDetailsCommand.Object);
+        }
+
+        void HandleSelectedItemChanged(object sender, EventArgs e)
+        {
+            invocationCount++;
+        }
+
+        void SetupListItemFactory(List<Ticket> tickets)
+        {
+            foreach (var ticket in tickets)
+            {
+                var mockListItemViewModel = CreateMock<ITicketListItemViewModel>();
+                mockTicketListItemViewModelFactory.Setup(p => p.Create(ticket)).Returns(mockListItemViewModel.Object);
+            }
+        }
+
+        void SetupTicketRepository(List<Ticket> tickets)
+        {
+            mockTicketRepository.Setup(p => p.GetAll()).Returns(tickets);
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Tickinator.ViewModel.Tests.TicketList
 
         [TestCaseSource(nameof(ConstructorInjectionTestData))]
         public void Constructor_Always_SetsPropertyValues(DateTime dateOpened, DateTime? dateClosed, int assignedToId,
-            int id)
+                                                          int id)
         {
             CreateTicket(dateOpened, dateClosed, assignedToId, id);
             RecreateSystemUnderTest();

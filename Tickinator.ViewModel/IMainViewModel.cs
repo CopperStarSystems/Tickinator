@@ -11,6 +11,7 @@ namespace Tickinator.ViewModel
     public interface IMainViewModel : IViewModel
     {
         IMyDashboardViewModel MyDashboardViewModel { get; }
+
         ITeamDashboardViewModel TeamDashboardViewModel { get; }
 
         ITicketListViewModel TodaysTicketsViewModel { get; }

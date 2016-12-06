@@ -23,6 +23,18 @@ namespace Tickinator.ViewModel.Tests.TicketDetails
         Mock<IStatusListProvider> mockStatusListProvider;
         Mock<ITechnicianListProvider> mockTechnicianListProvider;
 
+        [Test]
+        public void Statuses_Always_ReturnsExpectedValues()
+        {
+            Assert.That(SystemUnderTest.Statuses, Is.SameAs(statusList));
+        }
+
+        [Test]
+        public void Technicians_Always_ReturnsExpectedValues()
+        {
+            Assert.That(SystemUnderTest.Technicians, Is.SameAs(technicianList));
+        }
+
         protected override void CreateMocks()
         {
             base.CreateMocks();
@@ -34,7 +46,7 @@ namespace Tickinator.ViewModel.Tests.TicketDetails
         protected override TicketDetailsViewModel CreateSystemUnderTest()
         {
             return new TicketDetailsViewModel(ticket, mockCloseCommand.Object, mockStatusListProvider.Object,
-                mockTechnicianListProvider.Object);
+                                              mockTechnicianListProvider.Object);
         }
 
         protected override void SetupConstructorRequiredMocks()
@@ -42,18 +54,6 @@ namespace Tickinator.ViewModel.Tests.TicketDetails
             base.SetupConstructorRequiredMocks();
             mockStatusListProvider.Setup(p => p.GetStatuses()).Returns(statusList);
             mockTechnicianListProvider.Setup(p => p.GetTechnicians()).Returns(technicianList);
-        }
-
-        [Test]
-        public void Statuses_Always_ReturnsExpectedValues()
-        {
-            Assert.That(SystemUnderTest.Statuses, Is.SameAs(statusList));
-        }
-
-        [Test]
-        public void Technicians_Always_ReturnsExpectedValues()
-        {
-            Assert.That(SystemUnderTest.Technicians, Is.SameAs(technicianList));
         }
     }
 }

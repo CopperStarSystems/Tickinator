@@ -1,6 +1,6 @@
 ﻿//  --------------------------------------------------------------------------------------
 // Tickinator.ViewModel.ComposableCommand.cs
-// 2016/11/29
+// 2016/12/02
 //  --------------------------------------------------------------------------------------
 
 namespace Tickinator.ViewModel.Command.Core
@@ -16,14 +16,14 @@ namespace Tickinator.ViewModel.Command.Core
             this.execute = execute;
         }
 
-        public override void Execute(object parameter)
-        {
-            execute.Execute(parameter);
-        }
-
         public override bool CanExecute(object parameter)
         {
             return canExecute.CanExecute(parameter);
+        }
+
+        public override void Execute(object parameter)
+        {
+            execute.Execute(parameter);
         }
     }
 }

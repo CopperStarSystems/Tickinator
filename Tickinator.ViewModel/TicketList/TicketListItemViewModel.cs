@@ -20,10 +20,7 @@ namespace Tickinator.ViewModel.TicketList
 
         public int AssignedToId
         {
-            get
-            {
-                return ticket.AssignedToId;
-            }
+            get { return ticket.AssignedToId; }
             set
             {
                 ticket.AssignedToId = value;
@@ -33,10 +30,7 @@ namespace Tickinator.ViewModel.TicketList
 
         public DateTime? DateClosed
         {
-            get
-            {
-                return ticket.DateClosed;
-            }
+            get { return ticket.DateClosed; }
             set
             {
                 ticket.DateClosed = value;
@@ -46,10 +40,7 @@ namespace Tickinator.ViewModel.TicketList
 
         public DateTime DateOpened
         {
-            get
-            {
-                return ticket.DateOpened;
-            }
+            get { return ticket.DateOpened; }
             set
             {
                 ticket.DateOpened = value;
@@ -59,10 +50,7 @@ namespace Tickinator.ViewModel.TicketList
 
         public int Id
         {
-            get
-            {
-                return ticket.Id;
-            }
+            get { return ticket.Id; }
             set
             {
                 ticket.Id = value;

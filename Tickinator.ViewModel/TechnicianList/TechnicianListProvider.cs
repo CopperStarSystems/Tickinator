@@ -15,7 +15,7 @@ namespace Tickinator.ViewModel.TechnicianList
         IList<ITechnicianListItemViewModel> technicians;
 
         public TechnicianListProvider(ITechnicianRepository technicianRepository,
-            ITechnicianListItemViewModelFactory listItemViewModelFactory)
+                                      ITechnicianListItemViewModelFactory listItemViewModelFactory)
         {
             CreateList(technicianRepository.GetAll(), listItemViewModelFactory);
         }

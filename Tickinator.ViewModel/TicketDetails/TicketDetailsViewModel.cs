@@ -24,8 +24,12 @@ namespace Tickinator.ViewModel.TicketDetails
 
         IEnumerable<IStatusListItemViewModel> statuses;
 
+        public ICommand CloseCommand { get; }
+
+        public IEnumerable<ITechnicianListItemViewModel> Technicians { get; }
+
         public TicketDetailsViewModel(Ticket ticket, ICloseCommand closeCommand, IStatusListProvider statusListProvider,
-            ITechnicianListProvider technicianListProvider)
+                                      ITechnicianListProvider technicianListProvider)
         {
             this.ticket = ticket;
             CloseCommand = closeCommand;
@@ -35,10 +39,7 @@ namespace Tickinator.ViewModel.TicketDetails
 
         public int AssignedToId
         {
-            get
-            {
-                return ticket.AssignedToId;
-            }
+            get { return ticket.AssignedToId; }
             set
             {
                 ticket.AssignedToId = value;
@@ -46,14 +47,9 @@ namespace Tickinator.ViewModel.TicketDetails
             }
         }
 
-        public ICommand CloseCommand { get; }
-
         public DateTime? DateClosed
         {
-            get
-            {
-                return ticket.DateClosed;
-            }
+            get { return ticket.DateClosed; }
             set
             {
                 ticket.DateClosed = value;
@@ -63,10 +59,7 @@ namespace Tickinator.ViewModel.TicketDetails
 
         public DateTime DateOpened
         {
-            get
-            {
-                return ticket.DateOpened;
-            }
+            get { return ticket.DateOpened; }
             set
             {
                 ticket.DateOpened = value;
@@ -76,10 +69,7 @@ namespace Tickinator.ViewModel.TicketDetails
 
         public int Id
         {
-            get
-            {
-                return ticket.Id;
-            }
+            get { return ticket.Id; }
             set
             {
                 ticket.Id = value;
@@ -89,17 +79,12 @@ namespace Tickinator.ViewModel.TicketDetails
 
         public IEnumerable<IStatusListItemViewModel> Statuses
         {
-            get
-            {
-                return statuses;
-            }
+            get { return statuses; }
             private set
             {
                 statuses = value;
                 RaisePropertyChanged(nameof(Statuses));
             }
         }
-
-        public IEnumerable<ITechnicianListItemViewModel> Technicians { get; }
     }
 }

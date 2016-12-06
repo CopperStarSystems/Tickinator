@@ -14,15 +14,14 @@ namespace Tickinator.ViewModel.Tests.TechnicianList
     {
         Technician technician;
 
-        protected override void SetupConstructorRequiredMocks()
+        [TestCase("Dave", "Smith")]
+        [TestCase("Rhonda", "Wilson")]
+        public void FullName_Always_ReturnsExpectedValue(string firstName, string lastName)
         {
-            base.SetupConstructorRequiredMocks();
-            technician = new Technician {FirstName = "First", LastName = "Last", Id = 1};
-        }
-
-        protected override TechnicianListItemViewModel CreateSystemUnderTest()
-        {
-            return new TechnicianListItemViewModel(technician);
+            technician.FirstName = firstName;
+            technician.LastName = lastName;
+            string expectedValue = $"{lastName}, {firstName}";
+            Assert.That(SystemUnderTest.FullName, Is.EqualTo(expectedValue));
         }
 
         [TestCase(1)]
@@ -33,14 +32,15 @@ namespace Tickinator.ViewModel.Tests.TechnicianList
             Assert.That(SystemUnderTest.Id, Is.EqualTo(expectedId));
         }
 
-        [TestCase("Dave", "Smith")]
-        [TestCase("Rhonda", "Wilson")]
-        public void FullName_Always_ReturnsExpectedValue(string firstName, string lastName)
+        protected override TechnicianListItemViewModel CreateSystemUnderTest()
         {
-            technician.FirstName = firstName;
-            technician.LastName = lastName;
-            string expectedValue = $"{lastName}, {firstName}";
-            Assert.That(SystemUnderTest.FullName, Is.EqualTo(expectedValue));
+            return new TechnicianListItemViewModel(technician);
+        }
+
+        protected override void SetupConstructorRequiredMocks()
+        {
+            base.SetupConstructorRequiredMocks();
+            technician = new Technician {FirstName = "First", LastName = "Last", Id = 1};
         }
     }
 }

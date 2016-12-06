@@ -11,22 +11,23 @@ namespace Tickinator.Repository.MockData
     public class TechnicianRepository : ITechnicianRepository
     {
         IList<Technician> technicians;
+
         public TechnicianRepository()
         {
             Seed();
         }
 
-        void Seed()
-        {
-            technicians=new List<Technician>();
-            technicians.Add(new Technician { Id = 1, FirstName = "Bob", LastName = "Jones"});
-            technicians.Add(new Technician { Id = 1, FirstName = "Bill", LastName = "Smith" });
-            technicians.Add(new Technician { Id = 1, FirstName = "Sally", LastName = "Roe" });
-        }
-
         public IEnumerable<Technician> GetAll()
         {
             return technicians;
+        }
+
+        void Seed()
+        {
+            technicians = new List<Technician>();
+            technicians.Add(new Technician {Id = 1, FirstName = "Bob", LastName = "Jones"});
+            technicians.Add(new Technician {Id = 1, FirstName = "Bill", LastName = "Smith"});
+            technicians.Add(new Technician {Id = 1, FirstName = "Sally", LastName = "Roe"});
         }
     }
 }

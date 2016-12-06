@@ -1,4 +1,9 @@
-﻿using System.Reflection;
+﻿//  --------------------------------------------------------------------------------------
+// Tickinator.UI.Wpf.AssemblyInfo.cs
+// 2016/11/23
+//  --------------------------------------------------------------------------------------
+
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
 

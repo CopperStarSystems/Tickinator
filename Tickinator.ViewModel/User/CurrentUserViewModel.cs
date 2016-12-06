@@ -9,11 +9,11 @@ namespace Tickinator.ViewModel.User
 {
     public class CurrentUserViewModel : ViewModelBase, ICurrentUserViewModel
     {
+        public int Id { get; }
+
         public CurrentUserViewModel(int id)
         {
             Id = id;
         }
-
-        public int Id { get; }
     }
 }

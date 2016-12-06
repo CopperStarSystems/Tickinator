@@ -1,12 +1,17 @@
 ﻿//  --------------------------------------------------------------------------------------
 // Tickinator.ViewModel.GenericCommandBase.cs
-// 2016/11/29
+// 2016/12/02
 //  --------------------------------------------------------------------------------------
 
 namespace Tickinator.ViewModel.Command.Core
 {
     public abstract class GenericCommandBase<T> : CommandBase
     {
+        static bool ShouldExecuteWithDefaultParameter(object parameterReference)
+        {
+            return (parameterReference == null) && typeof(T).IsValueType;
+        }
+
         public sealed override void Execute(object parameter)
         {
             var parameterReference = parameter;
@@ -18,11 +23,6 @@ namespace Tickinator.ViewModel.Command.Core
                 return;
             }
             ExecuteInternal((T) parameterReference);
-        }
-
-        static bool ShouldExecuteWithDefaultParameter(object parameterReference)
-        {
-            return (parameterReference == null) && typeof(T).IsValueType;
         }
 
         protected abstract void ExecuteInternal(T parameter);

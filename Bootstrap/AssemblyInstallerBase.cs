@@ -21,17 +21,17 @@ namespace Tickinator.UI.Wpf.Bootstrap
     {
         protected IWindsorContainer Container;
 
-        protected AssemblyInstallerBase(string assemblyName)
-        {
-            AssemblyName = assemblyName;
-        }
-
         protected string AssemblyName { get; }
 
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             Container = container;
             InstallInternal();
+        }
+
+        protected AssemblyInstallerBase(string assemblyName)
+        {
+            AssemblyName = assemblyName;
         }
 
         protected virtual BasedOnDescriptor RegisterAssemblyTypeOverrides(BasedOnDescriptor assemblyRegistration)

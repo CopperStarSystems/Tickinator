@@ -20,29 +20,6 @@ namespace Tickinator.ViewModel.Tests
         Mock<ITeamDashboardViewModel> mockTeamDashboardViewModel;
         Mock<ITicketListViewModel> mockTodaysTicketsViewModel;
 
-        protected override void CreateMocks()
-        {
-            base.CreateMocks();
-            mockTeamDashboardViewModel = CreateMock<ITeamDashboardViewModel>();
-            mockMyDashboardViewModelFactory = CreateMock<IMyDashboardViewModelFactory>();
-            mockMyDashboardViewModel = CreateMock<IMyDashboardViewModel>();
-            mockTodaysTicketsViewModel = CreateMock<ITicketListViewModel>();
-            mockCurrentUserViewModel = CreateMock<ICurrentUserViewModel>();
-        }
-
-        protected override MainViewModel CreateSystemUnderTest()
-        {
-            return new MainViewModel(mockTeamDashboardViewModel.Object, mockMyDashboardViewModelFactory.Object,
-                mockTodaysTicketsViewModel.Object, mockCurrentUserViewModel.Object);
-        }
-
-        protected override void SetupConstructorRequiredMocks()
-        {
-            base.SetupConstructorRequiredMocks();
-            mockMyDashboardViewModelFactory.Setup(p => p.Create(mockCurrentUserViewModel.Object))
-                .Returns(mockMyDashboardViewModel.Object);
-        }
-
         [Test]
         public void MyDashboardViewModel_AfterConstruction_IsExpectedValue()
         {
@@ -62,6 +39,29 @@ namespace Tickinator.ViewModel.Tests
         {
             Assert.That(SystemUnderTest.TodaysTicketsViewModel, Is.Not.Null);
             Assert.That(SystemUnderTest.TodaysTicketsViewModel, Is.SameAs(mockTodaysTicketsViewModel.Object));
+        }
+
+        protected override void CreateMocks()
+        {
+            base.CreateMocks();
+            mockTeamDashboardViewModel = CreateMock<ITeamDashboardViewModel>();
+            mockMyDashboardViewModelFactory = CreateMock<IMyDashboardViewModelFactory>();
+            mockMyDashboardViewModel = CreateMock<IMyDashboardViewModel>();
+            mockTodaysTicketsViewModel = CreateMock<ITicketListViewModel>();
+            mockCurrentUserViewModel = CreateMock<ICurrentUserViewModel>();
+        }
+
+        protected override MainViewModel CreateSystemUnderTest()
+        {
+            return new MainViewModel(mockTeamDashboardViewModel.Object, mockMyDashboardViewModelFactory.Object,
+                                     mockTodaysTicketsViewModel.Object, mockCurrentUserViewModel.Object);
+        }
+
+        protected override void SetupConstructorRequiredMocks()
+        {
+            base.SetupConstructorRequiredMocks();
+            mockMyDashboardViewModelFactory.Setup(p => p.Create(mockCurrentUserViewModel.Object))
+                                           .Returns(mockMyDashboardViewModel.Object);
         }
     }
 }

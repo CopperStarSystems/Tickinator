@@ -1,4 +1,9 @@
-﻿using System.Reflection;
+﻿//  --------------------------------------------------------------------------------------
+// Tickinator.Common.AssemblyInfo.cs
+// 2016/12/02
+//  --------------------------------------------------------------------------------------
+
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 

@@ -12,25 +12,19 @@ namespace Tickinator.ViewModel.TechnicianList
     {
         readonly Technician technician;
 
-        public TechnicianListItemViewModel(Technician technician)
-        {
-            this.technician = technician;
-        }
-
         public string FullName
         {
-            get
-            {
-                return $"{technician.LastName}, {technician.FirstName}";
-            }
+            get { return $"{technician.LastName}, {technician.FirstName}"; }
         }
 
         public int Id
         {
-            get
-            {
-                return technician.Id;
-            }
+            get { return technician.Id; }
+        }
+
+        public TechnicianListItemViewModel(Technician technician)
+        {
+            this.technician = technician;
         }
     }
 }

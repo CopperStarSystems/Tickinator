@@ -4,7 +4,6 @@
 //  --------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using Tickinator.Model;
 
 namespace Tickinator.ViewModel.TechnicianList
 {

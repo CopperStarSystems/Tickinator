@@ -14,6 +14,11 @@ namespace Tickinator.ViewModel.Tests.Common
         readonly object expectedSender;
         readonly int initialArgsCount;
 
+        bool AlwaysExpectingSameEventArg
+        {
+            get { return initialArgsCount == 1; }
+        }
+
         public MockEventHandler(object expectedSender, IEnumerable<T> expectedEventArgs)
         {
             this.expectedSender = expectedSender;
@@ -27,22 +32,14 @@ namespace Tickinator.ViewModel.Tests.Common
         {
         }
 
-        bool AlwaysExpectingSameEventArg
-        {
-            get
-            {
-                return initialArgsCount == 1;
-            }
-        }
-
-        public int TimesCalled { get; private set; }
-
         public void HandleEvent(object sender, T e)
         {
             Assert.That(sender, Is.SameAs(expectedSender), "Event Sender is not expected Sender");
             Assert.That(e, Is.EqualTo(GetExpectedEventArgs()), "EventArgs is not equal to expected EventArgs");
             TimesCalled++;
         }
+
+        public int TimesCalled { get; private set; }
 
         T DequeueNextExpectedEventArgs()
         {
