@@ -10,8 +10,7 @@ namespace Tickinator.ViewModel.TicketList
 {
     public interface ITicketListViewModel : IViewModel
     {
-        ObservableCollection<ITicketListItemViewModel> TodaysTickets { get; }
-
         ICommand ShowTicketDetailsCommand { get; }
+        ObservableCollection<ITicketListItemViewModel> TodaysTickets { get; }
     }
 }

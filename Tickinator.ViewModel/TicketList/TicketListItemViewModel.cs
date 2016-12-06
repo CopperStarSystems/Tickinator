@@ -18,16 +18,16 @@ namespace Tickinator.ViewModel.TicketList
             this.ticket = ticket;
         }
 
-        public int Id
+        public int AssignedToId
         {
             get
             {
-                return ticket.Id;
+                return ticket.AssignedToId;
             }
             set
             {
-                ticket.Id = value;
-                RaisePropertyChanged(nameof(Id));
+                ticket.AssignedToId = value;
+                RaisePropertyChanged(nameof(AssignedToId));
             }
         }
 
@@ -57,16 +57,16 @@ namespace Tickinator.ViewModel.TicketList
             }
         }
 
-        public int AssignedToId
+        public int Id
         {
             get
             {
-                return ticket.AssignedToId;
+                return ticket.Id;
             }
             set
             {
-                ticket.AssignedToId = value;
-                RaisePropertyChanged(nameof(AssignedToId));
+                ticket.Id = value;
+                RaisePropertyChanged(nameof(Id));
             }
         }
     }

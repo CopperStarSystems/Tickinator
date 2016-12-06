@@ -16,14 +16,6 @@ namespace Tickinator.ViewModel.Tests.Command
     {
         Mock<IClosable> mockClosable;
 
-        [Test]
-        public void Execute_Always_PerformsExpectedWork()
-        {
-            mockClosable.Setup(p => p.Close());
-            SystemUnderTest.Execute(null);
-            MockRepository.VerifyAll();
-        }
-
         protected override void CreateMocks()
         {
             base.CreateMocks();
@@ -33,6 +25,14 @@ namespace Tickinator.ViewModel.Tests.Command
         protected override CloseCommand CreateSystemUnderTest()
         {
             return new CloseCommand(mockClosable.Object);
+        }
+
+        [Test]
+        public void Execute_Always_PerformsExpectedWork()
+        {
+            mockClosable.Setup(p => p.Close());
+            SystemUnderTest.Execute(null);
+            MockRepository.VerifyAll();
         }
     }
 }

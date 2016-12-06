@@ -20,27 +20,6 @@ namespace Tickinator.ViewModel.Tests
         Mock<ITeamDashboardViewModel> mockTeamDashboardViewModel;
         Mock<ITicketListViewModel> mockTodaysTicketsViewModel;
 
-        [Test]
-        public void MyDashboardViewModel_AfterConstruction_IsExpectedValue()
-        {
-            Assert.That(SystemUnderTest.MyDashboardViewModel, Is.Not.Null);
-            Assert.That(SystemUnderTest.MyDashboardViewModel, Is.SameAs(mockMyDashboardViewModel.Object));
-        }
-
-        [Test]
-        public void TeamDashboardViewModel_AfterConstruction_IsExpectedValue()
-        {
-            Assert.That(SystemUnderTest.TeamDashboardViewModel, Is.Not.Null);
-            Assert.That(SystemUnderTest.TeamDashboardViewModel, Is.SameAs(mockTeamDashboardViewModel.Object));
-        }
-
-        [Test]
-        public void TodaysTicketsViewModel_AfterConstruction_ExpectedValue()
-        {
-            Assert.That(SystemUnderTest.TodaysTicketsViewModel, Is.Not.Null);
-            Assert.That(SystemUnderTest.TodaysTicketsViewModel, Is.SameAs(mockTodaysTicketsViewModel.Object));
-        }
-
         protected override void CreateMocks()
         {
             base.CreateMocks();
@@ -62,6 +41,27 @@ namespace Tickinator.ViewModel.Tests
             base.SetupConstructorRequiredMocks();
             mockMyDashboardViewModelFactory.Setup(p => p.Create(mockCurrentUserViewModel.Object))
                 .Returns(mockMyDashboardViewModel.Object);
+        }
+
+        [Test]
+        public void MyDashboardViewModel_AfterConstruction_IsExpectedValue()
+        {
+            Assert.That(SystemUnderTest.MyDashboardViewModel, Is.Not.Null);
+            Assert.That(SystemUnderTest.MyDashboardViewModel, Is.SameAs(mockMyDashboardViewModel.Object));
+        }
+
+        [Test]
+        public void TeamDashboardViewModel_AfterConstruction_IsExpectedValue()
+        {
+            Assert.That(SystemUnderTest.TeamDashboardViewModel, Is.Not.Null);
+            Assert.That(SystemUnderTest.TeamDashboardViewModel, Is.SameAs(mockTeamDashboardViewModel.Object));
+        }
+
+        [Test]
+        public void TodaysTicketsViewModel_AfterConstruction_ExpectedValue()
+        {
+            Assert.That(SystemUnderTest.TodaysTicketsViewModel, Is.Not.Null);
+            Assert.That(SystemUnderTest.TodaysTicketsViewModel, Is.SameAs(mockTodaysTicketsViewModel.Object));
         }
     }
 }

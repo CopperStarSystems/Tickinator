@@ -7,8 +7,7 @@ namespace Tickinator.ViewModel.TechnicianList
 {
     public interface ITechnicianListItemViewModel
     {
-        int Id { get; }
-
         string FullName { get; }
+        int Id { get; }
     }
 }

@@ -20,12 +20,6 @@ namespace Tickinator.ViewModel.Tests.TicketDetails
         Mock<ICloseCommand> mockCloseCommand;
         Mock<IStatusListProvider> mockStatusListProvider;
 
-        [Test]
-        public void Statuses_Always_ReturnsExpectedValues()
-        {
-            Assert.That(SystemUnderTest.Statuses, Is.SameAs(statusList));
-        }
-
         protected override void CreateMocks()
         {
             base.CreateMocks();
@@ -42,6 +36,12 @@ namespace Tickinator.ViewModel.Tests.TicketDetails
         {
             base.SetupConstructorRequiredMocks();
             mockStatusListProvider.Setup(p => p.GetStatuses()).Returns(statusList);
+        }
+
+        [Test]
+        public void Statuses_Always_ReturnsExpectedValues()
+        {
+            Assert.That(SystemUnderTest.Statuses, Is.SameAs(statusList));
         }
     }
 }

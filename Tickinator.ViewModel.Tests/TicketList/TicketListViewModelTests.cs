@@ -20,19 +20,6 @@ namespace Tickinator.ViewModel.Tests.TicketList
         Mock<ITicketListItemViewModelFactory> mockTicketListItemViewModelFactory;
         Mock<ITicketRepository> mockTicketRepository;
 
-        [Test]
-        public void ShowTicketDetailsCommand_AfterConstruction_IsExpectedValue()
-        {
-            Assert.That(SystemUnderTest.ShowTicketDetailsCommand, Is.Not.Null);
-            Assert.That(SystemUnderTest.ShowTicketDetailsCommand, Is.SameAs(mockShowTicketDetailsCommand.Object));
-        }
-
-        [Test]
-        public void TodaysTickets_AfterConstruction_IsNotNull()
-        {
-            Assert.That(SystemUnderTest.TodaysTickets, Is.Not.Null);
-        }
-
         protected override void CreateMocks()
         {
             base.CreateMocks();
@@ -58,6 +45,19 @@ namespace Tickinator.ViewModel.Tests.TicketList
                 var mockListItemViewModel = CreateMock<ITicketListItemViewModel>();
                 mockTicketListItemViewModelFactory.Setup(p => p.Create(ticket)).Returns(mockListItemViewModel.Object);
             }
+        }
+
+        [Test]
+        public void ShowTicketDetailsCommand_AfterConstruction_IsExpectedValue()
+        {
+            Assert.That(SystemUnderTest.ShowTicketDetailsCommand, Is.Not.Null);
+            Assert.That(SystemUnderTest.ShowTicketDetailsCommand, Is.SameAs(mockShowTicketDetailsCommand.Object));
+        }
+
+        [Test]
+        public void TodaysTickets_AfterConstruction_IsNotNull()
+        {
+            Assert.That(SystemUnderTest.TodaysTickets, Is.Not.Null);
         }
     }
 }

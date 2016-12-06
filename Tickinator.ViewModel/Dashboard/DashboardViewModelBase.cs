@@ -19,11 +19,12 @@ namespace Tickinator.ViewModel.Dashboard
             Repository = ticketRepository;
         }
 
-        public int OpenTicketCount
+        public TimeSpan AverageTicketDuration
         {
             get
             {
-                return GetOpenTickets().Count();
+                var averageDuration = CalculateAverageDuration();
+                return TimeSpan.FromMilliseconds(averageDuration);
             }
         }
 
@@ -35,12 +36,11 @@ namespace Tickinator.ViewModel.Dashboard
             }
         }
 
-        public TimeSpan AverageTicketDuration
+        public int OpenTicketCount
         {
             get
             {
-                var averageDuration = CalculateAverageDuration();
-                return TimeSpan.FromMilliseconds(averageDuration);
+                return GetOpenTickets().Count();
             }
         }
 

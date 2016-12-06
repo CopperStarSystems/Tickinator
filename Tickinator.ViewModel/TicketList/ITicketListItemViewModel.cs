@@ -9,12 +9,11 @@ namespace Tickinator.ViewModel.TicketList
 {
     public interface ITicketListItemViewModel
     {
-        int Id { get; set; }
+        int AssignedToId { get; set; }
 
         DateTime? DateClosed { get; set; }
 
         DateTime DateOpened { get; set; }
-
-        int AssignedToId { get; set; }
+        int Id { get; set; }
     }
 }

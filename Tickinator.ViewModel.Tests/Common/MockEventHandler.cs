@@ -27,8 +27,6 @@ namespace Tickinator.ViewModel.Tests.Common
         {
         }
 
-        public int TimesCalled { get; private set; }
-
         bool AlwaysExpectingSameEventArg
         {
             get
@@ -36,6 +34,8 @@ namespace Tickinator.ViewModel.Tests.Common
                 return initialArgsCount == 1;
             }
         }
+
+        public int TimesCalled { get; private set; }
 
         public void HandleEvent(object sender, T e)
         {

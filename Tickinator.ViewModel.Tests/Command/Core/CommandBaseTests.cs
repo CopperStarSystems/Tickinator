@@ -15,20 +15,6 @@ namespace Tickinator.ViewModel.Tests.Command.Core
     {
         protected MockEventHandler<EventArgs> MockCanExecuteChangedEventHandler { get; private set; }
 
-        [Test]
-        public void RaiseCanExecuteChanged_EventIsHooked_RaisesEventWithExpectedArguments()
-        {
-            // Verification is done in mock event handler's HandleEvent method
-            SystemUnderTest.RaiseCanExecuteChanged();
-        }
-
-        [Test]
-        public void RaiseCanExecuteChanged_EventIsNotHooked_DoesNotThrowException()
-        {
-            SystemUnderTest.CanExecuteChanged -= MockCanExecuteChangedEventHandler.HandleEvent;
-            Assert.DoesNotThrow(() => SystemUnderTest.RaiseCanExecuteChanged());
-        }
-
         protected bool CanExecute(object parameter = null)
         {
             return SystemUnderTest.CanExecute(parameter);
@@ -50,6 +36,20 @@ namespace Tickinator.ViewModel.Tests.Command.Core
             var mockEventHandler = new MockEventHandler<EventArgs>(SystemUnderTest, EventArgs.Empty);
             SystemUnderTest.CanExecuteChanged += mockEventHandler.HandleEvent;
             return mockEventHandler;
+        }
+
+        [Test]
+        public void RaiseCanExecuteChanged_EventIsHooked_RaisesEventWithExpectedArguments()
+        {
+            // Verification is done in mock event handler's HandleEvent method
+            SystemUnderTest.RaiseCanExecuteChanged();
+        }
+
+        [Test]
+        public void RaiseCanExecuteChanged_EventIsNotHooked_DoesNotThrowException()
+        {
+            SystemUnderTest.CanExecuteChanged -= MockCanExecuteChangedEventHandler.HandleEvent;
+            Assert.DoesNotThrow(() => SystemUnderTest.RaiseCanExecuteChanged());
         }
     }
 }

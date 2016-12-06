@@ -25,6 +25,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tickinator.Model", "Tickina
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tickinator.Common", "Tickinator.Common\Tickinator.Common.csproj", "{5810E2D3-A19B-4663-80EC-884A3C08A7CA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Settings", "Settings", "{B8F37118-6BB2-424B-9D62-F78311FF5AF5}"
+	ProjectSection(SolutionItems) = preProject
+		Tickinator.sln.DotSettings = Tickinator.sln.DotSettings
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

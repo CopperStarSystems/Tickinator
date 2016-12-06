@@ -16,6 +16,13 @@ namespace Tickinator.ViewModel.Tests.Dashboard
     [TestFixture]
     public abstract class DashboardViewModelBaseTests<T> : TestBase<T> where T : IDashboardViewModel
     {
+        [SetUp]
+        public override void SetUp()
+        {
+            Tickets = new List<Ticket>();
+            base.SetUp();
+        }
+
         protected IList<Ticket> Tickets { get; private set; }
 
         protected Mock<ITicketRepository> MockTicketRepository { get; private set; }
@@ -50,13 +57,6 @@ namespace Tickinator.ViewModel.Tests.Dashboard
             AddTickets(expectedOpenTicketCount);
             SetupMockTicketRepository();
             Assert.That(SystemUnderTest.OpenTicketCount, Is.EqualTo(expectedOpenTicketCount));
-        }
-
-        [SetUp]
-        public override void SetUp()
-        {
-            Tickets = new List<Ticket>();
-            base.SetUp();
         }
 
         protected void AddTicket(int id, DateTime? dateClosed, DateTime dateOpened, int assignedToId = 1)

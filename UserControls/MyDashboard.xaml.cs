@@ -1,6 +1,4 @@
-﻿using System.Windows.Controls;
-
-namespace Tickinator.UI.Wpf.UserControls
+﻿namespace Tickinator.UI.Wpf.UserControls
 {
     /// <summary>
     ///     Interaction logic for MyDashboard.xaml

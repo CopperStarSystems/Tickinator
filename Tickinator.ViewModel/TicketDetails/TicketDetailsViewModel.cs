@@ -3,6 +3,8 @@
 // 2016/12/02
 //  --------------------------------------------------------------------------------------
 
+#region
+
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;
@@ -12,15 +14,14 @@ using Tickinator.ViewModel.Command;
 using Tickinator.ViewModel.StatusList;
 using Tickinator.ViewModel.TechnicianList;
 
+#endregion
+
 namespace Tickinator.ViewModel.TicketDetails
 {
     public class TicketDetailsViewModel : ViewModelBase, ITicketDetailsViewModel
     {
         readonly Ticket ticket;
-        int assignedToId;
-        DateTime? dateClosed;
-        DateTime dateOpened;
-        int id;
+
         IEnumerable<IStatusListItemViewModel> statuses;
 
         public TicketDetailsViewModel(Ticket ticket, ICloseCommand closeCommand, IStatusListProvider statusListProvider)
@@ -30,20 +31,18 @@ namespace Tickinator.ViewModel.TicketDetails
             Statuses = statusListProvider.GetStatuses();
         }
 
-        public IEnumerable<IStatusListItemViewModel> Statuses
+        public int AssignedToId
         {
             get
             {
-                return statuses;
+                return ticket.AssignedToId;
             }
-            private set
+            set
             {
-                statuses = value;
-                RaisePropertyChanged(nameof(Statuses));
+                ticket.AssignedToId = value;
+                RaisePropertyChanged(nameof(AssignedToId));
             }
         }
-
-        public IEnumerable<ITechnicianListItemViewModel> Technicians { get; }
 
         public ICommand CloseCommand { get; }
 
@@ -73,19 +72,6 @@ namespace Tickinator.ViewModel.TicketDetails
             }
         }
 
-        public int AssignedToId
-        {
-            get
-            {
-                return ticket.AssignedToId;
-            }
-            set
-            {
-                ticket.AssignedToId = value;
-                RaisePropertyChanged(nameof(AssignedToId));
-            }
-        }
-
         public int Id
         {
             get
@@ -98,5 +84,20 @@ namespace Tickinator.ViewModel.TicketDetails
                 RaisePropertyChanged(nameof(Id));
             }
         }
+
+        public IEnumerable<IStatusListItemViewModel> Statuses
+        {
+            get
+            {
+                return statuses;
+            }
+            private set
+            {
+                statuses = value;
+                RaisePropertyChanged(nameof(Statuses));
+            }
+        }
+
+        public IEnumerable<ITechnicianListItemViewModel> Technicians { get; }
     }
 }

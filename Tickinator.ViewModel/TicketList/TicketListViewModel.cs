@@ -27,10 +27,6 @@ namespace Tickinator.ViewModel.TicketList
             ShowTicketDetailsCommand = showTicketDetailsCommand;
         }
 
-        public ObservableCollection<ITicketListItemViewModel> TodaysTickets { get; }
-
-        public ICommand ShowTicketDetailsCommand { get; }
-
         public ITicketListItemViewModel SelectedItem
         {
             get
@@ -43,5 +39,9 @@ namespace Tickinator.ViewModel.TicketList
                 RaisePropertyChanged(nameof(SelectedItem));
             }
         }
+
+        public ICommand ShowTicketDetailsCommand { get; }
+
+        public ObservableCollection<ITicketListItemViewModel> TodaysTickets { get; }
     }
 }

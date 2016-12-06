@@ -25,7 +25,7 @@ namespace Tickinator.UI.Wpf
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            
+
             // The process of configuring a Windsor container is known as
             // bootstrapping.  Since it is a Windsor-specific detail, we 
             // isolate that functionality in the Bootstrapper class.

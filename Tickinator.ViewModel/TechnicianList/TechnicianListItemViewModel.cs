@@ -9,8 +9,8 @@ namespace Tickinator.ViewModel.TechnicianList
 {
     public class TechnicianListItemViewModel : ViewModelBase, ITechnicianListItemViewModel
     {
+        public string FullName { get; }
         // Stub for now
         public int Id { get; }
-        public string FullName { get; }
     }
 }

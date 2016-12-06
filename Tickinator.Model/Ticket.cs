@@ -9,10 +9,9 @@ namespace Tickinator.Model
 {
     public class Ticket : ModelBase
     {
+        public int AssignedToId { get; set; }
         public DateTime? DateClosed { get; set; }
 
         public DateTime DateOpened { get; set; }
-
-        public int AssignedToId { get; set; }
     }
 }

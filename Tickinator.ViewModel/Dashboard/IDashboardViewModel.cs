@@ -9,10 +9,9 @@ namespace Tickinator.ViewModel.Dashboard
 {
     public interface IDashboardViewModel : IViewModel
     {
-        int OpenTicketCount { get; }
+        TimeSpan AverageTicketDuration { get; }
 
         int ClosedTodayCount { get; }
-
-        TimeSpan AverageTicketDuration { get; }
+        int OpenTicketCount { get; }
     }
 }

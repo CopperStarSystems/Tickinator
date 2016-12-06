@@ -17,14 +17,6 @@ namespace Tickinator.ViewModel.Tests.StatusList
     {
         Mock<IStatusListItemViewModelFactory> mockStatusListItemViewModelFactory;
 
-        [Test]
-        public void GetStatuses_Always_ReturnsExpectedResult()
-        {
-            SetupMocksForGetStatusesTest();
-            var result = SystemUnderTest.GetStatuses();
-            Assert.That(result.Count(), Is.EqualTo(Enum.GetNames(typeof(StatusEnum)).Length));
-        }
-
         protected override void CreateMocks()
         {
             base.CreateMocks();
@@ -43,6 +35,14 @@ namespace Tickinator.ViewModel.Tests.StatusList
                 var mock = CreateMock<IStatusListItemViewModel>();
                 mockStatusListItemViewModelFactory.Setup(p => p.Create(status)).Returns(mock.Object);
             }
+        }
+
+        [Test]
+        public void GetStatuses_Always_ReturnsExpectedResult()
+        {
+            SetupMocksForGetStatusesTest();
+            var result = SystemUnderTest.GetStatuses();
+            Assert.That(result.Count(), Is.EqualTo(Enum.GetNames(typeof(StatusEnum)).Length));
         }
     }
 }

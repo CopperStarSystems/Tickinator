@@ -10,9 +10,8 @@ namespace Tickinator.ViewModel
 {
     public interface IMainViewModel : IViewModel
     {
-        ITeamDashboardViewModel TeamDashboardViewModel { get; }
-
         IMyDashboardViewModel MyDashboardViewModel { get; }
+        ITeamDashboardViewModel TeamDashboardViewModel { get; }
 
         ITicketListViewModel TodaysTicketsViewModel { get; }
     }
