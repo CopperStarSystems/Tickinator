@@ -26,8 +26,8 @@ namespace Tickinator.Repository.MockData
         {
             technicians = new List<Technician>();
             technicians.Add(new Technician {Id = 1, FirstName = "Bob", LastName = "Jones"});
-            technicians.Add(new Technician {Id = 1, FirstName = "Bill", LastName = "Smith"});
-            technicians.Add(new Technician {Id = 1, FirstName = "Sally", LastName = "Roe"});
+            technicians.Add(new Technician {Id = 2, FirstName = "Bill", LastName = "Smith"});
+            technicians.Add(new Technician {Id = 3, FirstName = "Sally", LastName = "Roe"});
         }
     }
 }

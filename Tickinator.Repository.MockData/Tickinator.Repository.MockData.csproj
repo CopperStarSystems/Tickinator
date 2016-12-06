@@ -45,6 +45,10 @@
     <Compile Include="TicketRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Tickinator.Common\Tickinator.Common.csproj">
+      <Project>{5810E2D3-A19B-4663-80EC-884A3C08A7CA}</Project>
+      <Name>Tickinator.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tickinator.Model\Tickinator.Model.csproj">
       <Project>{00DEE704-461C-470E-88DE-79248081DDAD}</Project>
       <Name>Tickinator.Model</Name>

@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;
+using Tickinator.Common.Enums;
 using Tickinator.ViewModel.StatusList;
 using Tickinator.ViewModel.TechnicianList;
 
@@ -26,5 +27,7 @@ namespace Tickinator.ViewModel.TicketDetails
         DateTime DateOpened { get; set; }
 
         int Id { get; set; }
+
+        StatusEnum Status { get; set; }
     }
 }

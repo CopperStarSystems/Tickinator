@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
+using Tickinator.Common.Enums;
 using Tickinator.Model;
 using Tickinator.ViewModel.Command;
 using Tickinator.ViewModel.StatusList;
@@ -74,6 +75,16 @@ namespace Tickinator.ViewModel.TicketDetails
             {
                 ticket.Id = value;
                 RaisePropertyChanged(nameof(Id));
+            }
+        }
+
+        public StatusEnum Status
+        {
+            get { return ticket.Status; }
+            set
+            {
+                ticket.Status = value;
+                RaisePropertyChanged(nameof(Status));
             }
         }
 

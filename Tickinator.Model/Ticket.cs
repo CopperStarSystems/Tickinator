@@ -4,6 +4,7 @@
 //  --------------------------------------------------------------------------------------
 
 using System;
+using Tickinator.Common.Enums;
 
 namespace Tickinator.Model
 {
@@ -14,5 +15,7 @@ namespace Tickinator.Model
         public DateTime? DateClosed { get; set; }
 
         public DateTime DateOpened { get; set; }
+
+        public StatusEnum Status { get; set; }
     }
 }

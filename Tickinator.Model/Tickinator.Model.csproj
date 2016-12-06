@@ -47,6 +47,12 @@
     <Compile Include="Technician.cs" />
     <Compile Include="Ticket.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tickinator.Common\Tickinator.Common.csproj">
+      <Project>{5810E2D3-A19B-4663-80EC-884A3C08A7CA}</Project>
+      <Name>Tickinator.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
