@@ -3,8 +3,6 @@
 // 2016/12/02
 //  --------------------------------------------------------------------------------------
 
-#region
-
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;
@@ -15,8 +13,6 @@ using Tickinator.ViewModel.Command;
 using Tickinator.ViewModel.StatusList;
 using Tickinator.ViewModel.TechnicianList;
 
-#endregion
-
 namespace Tickinator.ViewModel.TicketDetails
 {
     public class TicketDetailsViewModel : ViewModelBase, ITicketDetailsViewModel
@@ -24,10 +20,6 @@ namespace Tickinator.ViewModel.TicketDetails
         readonly Ticket ticket;
 
         IEnumerable<IStatusListItemViewModel> statuses;
-
-        public ICommand CloseCommand { get; }
-
-        public IEnumerable<ITechnicianListItemViewModel> Technicians { get; }
 
         public TicketDetailsViewModel(Ticket ticket, ICloseCommand closeCommand, IStatusListProvider statusListProvider,
                                       ITechnicianListProvider technicianListProvider)
@@ -47,6 +39,8 @@ namespace Tickinator.ViewModel.TicketDetails
                 RaisePropertyChanged(nameof(AssignedToId));
             }
         }
+
+        public ICommand CloseCommand { get; }
 
         public DateTime? DateClosed
         {
@@ -97,5 +91,7 @@ namespace Tickinator.ViewModel.TicketDetails
                 RaisePropertyChanged(nameof(Statuses));
             }
         }
+
+        public IEnumerable<ITechnicianListItemViewModel> Technicians { get; }
     }
 }

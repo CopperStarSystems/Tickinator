@@ -12,12 +12,6 @@ namespace Tickinator.ViewModel
 {
     public class MainViewModel : ViewModelBase, IMainViewModel
     {
-        public IMyDashboardViewModel MyDashboardViewModel { get; }
-
-        public ITeamDashboardViewModel TeamDashboardViewModel { get; }
-
-        public ITicketListViewModel TodaysTicketsViewModel { get; }
-
         public MainViewModel(ITeamDashboardViewModel teamDashboardViewModel,
                              IMyDashboardViewModelFactory myDashboardViewModelFactory,
                              ITicketListViewModel todaysTicketsListViewModel, ICurrentUserViewModel currentUserViewModel)
@@ -26,5 +20,11 @@ namespace Tickinator.ViewModel
             MyDashboardViewModel = myDashboardViewModelFactory.Create(currentUserViewModel);
             TodaysTicketsViewModel = todaysTicketsListViewModel;
         }
+
+        public IMyDashboardViewModel MyDashboardViewModel { get; }
+
+        public ITeamDashboardViewModel TeamDashboardViewModel { get; }
+
+        public ITicketListViewModel TodaysTicketsViewModel { get; }
     }
 }

@@ -18,10 +18,6 @@ namespace Tickinator.ViewModel.TicketList
 
         ITicketListItemViewModel selectedItem;
 
-        public ICommand ShowTicketDetailsCommand { get; }
-
-        public ObservableCollection<ITicketListItemViewModel> TodaysTickets { get; }
-
         public TicketListViewModel(ITicketRepository ticketRepository,
                                    ITicketListItemViewModelFactory ticketListItemViewModelFactory,
                                    IShowTicketDetailsCommandFactory showTicketDetailsCommandFactory)
@@ -31,6 +27,10 @@ namespace Tickinator.ViewModel.TicketList
                 TodaysTickets.Add(ticketListItemViewModelFactory.Create(ticket));
             ShowTicketDetailsCommand = showTicketDetailsCommandFactory.Create(this);
         }
+
+        public ICommand ShowTicketDetailsCommand { get; }
+
+        public ObservableCollection<ITicketListItemViewModel> TodaysTickets { get; }
 
         public ITicketListItemViewModel SelectedItem
         {

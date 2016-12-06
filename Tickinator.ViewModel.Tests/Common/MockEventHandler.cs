@@ -14,11 +14,6 @@ namespace Tickinator.ViewModel.Tests.Common
         readonly object expectedSender;
         readonly int initialArgsCount;
 
-        bool AlwaysExpectingSameEventArg
-        {
-            get { return initialArgsCount == 1; }
-        }
-
         public MockEventHandler(object expectedSender, IEnumerable<T> expectedEventArgs)
         {
             this.expectedSender = expectedSender;
@@ -30,6 +25,11 @@ namespace Tickinator.ViewModel.Tests.Common
         public MockEventHandler(object expectedSender, T expectedEventArgs)
             : this(expectedSender, new List<T>(new[] {expectedEventArgs}))
         {
+        }
+
+        bool AlwaysExpectingSameEventArg
+        {
+            get { return initialArgsCount == 1; }
         }
 
         public void HandleEvent(object sender, T e)

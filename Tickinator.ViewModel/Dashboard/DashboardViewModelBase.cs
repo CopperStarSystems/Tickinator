@@ -14,6 +14,11 @@ namespace Tickinator.ViewModel.Dashboard
 {
     public abstract class DashboardViewModelBase : ViewModelBase, IDashboardViewModel
     {
+        protected DashboardViewModelBase(ITicketRepository ticketRepository)
+        {
+            Repository = ticketRepository;
+        }
+
         public TimeSpan AverageTicketDuration
         {
             get
@@ -31,11 +36,6 @@ namespace Tickinator.ViewModel.Dashboard
         public int OpenTicketCount
         {
             get { return GetOpenTickets().Count(); }
-        }
-
-        protected DashboardViewModelBase(ITicketRepository ticketRepository)
-        {
-            Repository = ticketRepository;
         }
 
         protected abstract IEnumerable<Ticket> GetOpenTickets();
