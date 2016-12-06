@@ -3,12 +3,14 @@
 // 2016/11/29
 //  --------------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
 using Tickinator.Model;
 using Tickinator.Repository;
 using Tickinator.ViewModel.Command;
+using Tickinator.ViewModel.Infrastructure;
 using Tickinator.ViewModel.Tests.Command.Core;
 using Tickinator.ViewModel.TicketDetails;
 using Tickinator.ViewModel.TicketList;
@@ -28,6 +30,7 @@ namespace Tickinator.ViewModel.Tests.Command
         Mock<ITicketRepository> mockTicketRepository;
         Mock<IViewFactory> mockViewFactory;
         Mock<ITicketListItemViewModel> mockViewModel;
+        Mock<ISelectedItem<ITicketListItemViewModel>> mockSelectedItem;
         IList<Ticket> tickets;
 
         [TestCase(1)]
@@ -38,6 +41,30 @@ namespace Tickinator.ViewModel.Tests.Command
             SetupMocksForExecuteTest(ticketId);
             Execute(mockViewModel.Object);
             MockRepository.VerifyAll();
+        }
+
+        static IEnumerable<TestCaseData> CanExecuteTestData
+        {
+            get
+            {
+                yield return new TestCaseData(null, false);
+                yield return new TestCaseData(new TicketListItemViewModel(null), true);
+            }
+        }
+
+        [TestCaseSource(nameof(CanExecuteTestData))]
+        public void CanExecute_Always_ReturnsExpectedResult(ITicketListItemViewModel ticketListItemViewModel,
+            bool expectedResult)
+        {
+            mockSelectedItem.Setup(p => p.SelectedItem).Returns(ticketListItemViewModel);
+            Assert.That(CanExecute(), Is.EqualTo(expectedResult));
+        }
+
+        int invocationCount;
+
+        void CanExecuteChangedHandler(object sender, EventArgs e)
+        {
+            invocationCount++;
         }
 
         protected override void CreateMocks()
@@ -51,12 +78,13 @@ namespace Tickinator.ViewModel.Tests.Command
             mockCloseCommandFactory = CreateMock<ICloseCommandFactory>();
             mockCloseCommand = CreateMock<ICloseCommand>();
             mockTicketDetailsViewModel = CreateMock<ITicketDetailsViewModel>();
+            mockSelectedItem = CreateMock<ISelectedItem<ITicketListItemViewModel>>();
         }
 
         protected override ShowTicketDetailsCommand CreateSystemUnderTest()
         {
             return new ShowTicketDetailsCommand(mockViewFactory.Object, mockTicketDetailsViewModelFactory.Object,
-                mockTicketRepository.Object, mockCloseCommandFactory.Object);
+                mockTicketRepository.Object, mockCloseCommandFactory.Object, mockSelectedItem.Object);
         }
 
         void CreateTickets()
@@ -76,8 +104,18 @@ namespace Tickinator.ViewModel.Tests.Command
                 .Returns(mockTicketDetailsViewModel.Object);
             mockTicketDetailsView.SetupSet(p => p.DataContext = mockTicketDetailsViewModel.Object);
             mockCloseCommandFactory.Setup(p => p.Create(mockTicketDetailsView.Object)).Returns(mockCloseCommand.Object);
-
+            mockSelectedItem.SetupGet(p => p.SelectedItem).Returns(new TicketListItemViewModel(null));
             mockTicketDetailsView.Setup(p => p.ShowDialog()).Returns(true);
+        }
+
+        [Test]
+        public void Command_WhenSelectedItemChanges_RaisesCanExecuteChanged()
+        {
+            invocationCount = 0;
+            SystemUnderTest.CanExecuteChanged += CanExecuteChangedHandler;
+            var ticketListItem = new TicketListItemViewModel(null);
+            mockSelectedItem.Raise(p=>p.SelectedItemChanged += null, EventArgs.Empty);
+            Assert.That(invocationCount, Is.EqualTo(1));
         }
     }
 }

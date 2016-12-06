@@ -3,6 +3,7 @@
 // 2016/11/28
 //  --------------------------------------------------------------------------------------
 
+using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
@@ -17,14 +18,12 @@ namespace Tickinator.ViewModel.TicketList
 
         public TicketListViewModel(ITicketRepository ticketRepository,
             ITicketListItemViewModelFactory ticketListItemViewModelFactory,
-            IShowTicketDetailsCommand showTicketDetailsCommand)
+            IShowTicketDetailsCommandFactory showTicketDetailsCommandFactory)
         {
             TodaysTickets = new ObservableCollection<ITicketListItemViewModel>();
             foreach (var ticket in ticketRepository.GetAll())
-                // Normally we would use a factory to create TicketListItemViewModel instances...
-                // We'll do a manual factory in our next checkin.
                 TodaysTickets.Add(ticketListItemViewModelFactory.Create(ticket));
-            ShowTicketDetailsCommand = showTicketDetailsCommand;
+            ShowTicketDetailsCommand = showTicketDetailsCommandFactory.Create(this);
         }
 
         public ITicketListItemViewModel SelectedItem
@@ -37,11 +36,21 @@ namespace Tickinator.ViewModel.TicketList
             {
                 selectedItem = value;
                 RaisePropertyChanged(nameof(SelectedItem));
+                RaiseSelectedItemChanged();
             }
         }
 
         public ICommand ShowTicketDetailsCommand { get; }
 
         public ObservableCollection<ITicketListItemViewModel> TodaysTickets { get; }
+
+        public event EventHandler SelectedItemChanged;
+
+        void RaiseSelectedItemChanged()
+        {
+            var handler = SelectedItemChanged;
+            if (handler != null)
+                handler(this, EventArgs.Empty);
+        }
     }
 }
