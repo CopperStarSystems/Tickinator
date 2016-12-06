@@ -22,7 +22,7 @@ namespace Tickinator.ViewModel.Tests.Command
     [TestFixture]
     public class ShowTicketDetailsCommandTests : CommandBaseTests<ShowTicketDetailsCommand>
     {
-        int invocationCount;
+        //int invocationCount;
         Mock<ICloseCommand> mockCloseCommand;
         Mock<ICloseCommandFactory> mockCloseCommandFactory;
         Mock<ISelectedItem<ITicketListItemViewModel>> mockSelectedItem;
@@ -34,6 +34,14 @@ namespace Tickinator.ViewModel.Tests.Command
         Mock<ITicketListItemViewModel> mockViewModel;
         IList<Ticket> tickets;
 
+        [TestCaseSource(nameof(CanExecuteTestData))]
+        public void CanExecute_Always_ReturnsExpectedResult(ITicketListItemViewModel ticketListItemViewModel,
+                                                            bool expectedResult)
+        {
+            mockSelectedItem.Setup(p => p.SelectedItem).Returns(ticketListItemViewModel);
+            Assert.That(CanExecute(), Is.EqualTo(expectedResult));
+        }
+
         static IEnumerable<TestCaseData> CanExecuteTestData
         {
             get
@@ -43,21 +51,11 @@ namespace Tickinator.ViewModel.Tests.Command
             }
         }
 
-        [TestCaseSource(nameof(CanExecuteTestData))]
-        public void CanExecute_Always_ReturnsExpectedResult(ITicketListItemViewModel ticketListItemViewModel,
-                                                            bool expectedResult)
-        {
-            mockSelectedItem.Setup(p => p.SelectedItem).Returns(ticketListItemViewModel);
-            Assert.That(CanExecute(), Is.EqualTo(expectedResult));
-        }
-
         [Test]
         public void Command_WhenSelectedItemChanges_RaisesCanExecuteChanged()
         {
-            invocationCount = 0;
-            SystemUnderTest.CanExecuteChanged += CanExecuteChangedHandler;
             mockSelectedItem.Raise(p => p.SelectedItemChanged += null, EventArgs.Empty);
-            Assert.That(invocationCount, Is.EqualTo(1));
+            Assert.That(MockCanExecuteChangedEventHandler.TimesCalled, Is.EqualTo(1));
         }
 
         [TestCase(1)]
@@ -89,11 +87,6 @@ namespace Tickinator.ViewModel.Tests.Command
             return new ShowTicketDetailsCommand(mockViewFactory.Object, mockTicketDetailsViewModelFactory.Object,
                                                 mockTicketRepository.Object, mockCloseCommandFactory.Object,
                                                 mockSelectedItem.Object);
-        }
-
-        void CanExecuteChangedHandler(object sender, EventArgs e)
-        {
-            invocationCount++;
         }
 
         void CreateTickets()
