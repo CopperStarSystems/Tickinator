@@ -5,6 +5,7 @@
 
 using Moq;
 using NUnit.Framework;
+using Tickinator.ViewModel.Command;
 using Tickinator.ViewModel.Dashboard;
 using Tickinator.ViewModel.TicketList;
 using Tickinator.ViewModel.User;
@@ -17,14 +18,15 @@ namespace Tickinator.ViewModel.Tests
         Mock<ICurrentUserViewModel> mockCurrentUserViewModel;
         Mock<IMyDashboardViewModel> mockMyDashboardViewModel;
         Mock<IMyDashboardViewModelFactory> mockMyDashboardViewModelFactory;
+        Mock<INewTicketCommand> mockNewTicketCommand;
         Mock<ITeamDashboardViewModel> mockTeamDashboardViewModel;
         Mock<ITicketListViewModel> mockTodaysTicketsViewModel;
 
         [Test]
-        public void MyDashboardViewModel_AfterConstruction_IsExpectedValue()
+        public void NewTicketCommand_Always_ReturnsInjectedCommand()
         {
-            Assert.That(SystemUnderTest.MyDashboardViewModel, Is.Not.Null);
-            Assert.That(SystemUnderTest.MyDashboardViewModel, Is.SameAs(mockMyDashboardViewModel.Object));
+            Assert.That(SystemUnderTest.NewTicketCommand, Is.Not.Null);
+            Assert.That(SystemUnderTest.NewTicketCommand, Is.SameAs(mockNewTicketCommand.Object));
         }
 
         [Test]
@@ -49,12 +51,14 @@ namespace Tickinator.ViewModel.Tests
             mockMyDashboardViewModel = CreateMock<IMyDashboardViewModel>();
             mockTodaysTicketsViewModel = CreateMock<ITicketListViewModel>();
             mockCurrentUserViewModel = CreateMock<ICurrentUserViewModel>();
+            mockNewTicketCommand = CreateMock<INewTicketCommand>();
         }
 
         protected override MainViewModel CreateSystemUnderTest()
         {
             return new MainViewModel(mockTeamDashboardViewModel.Object, mockMyDashboardViewModelFactory.Object,
-                                     mockTodaysTicketsViewModel.Object, mockCurrentUserViewModel.Object);
+                                     mockTodaysTicketsViewModel.Object, mockCurrentUserViewModel.Object,
+                                     mockNewTicketCommand.Object);
         }
 
         protected override void SetupConstructorRequiredMocks()
