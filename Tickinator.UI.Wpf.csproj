@@ -103,6 +103,9 @@
     <Compile Include="UserControls\TeamDashboard.xaml.cs">
       <DependentUpon>TeamDashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\TicketNotes.xaml.cs">
+      <DependentUpon>TicketNotes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\TodaysTickets.xaml.cs">
       <DependentUpon>TodaysTickets.xaml</DependentUpon>
     </Compile>
@@ -143,6 +146,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\TeamDashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TicketNotes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
