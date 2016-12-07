@@ -5,6 +5,7 @@
 
 using System;
 using System.Linq;
+using Tickinator.Common;
 using Tickinator.Repository;
 using Tickinator.ViewModel.Command.Core;
 using Tickinator.ViewModel.Infrastructure;
@@ -59,7 +60,8 @@ namespace Tickinator.ViewModel.Command
         {
             var closeCommand = closeCommandFactory.Create(view);
             var ticket = ticketRepository.GetAll().FirstOrDefault(p => p.Id == parameter.Id);
-            var viewModel = ticketDetailsViewModelFactory.Create(ticket, closeCommand);
+            var viewModel = ticketDetailsViewModelFactory.Create(ticket, closeCommand,
+                                                                 Strings.TicketDetails.EditHeaderText);
             return viewModel;
         }
 

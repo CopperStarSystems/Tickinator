@@ -18,16 +18,18 @@ namespace Tickinator.ViewModel.TicketDetails
     public class TicketDetailsViewModel : ViewModelBase, ITicketDetailsViewModel
     {
         readonly Ticket ticket;
+        string header;
 
         IEnumerable<IStatusListItemViewModel> statuses;
 
         public TicketDetailsViewModel(Ticket ticket, ICloseCommand closeCommand, IStatusListProvider statusListProvider,
-                                      ITechnicianListProvider technicianListProvider)
+                                      ITechnicianListProvider technicianListProvider, string header)
         {
             this.ticket = ticket;
             CloseCommand = closeCommand;
             Statuses = statusListProvider.GetStatuses();
             Technicians = technicianListProvider.GetTechnicians();
+            Header = header;
         }
 
         public int AssignedToId
@@ -59,6 +61,16 @@ namespace Tickinator.ViewModel.TicketDetails
             {
                 ticket.DateOpened = value;
                 RaisePropertyChanged(nameof(DateOpened));
+            }
+        }
+
+        public string Header
+        {
+            get { return header; }
+            set
+            {
+                header = value;
+                RaisePropertyChanged(nameof(Header));
             }
         }
 

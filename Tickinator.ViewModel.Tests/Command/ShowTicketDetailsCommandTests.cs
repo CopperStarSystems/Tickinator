@@ -102,7 +102,10 @@ namespace Tickinator.ViewModel.Tests.Command
             mockViewFactory.Setup(p => p.Create<ITicketDetailsView>()).Returns(mockTicketDetailsView.Object);
             mockTicketRepository.Setup(p => p.GetAll()).Returns(tickets);
             mockViewModel.SetupGet(p => p.Id).Returns(ticketId);
-            mockTicketDetailsViewModelFactory.Setup(p => p.Create(tickets[ticketId - 1], mockCloseCommand.Object))
+            mockTicketDetailsViewModelFactory.Setup(
+                                                 p =>
+                                                     p.Create(tickets[ticketId - 1], mockCloseCommand.Object,
+                                                              It.IsAny<string>()))
                                              .Returns(mockTicketDetailsViewModel.Object);
             mockTicketDetailsView.SetupSet(p => p.DataContext = mockTicketDetailsViewModel.Object);
             mockCloseCommandFactory.Setup(p => p.Create(mockTicketDetailsView.Object)).Returns(mockCloseCommand.Object);

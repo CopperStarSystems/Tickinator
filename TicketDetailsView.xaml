@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tickinator.UI.Wpf"
         mc:Ignorable="d"
-        Title="TicketDetailsView" Height="300" Width="300">
+        Title="{Binding Header}" Height="300" Width="300">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Content="Ticket Details:" />
+        <Label Grid.Row="0" Content="{Binding Header}" />
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
