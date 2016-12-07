@@ -83,9 +83,9 @@
     <Compile Include="TechnicianList\ITechnicianListProvider.cs" />
     <Compile Include="TechnicianList\TechnicianListItemViewModel.cs" />
     <Compile Include="TechnicianList\TechnicianListProvider.cs" />
-    <Compile Include="TicketDetails\ITicketDetailsViewModel.cs" />
-    <Compile Include="TicketDetails\ITicketDetailsViewModelFactory.cs" />
-    <Compile Include="TicketDetails\TicketDetailsViewModel.cs" />
+    <Compile Include="TicketDialog\ITicketDialogViewModel.cs" />
+    <Compile Include="TicketDialog\ITicketDialogViewModelFactory.cs" />
+    <Compile Include="TicketDialog\TicketDialogViewModel.cs" />
     <Compile Include="View\Core\IView.cs" />
     <Compile Include="View\Core\IViewFactory.cs" />
     <Compile Include="Dashboard\DashboardViewModelBase.cs" />

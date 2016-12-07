@@ -12,7 +12,7 @@ using Tickinator.Repository;
 using Tickinator.ViewModel.Command;
 using Tickinator.ViewModel.Infrastructure;
 using Tickinator.ViewModel.Tests.Command.Core;
-using Tickinator.ViewModel.TicketDetails;
+using Tickinator.ViewModel.TicketDialog;
 using Tickinator.ViewModel.TicketList;
 using Tickinator.ViewModel.View;
 using Tickinator.ViewModel.View.Core;
@@ -22,13 +22,12 @@ namespace Tickinator.ViewModel.Tests.Command
     [TestFixture]
     public class ShowTicketDetailsCommandTests : CommandBaseTests<ShowTicketDetailsCommand>
     {
-        //int invocationCount;
         Mock<ICloseCommand> mockCloseCommand;
         Mock<ICloseCommandFactory> mockCloseCommandFactory;
         Mock<ISelectedItem<ITicketListItemViewModel>> mockSelectedItem;
         Mock<ITicketDetailsView> mockTicketDetailsView;
-        Mock<ITicketDetailsViewModel> mockTicketDetailsViewModel;
-        Mock<ITicketDetailsViewModelFactory> mockTicketDetailsViewModelFactory;
+        Mock<ITicketDialogViewModel> mockTicketDetailsViewModel;
+        Mock<ITicketDialogViewModelFactory> mockTicketDialogViewModelFactory;
         Mock<ITicketRepository> mockTicketRepository;
         Mock<IViewFactory> mockViewFactory;
         Mock<ITicketListItemViewModel> mockViewModel;
@@ -74,17 +73,17 @@ namespace Tickinator.ViewModel.Tests.Command
             mockViewFactory = CreateMock<IViewFactory>();
             mockTicketDetailsView = CreateMock<ITicketDetailsView>();
             mockViewModel = CreateMock<ITicketListItemViewModel>();
-            mockTicketDetailsViewModelFactory = CreateMock<ITicketDetailsViewModelFactory>();
+            mockTicketDialogViewModelFactory = CreateMock<ITicketDialogViewModelFactory>();
             mockTicketRepository = CreateMock<ITicketRepository>();
             mockCloseCommandFactory = CreateMock<ICloseCommandFactory>();
             mockCloseCommand = CreateMock<ICloseCommand>();
-            mockTicketDetailsViewModel = CreateMock<ITicketDetailsViewModel>();
+            mockTicketDetailsViewModel = CreateMock<ITicketDialogViewModel>();
             mockSelectedItem = CreateMock<ISelectedItem<ITicketListItemViewModel>>();
         }
 
         protected override ShowTicketDetailsCommand CreateSystemUnderTest()
         {
-            return new ShowTicketDetailsCommand(mockViewFactory.Object, mockTicketDetailsViewModelFactory.Object,
+            return new ShowTicketDetailsCommand(mockViewFactory.Object, mockTicketDialogViewModelFactory.Object,
                                                 mockTicketRepository.Object, mockCloseCommandFactory.Object,
                                                 mockSelectedItem.Object);
         }
@@ -102,7 +101,7 @@ namespace Tickinator.ViewModel.Tests.Command
             mockViewFactory.Setup(p => p.Create<ITicketDetailsView>()).Returns(mockTicketDetailsView.Object);
             mockTicketRepository.Setup(p => p.GetAll()).Returns(tickets);
             mockViewModel.SetupGet(p => p.Id).Returns(ticketId);
-            mockTicketDetailsViewModelFactory.Setup(
+            mockTicketDialogViewModelFactory.Setup(
                                                  p =>
                                                      p.Create(tickets[ticketId - 1], mockCloseCommand.Object,
                                                               It.IsAny<string>()))

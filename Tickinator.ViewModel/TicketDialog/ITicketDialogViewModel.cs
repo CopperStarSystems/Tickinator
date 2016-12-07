@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------
-// Tickinator.ViewModel.ITicketDetailsViewModel.cs
+// Tickinator.ViewModel.ITicketDialogViewModel.cs
 // 2016/12/02
 //  --------------------------------------------------------------------------------------
 
@@ -10,9 +10,9 @@ using Tickinator.Common.Enums;
 using Tickinator.ViewModel.StatusList;
 using Tickinator.ViewModel.TechnicianList;
 
-namespace Tickinator.ViewModel.TicketDetails
+namespace Tickinator.ViewModel.TicketDialog
 {
-    public interface ITicketDetailsViewModel : IViewModel
+    public interface ITicketDialogViewModel : IViewModel
     {
         int AssignedToId { get; set; }
 

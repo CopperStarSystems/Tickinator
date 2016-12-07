@@ -10,11 +10,11 @@ using Tickinator.Model;
 using Tickinator.ViewModel.Command;
 using Tickinator.ViewModel.StatusList;
 using Tickinator.ViewModel.TechnicianList;
-using Tickinator.ViewModel.TicketDetails;
+using Tickinator.ViewModel.TicketDialog;
 
-namespace Tickinator.ViewModel.Tests.TicketDetails
+namespace Tickinator.ViewModel.Tests.TicketDialog
 {
-    public class TicketDetailsViewModelTests : TestBase<TicketDetailsViewModel>
+    public class TicketDialogViewModelTests : TestBase<TicketDialogViewModel>
     {
         readonly IList<IStatusListItemViewModel> statusList = new List<IStatusListItemViewModel>();
         readonly IList<ITechnicianListItemViewModel> technicianList = new List<ITechnicianListItemViewModel>();
@@ -54,9 +54,9 @@ namespace Tickinator.ViewModel.Tests.TicketDetails
             mockTechnicianListProvider = CreateMock<ITechnicianListProvider>();
         }
 
-        protected override TicketDetailsViewModel CreateSystemUnderTest()
+        protected override TicketDialogViewModel CreateSystemUnderTest()
         {
-            return new TicketDetailsViewModel(ticket, mockCloseCommand.Object, mockStatusListProvider.Object,
+            return new TicketDialogViewModel(ticket, mockCloseCommand.Object, mockStatusListProvider.Object,
                                               mockTechnicianListProvider.Object, headerText);
         }
 

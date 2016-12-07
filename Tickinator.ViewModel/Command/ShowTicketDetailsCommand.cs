@@ -9,7 +9,7 @@ using Tickinator.Common;
 using Tickinator.Repository;
 using Tickinator.ViewModel.Command.Core;
 using Tickinator.ViewModel.Infrastructure;
-using Tickinator.ViewModel.TicketDetails;
+using Tickinator.ViewModel.TicketDialog;
 using Tickinator.ViewModel.TicketList;
 using Tickinator.ViewModel.View;
 using Tickinator.ViewModel.View.Core;
@@ -20,17 +20,17 @@ namespace Tickinator.ViewModel.Command
     {
         readonly ICloseCommandFactory closeCommandFactory;
         readonly ISelectedItem<ITicketListItemViewModel> selectedItem;
-        readonly ITicketDetailsViewModelFactory ticketDetailsViewModelFactory;
+        readonly ITicketDialogViewModelFactory ticketDialogViewModelFactory;
         readonly ITicketRepository ticketRepository;
         readonly IViewFactory viewFactory;
 
         public ShowTicketDetailsCommand(IViewFactory viewFactory,
-                                        ITicketDetailsViewModelFactory ticketDetailsViewModelFactory,
+                                        ITicketDialogViewModelFactory ticketDialogViewModelFactory,
                                         ITicketRepository ticketRepository, ICloseCommandFactory closeCommandFactory,
                                         ISelectedItem<ITicketListItemViewModel> selectedItem)
         {
             this.viewFactory = viewFactory;
-            this.ticketDetailsViewModelFactory = ticketDetailsViewModelFactory;
+            this.ticketDialogViewModelFactory = ticketDialogViewModelFactory;
             this.ticketRepository = ticketRepository;
             this.closeCommandFactory = closeCommandFactory;
             this.selectedItem = selectedItem;
@@ -56,11 +56,11 @@ namespace Tickinator.ViewModel.Command
             return view;
         }
 
-        ITicketDetailsViewModel CreateViewModel(ITicketListItemViewModel parameter, ITicketDetailsView view)
+        ITicketDialogViewModel CreateViewModel(ITicketListItemViewModel parameter, ITicketDetailsView view)
         {
             var closeCommand = closeCommandFactory.Create(view);
             var ticket = ticketRepository.GetAll().FirstOrDefault(p => p.Id == parameter.Id);
-            var viewModel = ticketDetailsViewModelFactory.Create(ticket, closeCommand,
+            var viewModel = ticketDialogViewModelFactory.Create(ticket, closeCommand,
                                                                  Strings.TicketDetails.EditHeaderText);
             return viewModel;
         }

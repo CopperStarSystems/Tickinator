@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------
-// Tickinator.ViewModel.TicketDetailsViewModel.cs
+// Tickinator.ViewModel.TicketDialogViewModel.cs
 // 2016/12/02
 //  --------------------------------------------------------------------------------------
 
@@ -13,17 +13,17 @@ using Tickinator.ViewModel.Command;
 using Tickinator.ViewModel.StatusList;
 using Tickinator.ViewModel.TechnicianList;
 
-namespace Tickinator.ViewModel.TicketDetails
+namespace Tickinator.ViewModel.TicketDialog
 {
-    public class TicketDetailsViewModel : ViewModelBase, ITicketDetailsViewModel
+    public class TicketDialogViewModel : ViewModelBase, ITicketDialogViewModel
     {
         readonly Ticket ticket;
         string header;
 
         IEnumerable<IStatusListItemViewModel> statuses;
 
-        public TicketDetailsViewModel(Ticket ticket, ICloseCommand closeCommand, IStatusListProvider statusListProvider,
-                                      ITechnicianListProvider technicianListProvider, string header)
+        public TicketDialogViewModel(Ticket ticket, ICloseCommand closeCommand, IStatusListProvider statusListProvider,
+                                     ITechnicianListProvider technicianListProvider, string header)
         {
             this.ticket = ticket;
             CloseCommand = closeCommand;

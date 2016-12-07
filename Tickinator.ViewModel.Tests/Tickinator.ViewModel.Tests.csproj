@@ -87,7 +87,7 @@
     <Compile Include="TechnicianList\TechnicianListProviderTests.cs" />
     <Compile Include="TestBase.cs" />
     <Compile Include="Command\ShowTicketDetailsCommandTests.cs" />
-    <Compile Include="TicketDetails\TicketDetailsViewModelTests.cs" />
+    <Compile Include="TicketDialog\TicketDialogViewModelTests.cs" />
     <Compile Include="TicketList\TicketListItemViewModelTests.cs" />
     <Compile Include="TicketList\TicketListViewModelTests.cs" />
     <Compile Include="User\CurrentUserViewModelTests.cs" />

@@ -1,15 +1,15 @@
 ﻿//  --------------------------------------------------------------------------------------
-// Tickinator.ViewModel.ITicketDetailsViewModelFactory.cs
+// Tickinator.ViewModel.ITicketDialogViewModelFactory.cs
 // 2016/12/02
 //  --------------------------------------------------------------------------------------
 
 using Tickinator.Model;
 using Tickinator.ViewModel.Command;
 
-namespace Tickinator.ViewModel.TicketDetails
+namespace Tickinator.ViewModel.TicketDialog
 {
-    public interface ITicketDetailsViewModelFactory
+    public interface ITicketDialogViewModelFactory
     {
-        ITicketDetailsViewModel Create(Ticket ticket, ICloseCommand closeCommand, string header);
+        ITicketDialogViewModel Create(Ticket ticket, ICloseCommand closeCommand, string header);
     }
 }
