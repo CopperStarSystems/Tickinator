@@ -7,6 +7,11 @@ namespace Tickinator.Common
 {
     public class Strings
     {
+        public class MainWindow
+        {
+            public const string NewTicket = "New Ticket";
+        }
+
         public class TicketDetails
         {
             public const string AddHeaderText = "New Ticket:";

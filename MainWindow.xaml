@@ -5,16 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tickinator.UI.Wpf"
         xmlns:userControls="clr-namespace:Tickinator.UI.Wpf.UserControls"
+        xmlns:strings="clr-namespace:Tickinator.Common;assembly=Tickinator.Common"
         mc:Ignorable="d"
         Title="MainWindow" MinHeight="350" MinWidth="525">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <userControls:Dashboard Grid.Row="0" />
         <userControls:TodaysTickets Grid.Row="1" DataContext="{Binding TodaysTicketsViewModel}" />
+        <DockPanel Grid.Row="2" LastChildFill="False">
+            <Button DockPanel.Dock="Right" Content="{x:Static strings:Strings+MainWindow.NewTicket}"
+                    Command="{Binding NewTicketCommand}" />
+        </DockPanel>
     </Grid>
 </Window>

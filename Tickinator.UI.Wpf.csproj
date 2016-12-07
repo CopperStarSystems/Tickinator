@@ -187,6 +187,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Tickinator.Common\Tickinator.Common.csproj">
+      <Project>{5810e2d3-a19b-4663-80ec-884a3c08a7ca}</Project>
+      <Name>Tickinator.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="Tickinator.Repository.MockData\Tickinator.Repository.MockData.csproj">
       <Project>{BA1B7A92-35B7-48DF-8DB2-4ED609106F48}</Project>
       <Name>Tickinator.Repository.MockData</Name>
