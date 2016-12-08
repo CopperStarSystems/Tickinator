@@ -86,6 +86,7 @@
     <Compile Include="Bootstrap\AssemblyInstallerBase.cs" />
     <Compile Include="Bootstrap\MockDataAssemblyInstaller.cs" />
     <Compile Include="Bootstrap\ModelAssemblyInstaller.cs" />
+    <Compile Include="Bootstrap\MvvmLightAssemblyInstaller.cs" />
     <Compile Include="Bootstrap\RepositoryAssemblyInstaller.cs" />
     <Compile Include="Bootstrap\UiAssemblyInstaller.cs" />
     <Compile Include="Bootstrap\Bootstrapper.cs" />

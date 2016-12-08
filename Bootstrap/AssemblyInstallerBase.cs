@@ -40,6 +40,10 @@ namespace Tickinator.UI.Wpf.Bootstrap
             return assemblyRegistration;
         }
 
+        protected virtual void RegisterSingletons()
+        {
+        }
+
         Type[] GetFactoryTypesForAssembly()
         {
             // This is an example of convention-based registration.  We ask the assembly
@@ -50,6 +54,8 @@ namespace Tickinator.UI.Wpf.Bootstrap
 
         void InstallInternal()
         {
+            // Optionally register certain types as singletons
+            RegisterSingletons();
             // Register factory interfaces with the container
             RegisterFactories();
             // Register remaining assembly classes

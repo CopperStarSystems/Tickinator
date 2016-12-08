@@ -78,6 +78,9 @@
     <Compile Include="Command\NewTicketCommand.cs" />
     <Compile Include="Command\SaveTicketCommand.cs" />
     <Compile Include="Infrastructure\ISelectedItem.cs" />
+    <Compile Include="Messages\TicketUpdated\ITicketUpdatedMessage.cs" />
+    <Compile Include="Messages\TicketUpdated\ITicketUpdatedMessageFactory.cs" />
+    <Compile Include="Messages\TicketUpdated\TicketUpdatedMessage.cs" />
     <Compile Include="StatusList\IStatusListItemViewModel.cs" />
     <Compile Include="StatusList\IStatusListItemViewModelFactory.cs" />
     <Compile Include="StatusList\IStatusListProvider.cs" />

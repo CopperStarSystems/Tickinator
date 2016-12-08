@@ -5,12 +5,14 @@
 
 using System;
 using System.Collections.Generic;
+using GalaSoft.MvvmLight.Messaging;
 using Moq;
 using NUnit.Framework;
 using Tickinator.Model;
 using Tickinator.Repository;
 using Tickinator.ViewModel.Command;
 using Tickinator.ViewModel.Infrastructure;
+using Tickinator.ViewModel.Messages.TicketUpdated;
 using Tickinator.ViewModel.TicketList;
 
 namespace Tickinator.ViewModel.Tests.TicketList
@@ -19,6 +21,7 @@ namespace Tickinator.ViewModel.Tests.TicketList
     public class TicketListViewModelTests : TestBase<TicketListViewModel>
     {
         int invocationCount;
+        Mock<IMessenger> mockMessenger;
         Mock<IShowTicketDetailsCommand> mockShowTicketDetailsCommand;
         Mock<IShowTicketDetailsCommandFactory> mockShowTicketDetailsCommandFactory;
         Mock<ITicketListItemViewModelFactory> mockTicketListItemViewModelFactory;
@@ -52,12 +55,13 @@ namespace Tickinator.ViewModel.Tests.TicketList
             mockTicketListItemViewModelFactory = CreateMock<ITicketListItemViewModelFactory>();
             mockShowTicketDetailsCommand = CreateMock<IShowTicketDetailsCommand>();
             mockShowTicketDetailsCommandFactory = CreateMock<IShowTicketDetailsCommandFactory>();
+            mockMessenger = CreateMock<IMessenger>();
         }
 
         protected override TicketListViewModel CreateSystemUnderTest()
         {
             return new TicketListViewModel(mockTicketRepository.Object, mockTicketListItemViewModelFactory.Object,
-                                           mockShowTicketDetailsCommandFactory.Object);
+                                           mockShowTicketDetailsCommandFactory.Object, mockMessenger.Object);
         }
 
         protected override void SetupConstructorRequiredMocks()
@@ -68,6 +72,8 @@ namespace Tickinator.ViewModel.Tests.TicketList
             SetupListItemFactory(tickets);
             mockShowTicketDetailsCommandFactory.Setup(p => p.Create(It.IsAny<ISelectedItem<ITicketListItemViewModel>>()))
                                                .Returns(mockShowTicketDetailsCommand.Object);
+            mockMessenger.Setup(
+                p => p.Register(It.IsAny<TicketListViewModel>(), It.IsAny<Action<ITicketUpdatedMessage>>()));
         }
 
         void HandleSelectedItemChanged(object sender, EventArgs e)

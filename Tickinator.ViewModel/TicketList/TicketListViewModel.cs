@@ -7,8 +7,10 @@ using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 using Tickinator.Repository;
 using Tickinator.ViewModel.Command;
+using Tickinator.ViewModel.Messages.TicketUpdated;
 
 namespace Tickinator.ViewModel.TicketList
 {
@@ -16,21 +18,23 @@ namespace Tickinator.ViewModel.TicketList
     {
         public event EventHandler SelectedItemChanged;
 
+        readonly ITicketListItemViewModelFactory ticketListItemViewModelFactory;
+        readonly ITicketRepository ticketRepository;
+
         ITicketListItemViewModel selectedItem;
 
         public TicketListViewModel(ITicketRepository ticketRepository,
                                    ITicketListItemViewModelFactory ticketListItemViewModelFactory,
-                                   IShowTicketDetailsCommandFactory showTicketDetailsCommandFactory)
+                                   IShowTicketDetailsCommandFactory showTicketDetailsCommandFactory,
+                                   IMessenger messenger)
         {
+            this.ticketRepository = ticketRepository;
+            this.ticketListItemViewModelFactory = ticketListItemViewModelFactory;
             TodaysTickets = new ObservableCollection<ITicketListItemViewModel>();
-            foreach (var ticket in ticketRepository.GetAll())
-                TodaysTickets.Add(ticketListItemViewModelFactory.Create(ticket));
-            ShowTicketDetailsCommand = showTicketDetailsCommandFactory.Create(this);
+            PopulateTicketList();
+            CreateShowDetailsCommand(showTicketDetailsCommandFactory);
+            RegisterForTicketUpdatedMessage(messenger);
         }
-
-        public ICommand ShowTicketDetailsCommand { get; }
-
-        public ObservableCollection<ITicketListItemViewModel> TodaysTickets { get; }
 
         public ITicketListItemViewModel SelectedItem
         {
@@ -43,11 +47,37 @@ namespace Tickinator.ViewModel.TicketList
             }
         }
 
+        public ICommand ShowTicketDetailsCommand { get; private set; }
+
+        public ObservableCollection<ITicketListItemViewModel> TodaysTickets { get; }
+
+        void CreateShowDetailsCommand(IShowTicketDetailsCommandFactory showTicketDetailsCommandFactory)
+        {
+            ShowTicketDetailsCommand = showTicketDetailsCommandFactory.Create(this);
+        }
+
+        void HandleTicketUpdated(ITicketUpdatedMessage payload)
+        {
+            PopulateTicketList();
+        }
+
+        void PopulateTicketList()
+        {
+            TodaysTickets.Clear();
+            foreach (var ticket in ticketRepository.GetAll())
+                TodaysTickets.Add(ticketListItemViewModelFactory.Create(ticket));
+        }
+
         void RaiseSelectedItemChanged()
         {
             var handler = SelectedItemChanged;
             if (handler != null)
                 handler(this, EventArgs.Empty);
+        }
+
+        void RegisterForTicketUpdatedMessage(IMessenger messenger)
+        {
+            messenger.Register<ITicketUpdatedMessage>(this, HandleTicketUpdated);
         }
     }
 }
