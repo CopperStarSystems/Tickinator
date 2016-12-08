@@ -4,12 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tickinator.UI.Wpf"
+        xmlns:common="clr-namespace:Tickinator.Common;assembly=Tickinator.Common"
         mc:Ignorable="d"
         Title="{Binding Header}" Height="300" Width="300">
     <Window.Resources>
         <ResourceDictionary>
             <Style TargetType="{x:Type ComboBox}" x:Key="{x:Type ComboBox}">
-                <Setter Property="Margin" Value="0 5 5 0"/>
+                <Setter Property="Margin" Value="0 5 5 0" />
             </Style>
         </ResourceDictionary>
     </Window.Resources>
@@ -33,10 +34,10 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <!-- Labels -->
-            <Label Grid.Column="0" Grid.Row="0" Content="Ticket Number:" />
-            <Label Grid.Column="0" Grid.Row="1" Content="Date:" />
-            <Label Grid.Column="0" Grid.Row="2" Content="Status:" />
-            <Label Grid.Column="0" Grid.Row="3" Content="Assigned To:" />
+            <Label Grid.Column="0" Grid.Row="0" Content="{x:Static common:Strings+TicketDetails.TicketNumberLabel}" />
+            <Label Grid.Column="0" Grid.Row="1" Content="{x:Static common:Strings+TicketDetails.DateLabel}" />
+            <Label Grid.Column="0" Grid.Row="2" Content="{x:Static common:Strings+TicketDetails.StatusLabel}" />
+            <Label Grid.Column="0" Grid.Row="3" Content="{x:Static common:Strings+TicketDetails.AssignedToLabel}" />
 
             <!-- Controls -->
             <Label Grid.Column="1" Grid.Row="0" Content="{Binding Id}" />
@@ -46,13 +47,15 @@
             <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Technicians}"
                       SelectedValue="{Binding AssignedToId}" DisplayMemberPath="FullName" SelectedValuePath="Id" />
             <TabControl Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Margin="5">
-                <TabItem Header="Summary" />
-                <TabItem Header="History" />
-                <TabItem Header="Notes" />
+                <TabItem Header="{x:Static common:Strings+TicketDetails.SummaryTabHeader}" />
+                <TabItem Header="{x:Static common:Strings+TicketDetails.HistoryTabHeader}" />
+                <TabItem Header="{x:Static common:Strings+TicketDetails.NotesTabHeader}" />
             </TabControl>
             <DockPanel Grid.Column="1" Grid.Row="5" LastChildFill="False">
-                <Button DockPanel.Dock="Right" Content="_Save" Command="{Binding SaveCommand}" Margin="5 0 5 5"/>
-                <Button DockPanel.Dock="Right" Content="_Cancel" Command="{Binding CloseCommand}" Margin="5 0 0 5" />
+                <Button DockPanel.Dock="Right" Content="{x:Static common:Strings+Button.Save}"
+                        Command="{Binding SaveCommand}" Margin="5 0 5 5" />
+                <Button DockPanel.Dock="Right" Content="{x:Static common:Strings+Button.Cancel}"
+                        Command="{Binding CloseCommand}" Margin="5 0 0 5" />
             </DockPanel>
         </Grid>
     </Grid>
