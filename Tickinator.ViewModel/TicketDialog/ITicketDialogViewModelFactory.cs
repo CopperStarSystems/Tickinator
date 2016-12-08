@@ -10,6 +10,7 @@ namespace Tickinator.ViewModel.TicketDialog
 {
     public interface ITicketDialogViewModelFactory
     {
-        ITicketDialogViewModel Create(Ticket ticket, ICloseCommand closeCommand, string header);
+        ITicketDialogViewModel Create(Ticket ticket, ICloseCommand closeCommand, ISaveTicketCommand saveTicketCommand,
+                                      string header);
     }
 }

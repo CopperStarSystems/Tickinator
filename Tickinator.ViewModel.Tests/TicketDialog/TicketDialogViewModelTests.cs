@@ -11,6 +11,7 @@ using Tickinator.ViewModel.Command;
 using Tickinator.ViewModel.StatusList;
 using Tickinator.ViewModel.TechnicianList;
 using Tickinator.ViewModel.TicketDialog;
+using Tickinator.ViewModel.View;
 
 namespace Tickinator.ViewModel.Tests.TicketDialog
 {
@@ -23,7 +24,6 @@ namespace Tickinator.ViewModel.Tests.TicketDialog
         string headerText = "Header";
         Mock<ICloseCommand> mockCloseCommand;
         Mock<ISaveTicketCommand> mockSaveCommand;
-        Mock<ISaveTicketCommandFactory> mockSaveTicketCommandFactory;
         Mock<IStatusListProvider> mockStatusListProvider;
         Mock<ITechnicianListProvider> mockTechnicianListProvider;
 
@@ -60,15 +60,13 @@ namespace Tickinator.ViewModel.Tests.TicketDialog
             mockCloseCommand = CreateMock<ICloseCommand>();
             mockStatusListProvider = CreateMock<IStatusListProvider>();
             mockTechnicianListProvider = CreateMock<ITechnicianListProvider>();
-            mockSaveTicketCommandFactory = CreateMock<ISaveTicketCommandFactory>();
             mockSaveCommand = CreateMock<ISaveTicketCommand>();
         }
 
         protected override TicketDialogViewModel CreateSystemUnderTest()
         {
             return new TicketDialogViewModel(ticket, mockCloseCommand.Object, mockStatusListProvider.Object,
-                                             mockTechnicianListProvider.Object, mockSaveTicketCommandFactory.Object,
-                                             headerText);
+                                             mockTechnicianListProvider.Object, mockSaveCommand.Object, headerText);
         }
 
         protected override void SetupConstructorRequiredMocks()
@@ -76,7 +74,6 @@ namespace Tickinator.ViewModel.Tests.TicketDialog
             base.SetupConstructorRequiredMocks();
             mockStatusListProvider.Setup(p => p.GetStatuses()).Returns(statusList);
             mockTechnicianListProvider.Setup(p => p.GetTechnicians()).Returns(technicianList);
-            mockSaveTicketCommandFactory.Setup(p => p.Create(ticket)).Returns(mockSaveCommand.Object);
         }
     }
 }

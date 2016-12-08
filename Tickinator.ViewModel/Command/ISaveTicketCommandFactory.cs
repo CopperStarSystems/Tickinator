@@ -4,11 +4,12 @@
 //  --------------------------------------------------------------------------------------
 
 using Tickinator.Model;
+using Tickinator.ViewModel.View;
 
 namespace Tickinator.ViewModel.Command
 {
     public interface ISaveTicketCommandFactory
     {
-        ISaveTicketCommand Create(Ticket ticket);
+        ISaveTicketCommand Create(Ticket ticket, IClosable closable);
     }
 }

@@ -19,6 +19,7 @@ namespace Tickinator.ViewModel.Command
     public class ShowTicketDetailsCommand : GenericCommandBase<ITicketListItemViewModel>, IShowTicketDetailsCommand
     {
         readonly ICloseCommandFactory closeCommandFactory;
+        readonly ISaveTicketCommandFactory saveTicketCommandFactory;
         readonly ISelectedItem<ITicketListItemViewModel> selectedItem;
         readonly ITicketDialogViewModelFactory ticketDialogViewModelFactory;
         readonly ITicketRepository ticketRepository;
@@ -27,12 +28,14 @@ namespace Tickinator.ViewModel.Command
         public ShowTicketDetailsCommand(IViewFactory viewFactory,
                                         ITicketDialogViewModelFactory ticketDialogViewModelFactory,
                                         ITicketRepository ticketRepository, ICloseCommandFactory closeCommandFactory,
+                                        ISaveTicketCommandFactory saveTicketCommandFactory,
                                         ISelectedItem<ITicketListItemViewModel> selectedItem)
         {
             this.viewFactory = viewFactory;
             this.ticketDialogViewModelFactory = ticketDialogViewModelFactory;
             this.ticketRepository = ticketRepository;
             this.closeCommandFactory = closeCommandFactory;
+            this.saveTicketCommandFactory = saveTicketCommandFactory;
             this.selectedItem = selectedItem;
             selectedItem.SelectedItemChanged += HandleSelectedItemChanged;
         }
@@ -59,9 +62,11 @@ namespace Tickinator.ViewModel.Command
         ITicketDialogViewModel CreateViewModel(ITicketListItemViewModel parameter, ITicketDetailsView view)
         {
             var closeCommand = closeCommandFactory.Create(view);
+
             var ticket = ticketRepository.GetAll().FirstOrDefault(p => p.Id == parameter.Id);
-            var viewModel = ticketDialogViewModelFactory.Create(ticket, closeCommand,
-                                                                 Strings.TicketDetails.EditHeaderText);
+            var saveCommand = saveTicketCommandFactory.Create(ticket, view);
+            var viewModel = ticketDialogViewModelFactory.Create(ticket, closeCommand, saveCommand,
+                                                                Strings.TicketDetails.EditHeaderText);
             return viewModel;
         }
 

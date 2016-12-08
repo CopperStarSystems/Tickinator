@@ -22,6 +22,8 @@ namespace Tickinator.ViewModel.Tests.Command
         Mock<ICloseCommand> mockCloseCommand;
         Mock<ICloseCommandFactory> mockCloseCommandFactory;
         Mock<IModelFactory> mockModelFactory;
+        Mock<ISaveTicketCommand> mockSaveTicketCommand;
+        Mock<ISaveTicketCommandFactory> mockSaveTicketCommandFactory;
         Mock<ITicketDetailsView> mockTicketDetailsView;
         Mock<ITicketDialogViewModel> mockTicketDialogViewModel;
         Mock<IViewFactory> mockViewFactory;
@@ -33,11 +35,16 @@ namespace Tickinator.ViewModel.Tests.Command
             var ticket = new Ticket();
             mockModelFactory.Setup(p => p.Create<Ticket>()).Returns(ticket);
             mockCloseCommandFactory.Setup(p => p.Create(mockTicketDetailsView.Object)).Returns(mockCloseCommand.Object);
-            mockViewModelFactory.Setup(p => p.Create(ticket, mockCloseCommand.Object, Strings.TicketDetails.AddHeaderText))
+            mockViewModelFactory.Setup(
+                                    p =>
+                                        p.Create(ticket, mockCloseCommand.Object, mockSaveTicketCommand.Object,
+                                                 Strings.TicketDetails.AddHeaderText))
                                 .Returns(mockTicketDialogViewModel.Object);
             mockViewFactory.Setup(p => p.Create<ITicketDetailsView>()).Returns(mockTicketDetailsView.Object);
             mockTicketDetailsView.SetupSet(p => p.DataContext = mockTicketDialogViewModel.Object);
             mockTicketDetailsView.Setup(p => p.ShowDialog()).Returns(true);
+            mockSaveTicketCommandFactory.Setup(p => p.Create(ticket, mockTicketDetailsView.As<IClosable>().Object))
+                                        .Returns(mockSaveTicketCommand.Object);
             Execute();
             MockRepository.VerifyAll();
         }
@@ -52,12 +59,14 @@ namespace Tickinator.ViewModel.Tests.Command
             mockCloseCommand = CreateMock<ICloseCommand>();
             mockTicketDetailsView = CreateMock<ITicketDetailsView>();
             mockCloseCommandFactory = CreateMock<ICloseCommandFactory>();
+            mockSaveTicketCommand = CreateMock<ISaveTicketCommand>();
+            mockSaveTicketCommandFactory = CreateMock<ISaveTicketCommandFactory>();
         }
 
         protected override NewTicketCommand CreateSystemUnderTest()
         {
             return new NewTicketCommand(mockModelFactory.Object, mockViewFactory.Object, mockViewModelFactory.Object,
-                                        mockCloseCommandFactory.Object);
+                                        mockCloseCommandFactory.Object, mockSaveTicketCommandFactory.Object);
         }
     }
 }

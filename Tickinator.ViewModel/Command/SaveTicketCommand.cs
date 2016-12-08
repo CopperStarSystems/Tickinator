@@ -8,20 +8,23 @@ using Tickinator.Model;
 using Tickinator.Repository;
 using Tickinator.ViewModel.Command.Core;
 using Tickinator.ViewModel.Messages.TicketUpdated;
+using Tickinator.ViewModel.View;
 
 namespace Tickinator.ViewModel.Command
 {
     public class SaveTicketCommand : CommandBase, ISaveTicketCommand
     {
+        readonly IClosable closable;
         readonly ITicketUpdatedMessageFactory messageFactory;
         readonly IMessenger messenger;
         readonly ITicketRepository ticketRepository;
         Ticket ticket;
 
-        public SaveTicketCommand(Ticket ticket, ITicketRepository ticketRepository, IMessenger messenger,
-                                 ITicketUpdatedMessageFactory messageFactory)
+        public SaveTicketCommand(Ticket ticket, IClosable closable, ITicketRepository ticketRepository,
+                                 IMessenger messenger, ITicketUpdatedMessageFactory messageFactory)
         {
             this.ticket = ticket;
+            this.closable = closable;
             this.ticketRepository = ticketRepository;
             this.messenger = messenger;
             this.messageFactory = messageFactory;
@@ -32,6 +35,7 @@ namespace Tickinator.ViewModel.Command
             if (ticket.Id == 0)
                 ticket = ticketRepository.Insert(ticket);
             messenger.Send(messageFactory.Create());
+            closable.Close();
         }
     }
 }

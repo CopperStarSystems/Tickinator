@@ -24,11 +24,11 @@ namespace Tickinator.ViewModel.TicketDialog
 
         public TicketDialogViewModel(Ticket ticket, ICloseCommand closeCommand, IStatusListProvider statusListProvider,
                                      ITechnicianListProvider technicianListProvider,
-                                     ISaveTicketCommandFactory saveTicketCommandFactory, string header)
+                                     ISaveTicketCommand saveTicketCommand, string header)
         {
             this.ticket = ticket;
             CloseCommand = closeCommand;
-            SaveCommand = saveTicketCommandFactory.Create(ticket);
+            SaveCommand = saveTicketCommand;
             Statuses = statusListProvider.GetStatuses();
             Technicians = technicianListProvider.GetTechnicians();
             Header = header;

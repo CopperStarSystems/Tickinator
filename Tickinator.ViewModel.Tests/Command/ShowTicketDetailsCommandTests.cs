@@ -24,6 +24,10 @@ namespace Tickinator.ViewModel.Tests.Command
     {
         Mock<ICloseCommand> mockCloseCommand;
         Mock<ICloseCommandFactory> mockCloseCommandFactory;
+
+        Mock<ISaveTicketCommand> mockSaveCommand;
+
+        Mock<ISaveTicketCommandFactory> mockSaveTicketCommandFactory;
         Mock<ISelectedItem<ITicketListItemViewModel>> mockSelectedItem;
         Mock<ITicketDetailsView> mockTicketDetailsView;
         Mock<ITicketDialogViewModel> mockTicketDetailsViewModel;
@@ -79,13 +83,15 @@ namespace Tickinator.ViewModel.Tests.Command
             mockCloseCommand = CreateMock<ICloseCommand>();
             mockTicketDetailsViewModel = CreateMock<ITicketDialogViewModel>();
             mockSelectedItem = CreateMock<ISelectedItem<ITicketListItemViewModel>>();
+            mockSaveTicketCommandFactory = CreateMock<ISaveTicketCommandFactory>();
+            mockSaveCommand = CreateMock<ISaveTicketCommand>();
         }
 
         protected override ShowTicketDetailsCommand CreateSystemUnderTest()
         {
             return new ShowTicketDetailsCommand(mockViewFactory.Object, mockTicketDialogViewModelFactory.Object,
                                                 mockTicketRepository.Object, mockCloseCommandFactory.Object,
-                                                mockSelectedItem.Object);
+                                                mockSaveTicketCommandFactory.Object, mockSelectedItem.Object);
         }
 
         void CreateTickets()
@@ -102,14 +108,19 @@ namespace Tickinator.ViewModel.Tests.Command
             mockTicketRepository.Setup(p => p.GetAll()).Returns(tickets);
             mockViewModel.SetupGet(p => p.Id).Returns(ticketId);
             mockTicketDialogViewModelFactory.Setup(
-                                                 p =>
-                                                     p.Create(tickets[ticketId - 1], mockCloseCommand.Object,
-                                                              It.IsAny<string>()))
-                                             .Returns(mockTicketDetailsViewModel.Object);
+                                                p =>
+                                                    p.Create(tickets[ticketId - 1], mockCloseCommand.Object,
+                                                             mockSaveCommand.Object, It.IsAny<string>()))
+                                            .Returns(mockTicketDetailsViewModel.Object);
             mockTicketDetailsView.SetupSet(p => p.DataContext = mockTicketDetailsViewModel.Object);
             mockCloseCommandFactory.Setup(p => p.Create(mockTicketDetailsView.Object)).Returns(mockCloseCommand.Object);
             mockSelectedItem.SetupGet(p => p.SelectedItem).Returns(new TicketListItemViewModel(null));
             mockTicketDetailsView.Setup(p => p.ShowDialog()).Returns(true);
+            mockSaveTicketCommandFactory.Setup(
+                                            p =>
+                                                p.Create(It.IsAny<Ticket>(),
+                                                         mockTicketDetailsView.As<IClosable>().Object))
+                                        .Returns(mockSaveCommand.Object);
         }
     }
 }

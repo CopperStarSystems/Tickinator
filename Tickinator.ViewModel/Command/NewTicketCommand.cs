@@ -16,16 +16,19 @@ namespace Tickinator.ViewModel.Command
     {
         readonly ICloseCommandFactory closeCommandFactory;
         readonly IModelFactory modelFactory;
+        readonly ISaveTicketCommandFactory saveTicketCommandFactory;
         readonly IViewFactory viewFactory;
         readonly ITicketDialogViewModelFactory viewModelFactory;
 
         public NewTicketCommand(IModelFactory modelFactory, IViewFactory viewFactory,
-                                ITicketDialogViewModelFactory viewModelFactory, ICloseCommandFactory closeCommandFactory)
+                                ITicketDialogViewModelFactory viewModelFactory, ICloseCommandFactory closeCommandFactory,
+                                ISaveTicketCommandFactory saveTicketCommandFactory)
         {
             this.modelFactory = modelFactory;
             this.viewFactory = viewFactory;
             this.viewModelFactory = viewModelFactory;
             this.closeCommandFactory = closeCommandFactory;
+            this.saveTicketCommandFactory = saveTicketCommandFactory;
         }
 
         public override void Execute(object parameter)
@@ -33,7 +36,8 @@ namespace Tickinator.ViewModel.Command
             var view = CreateView();
             var model = CreateModel();
             var closeCommand = CreateCloseCommand(view);
-            var viewModel = CreateViewModel(model, closeCommand);
+            var saveTicketCommand = saveTicketCommandFactory.Create(model, view);
+            var viewModel = CreateViewModel(model, closeCommand, saveTicketCommand);
             view.DataContext = viewModel;
             view.ShowDialog();
         }
@@ -53,9 +57,10 @@ namespace Tickinator.ViewModel.Command
             return viewFactory.Create<ITicketDetailsView>();
         }
 
-        ITicketDialogViewModel CreateViewModel(Ticket model, ICloseCommand closeCommand)
+        ITicketDialogViewModel CreateViewModel(Ticket model, ICloseCommand closeCommand,
+                                               ISaveTicketCommand saveTicketCommand)
         {
-            return viewModelFactory.Create(model, closeCommand, Strings.TicketDetails.AddHeaderText);
+            return viewModelFactory.Create(model, closeCommand, saveTicketCommand, Strings.TicketDetails.AddHeaderText);
         }
     }
 }
