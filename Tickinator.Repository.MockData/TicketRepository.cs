@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Tickinator.Common.Enums;
 using Tickinator.Model;
 
@@ -27,7 +28,9 @@ namespace Tickinator.Repository.MockData
 
         public Ticket Insert(Ticket item)
         {
-            // Stub
+            var newId = tickets.Max(p => p.Id) + 1;
+            item.Id = newId;
+            tickets.Add(item);
             return item;
         }
 
