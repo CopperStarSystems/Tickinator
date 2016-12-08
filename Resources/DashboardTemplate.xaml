@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:Tickinator.UI.Wpf.Resources">
+                    xmlns:local="clr-namespace:Tickinator.UI.Wpf.Resources"
+                    xmlns:common="clr-namespace:Tickinator.Common;assembly=Tickinator.Common">
     <ControlTemplate x:Key="DashboardTemplate">
         <Grid Margin="24">
             <Border BorderThickness="2" Padding="10" Background="{DynamicResource AccentBackgroundBrush}"
@@ -16,10 +17,13 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Team Dashboard" FontSize="24" />
-                    <Label Grid.Column="0" Grid.Row="1" Content="Current Open Tickets:" />
-                    <Label Grid.Column="0" Grid.Row="2" Content="Tickets Closed Today:" />
-                    <Label Grid.Column="0" Grid.Row="3" Content="Average Ticket Duration:" />
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding Title}" FontSize="24" />
+                    <Label Grid.Column="0" Grid.Row="1"
+                           Content="{x:Static common:Strings+Dashboard.CurrentOpenTickets}" />
+                    <Label Grid.Column="0" Grid.Row="2"
+                           Content="{x:Static common:Strings+Dashboard.TicketsClosedToday}" />
+                    <Label Grid.Column="0" Grid.Row="3"
+                           Content="{x:Static common:Strings+Dashboard.AverageTicketDuration}" />
                     <Label Grid.Column="1" Grid.Row="1" Content="{Binding OpenTicketCount}" />
                     <Label Grid.Column="1" Grid.Row="2" Content="{Binding ClosedTodayCount}" />
                     <Label Grid.Column="1" Grid.Row="3" Content="{Binding AverageTicketDuration}" />

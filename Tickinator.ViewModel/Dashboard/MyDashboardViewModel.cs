@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Tickinator.Common;
 using Tickinator.Model;
 using Tickinator.Repository;
 using Tickinator.ViewModel.User;
@@ -17,7 +18,7 @@ namespace Tickinator.ViewModel.Dashboard
         readonly ICurrentUserViewModel currentUserViewModel;
 
         public MyDashboardViewModel(ITicketRepository ticketRepository, ICurrentUserViewModel currentUserViewModel)
-            : base(ticketRepository)
+            : base(ticketRepository, Strings.Dashboard.MyDashboardTitle)
         {
             this.currentUserViewModel = currentUserViewModel;
         }

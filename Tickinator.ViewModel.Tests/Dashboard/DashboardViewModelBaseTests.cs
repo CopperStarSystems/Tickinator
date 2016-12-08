@@ -48,6 +48,13 @@ namespace Tickinator.ViewModel.Tests.Dashboard
             Assert.That(SystemUnderTest.OpenTicketCount, Is.EqualTo(expectedOpenTicketCount));
         }
 
+        [Test]
+        public void Title_Always_ReturnsExpectedValue()
+        {
+            Assert.That(SystemUnderTest.Title, Is.EqualTo(GetExpectedTitle()));
+        }
+
+        protected abstract string GetExpectedTitle();
         [SetUp]
         public override void SetUp()
         {

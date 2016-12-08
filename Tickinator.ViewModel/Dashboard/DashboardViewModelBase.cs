@@ -14,10 +14,13 @@ namespace Tickinator.ViewModel.Dashboard
 {
     public abstract class DashboardViewModelBase : ViewModelBase, IDashboardViewModel
     {
-        protected DashboardViewModelBase(ITicketRepository ticketRepository)
+        protected DashboardViewModelBase(ITicketRepository ticketRepository, string title)
         {
             Repository = ticketRepository;
+            Title = title;
         }
+
+        public string Title { get; }
 
         public TimeSpan AverageTicketDuration
         {

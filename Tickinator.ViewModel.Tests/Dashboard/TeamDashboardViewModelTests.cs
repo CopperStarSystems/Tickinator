@@ -4,6 +4,7 @@
 //  --------------------------------------------------------------------------------------
 
 using NUnit.Framework;
+using Tickinator.Common;
 using Tickinator.ViewModel.Dashboard;
 
 namespace Tickinator.ViewModel.Tests.Dashboard
@@ -14,6 +15,11 @@ namespace Tickinator.ViewModel.Tests.Dashboard
         protected override TeamDashboardViewModel CreateSystemUnderTest()
         {
             return new TeamDashboardViewModel(MockTicketRepository.Object);
+        }
+
+        protected override string GetExpectedTitle()
+        {
+            return Strings.Dashboard.TeamDashboardTitle;
         }
     }
 }

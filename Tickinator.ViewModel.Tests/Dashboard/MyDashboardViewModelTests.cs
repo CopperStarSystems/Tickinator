@@ -4,6 +4,7 @@
 //  --------------------------------------------------------------------------------------
 
 using Moq;
+using Tickinator.Common;
 using Tickinator.ViewModel.Dashboard;
 using Tickinator.ViewModel.User;
 
@@ -22,6 +23,11 @@ namespace Tickinator.ViewModel.Tests.Dashboard
         protected override MyDashboardViewModel CreateSystemUnderTest()
         {
             return new MyDashboardViewModel(MockTicketRepository.Object, mockCurrentUserViewModel.Object);
+        }
+
+        protected override string GetExpectedTitle()
+        {
+            return Strings.Dashboard.MyDashboardTitle;
         }
 
         protected override void SetupMocksForClosedTodayCountTest()

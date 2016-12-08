@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Tickinator.Common;
 using Tickinator.Model;
 using Tickinator.Repository;
 
@@ -13,7 +14,7 @@ namespace Tickinator.ViewModel.Dashboard
 {
     public class TeamDashboardViewModel : DashboardViewModelBase, ITeamDashboardViewModel
     {
-        public TeamDashboardViewModel(ITicketRepository ticketRepository) : base(ticketRepository)
+        public TeamDashboardViewModel(ITicketRepository ticketRepository) : base(ticketRepository, Strings.Dashboard.TeamDashboardTitle)
         {
         }
 
