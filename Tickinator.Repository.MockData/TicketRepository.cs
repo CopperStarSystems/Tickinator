@@ -56,5 +56,14 @@ namespace Tickinator.Repository.MockData
             tickets.Add(CreateTicket(4, DateTime.Today, DateTime.Today.AddDays(-2.5), 2));
             tickets.Add(CreateTicket(5, DateTime.Today.AddDays(-2), DateTime.Today.AddDays(-3), 2));
         }
+
+        public Ticket Update(Ticket item)
+        {
+            var existingItem = tickets.FirstOrDefault(p => p.Id == item.Id);
+            var itemIndex = tickets.IndexOf(existingItem);
+            tickets.RemoveAt(itemIndex);
+            tickets.Insert(itemIndex, item);
+            return item;
+        }
     }
 }

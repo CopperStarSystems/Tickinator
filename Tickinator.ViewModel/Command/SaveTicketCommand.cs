@@ -34,6 +34,8 @@ namespace Tickinator.ViewModel.Command
         {
             if (ticket.Id == 0)
                 ticket = ticketRepository.Insert(ticket);
+            else
+                ticket = ticketRepository.Update(ticket);
             messenger.Send(messageFactory.Create());
             closable.Close();
         }
