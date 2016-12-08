@@ -6,7 +6,9 @@
     xmlns:local="clr-namespace:Tickinator.UI.Wpf.UserControls"
     xmlns:infrastructure="clr-namespace:Tickinator.UI.Wpf.Infrastructure"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-    xmlns:Custom="http://www.galasoft.ch/mvvmlight" x:Class="Tickinator.UI.Wpf.UserControls.TodaysTickets"
+    xmlns:Custom="http://www.galasoft.ch/mvvmlight"
+    xmlns:common="clr-namespace:Tickinator.Common;assembly=Tickinator.Common"
+    x:Class="Tickinator.UI.Wpf.UserControls.TodaysTickets"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -24,22 +26,22 @@
         </Grid.RowDefinitions>
 
         <DockPanel Grid.Row="0" LastChildFill="True">
-            <Label DockPanel.Dock="Left" Content="Today's Tickets:" Margin="0 0 5 0" />
-            <CheckBox DockPanel.Dock="Left" Content="Show only open tickets" IsChecked="True" Margin="5 0 5 0" />
-            <CheckBox DockPanel.Dock="Left" Content="Show only my tickets" Margin="5 0 5 0" />
+            <Label DockPanel.Dock="Left" Content="{x:Static common:Strings+TicketList.TodaysTickets}" Margin="0 0 5 0" />
+            <CheckBox DockPanel.Dock="Left" Content="{x:Static common:Strings+TicketList.ShowOnlyOpenTickets}" IsChecked="True" Margin="5 0 5 0" />
+            <CheckBox DockPanel.Dock="Left" Content="{x:Static common:Strings+TicketList.ShowOnlyMyTickets}" Margin="5 0 5 0" />
         </DockPanel>
         <DataGrid Grid.Row="1" ItemsSource="{Binding TodaysTickets}" AutoGenerateColumns="False" SelectionMode="Single"
                   SelectedItem="{Binding SelectedItem}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
-                <DataGridTemplateColumn Header="Date Opened">
+                <DataGridTextColumn Header="{x:Static common:Strings+TicketList.IdColumnHeader}" Binding="{Binding Id}" />
+                <DataGridTemplateColumn Header="{x:Static common:Strings+TicketList.DateOpenedColumnHeader}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <DatePicker SelectedDate="{Binding DateOpened}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Date Closed">
+                <DataGridTemplateColumn Header="{x:Static common:Strings+TicketList.DateClosedColumnHeader}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <DatePicker SelectedDate="{Binding DateClosed}" />

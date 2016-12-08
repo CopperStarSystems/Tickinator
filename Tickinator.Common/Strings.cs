@@ -39,5 +39,22 @@ namespace Tickinator.Common
             public const string SummaryTabHeader = "Summary";
             public const string TicketNumberLabel = "Ticket Number:";
         }
+
+        public class TicketNotes
+        {
+            public const string DateColumnHeader = "Date";
+            public const string TechnicianColumnHeader = "Technician";
+            public const string NoteColumnHeader = "Note";
+        }
+
+        public class TicketList
+        {
+            public const string IdColumnHeader = "Id";
+            public const string DateOpenedColumnHeader = "Date Opened";
+            public const string DateClosedColumnHeader = "Date Closed";
+            public const string ShowOnlyOpenTickets = "Show only open tickets";
+            public const string ShowOnlyMyTickets = "Show only my tickets";
+            public const string TodaysTickets = "Today's Tickets:";
+        }
     }
 }

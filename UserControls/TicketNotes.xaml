@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Tickinator.UI.Wpf.UserControls"
+             xmlns:common="clr-namespace:Tickinator.Common;assembly=Tickinator.Common"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -13,9 +14,12 @@
         </Grid.RowDefinitions>
         <DataGrid ItemsSource="{Binding Notes}" AutoGenerateColumns="False" SelectionMode="Single">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Date" Binding="{Binding Date}"/>
-                <DataGridTextColumn Header="Technician" Binding="{Binding Technician}"/>
-                <DataGridTextColumn Header="Note" Binding="{Binding Note}"/>
+                <DataGridTextColumn Header="{x:Static common:Strings+TicketNotes.DateColumnHeader}"
+                                    Binding="{Binding Date}" />
+                <DataGridTextColumn Header="{x:Static common:Strings+TicketNotes.TechnicianColumnHeader}"
+                                    Binding="{Binding Technician}" />
+                <DataGridTextColumn Header="{x:Static common:Strings+TicketNotes.NoteColumnHeader}"
+                                    Binding="{Binding Note}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
