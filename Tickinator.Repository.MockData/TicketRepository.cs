@@ -25,6 +25,12 @@ namespace Tickinator.Repository.MockData
             return tickets;
         }
 
+        public Ticket Insert(Ticket item)
+        {
+            // Stub
+            return item;
+        }
+
         Ticket CreateTicket(int id, DateTime? dateClosed, DateTime dateOpened, int assignedToId = 1,
                             StatusEnum status = StatusEnum.Open)
         {

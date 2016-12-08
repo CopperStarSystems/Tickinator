@@ -1,13 +1,14 @@
 ﻿//  --------------------------------------------------------------------------------------
-// Tickinator.Repository.ITicketRepository.cs
-// 2016/11/25
+// Tickinator.Repository.IInsertRepository.cs
+// 2016/12/07
 //  --------------------------------------------------------------------------------------
 
 using Tickinator.Model;
 
 namespace Tickinator.Repository
 {
-    public interface ITicketRepository : IInsertRepository<Ticket>
+    public interface IInsertRepository<T> : IRepository<T> where T : ModelBase
     {
+        T Insert(T item);
     }
 }
