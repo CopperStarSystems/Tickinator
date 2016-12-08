@@ -23,10 +23,12 @@ namespace Tickinator.ViewModel.TicketDialog
         IEnumerable<IStatusListItemViewModel> statuses;
 
         public TicketDialogViewModel(Ticket ticket, ICloseCommand closeCommand, IStatusListProvider statusListProvider,
-                                     ITechnicianListProvider technicianListProvider, string header)
+                                     ITechnicianListProvider technicianListProvider,
+                                     ISaveTicketCommandFactory saveTicketCommandFactory, string header)
         {
             this.ticket = ticket;
             CloseCommand = closeCommand;
+            SaveCommand = saveTicketCommandFactory.Create(ticket);
             Statuses = statusListProvider.GetStatuses();
             Technicians = technicianListProvider.GetTechnicians();
             Header = header;
@@ -83,6 +85,8 @@ namespace Tickinator.ViewModel.TicketDialog
                 RaisePropertyChanged(nameof(Id));
             }
         }
+
+        public ICommand SaveCommand { get; }
 
         public StatusEnum Status
         {

@@ -26,6 +26,8 @@ namespace Tickinator.ViewModel.TicketDialog
 
         int Id { get; set; }
 
+        ICommand SaveCommand { get; }
+
         StatusEnum Status { get; set; }
 
         IEnumerable<IStatusListItemViewModel> Statuses { get; }

@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------
-// Tickinator.ViewModel.Tests.TicketDetailsViewModelTests.cs
+// Tickinator.ViewModel.Tests.TicketDialogViewModelTests.cs
 // 2016/12/02
 //  --------------------------------------------------------------------------------------
 
@@ -22,6 +22,8 @@ namespace Tickinator.ViewModel.Tests.TicketDialog
 
         string headerText = "Header";
         Mock<ICloseCommand> mockCloseCommand;
+        Mock<ISaveTicketCommand> mockSaveCommand;
+        Mock<ISaveTicketCommandFactory> mockSaveTicketCommandFactory;
         Mock<IStatusListProvider> mockStatusListProvider;
         Mock<ITechnicianListProvider> mockTechnicianListProvider;
 
@@ -32,6 +34,12 @@ namespace Tickinator.ViewModel.Tests.TicketDialog
             this.headerText = headerText;
             RecreateSystemUnderTest();
             Assert.That(SystemUnderTest.Header, Is.EqualTo(headerText));
+        }
+
+        [Test]
+        public void SaveCommand_Always_ReturnsCreatedCommand()
+        {
+            Assert.That(SystemUnderTest.SaveCommand, Is.SameAs(mockSaveCommand.Object));
         }
 
         [Test]
@@ -52,12 +60,15 @@ namespace Tickinator.ViewModel.Tests.TicketDialog
             mockCloseCommand = CreateMock<ICloseCommand>();
             mockStatusListProvider = CreateMock<IStatusListProvider>();
             mockTechnicianListProvider = CreateMock<ITechnicianListProvider>();
+            mockSaveTicketCommandFactory = CreateMock<ISaveTicketCommandFactory>();
+            mockSaveCommand = CreateMock<ISaveTicketCommand>();
         }
 
         protected override TicketDialogViewModel CreateSystemUnderTest()
         {
             return new TicketDialogViewModel(ticket, mockCloseCommand.Object, mockStatusListProvider.Object,
-                                              mockTechnicianListProvider.Object, headerText);
+                                             mockTechnicianListProvider.Object, mockSaveTicketCommandFactory.Object,
+                                             headerText);
         }
 
         protected override void SetupConstructorRequiredMocks()
@@ -65,6 +76,7 @@ namespace Tickinator.ViewModel.Tests.TicketDialog
             base.SetupConstructorRequiredMocks();
             mockStatusListProvider.Setup(p => p.GetStatuses()).Returns(statusList);
             mockTechnicianListProvider.Setup(p => p.GetTechnicians()).Returns(technicianList);
+            mockSaveTicketCommandFactory.Setup(p => p.Create(ticket)).Returns(mockSaveCommand.Object);
         }
     }
 }

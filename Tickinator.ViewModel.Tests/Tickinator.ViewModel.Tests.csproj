@@ -76,6 +76,7 @@
     <Compile Include="Command\Core\CommandBaseTests.cs" />
     <Compile Include="Command\Core\ComposableCommandTests.cs" />
     <Compile Include="Command\NewTicketCommandTests.cs" />
+    <Compile Include="Command\SaveTicketCommandTests.cs" />
     <Compile Include="Common\MockEventHandler.cs" />
     <Compile Include="Dashboard\DashboardViewModelBaseTests.cs" />
     <Compile Include="MainViewModelTests.cs" />

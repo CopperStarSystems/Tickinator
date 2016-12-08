@@ -45,7 +45,7 @@
                 <TabItem Header="Notes" />
             </TabControl>
             <DockPanel Grid.Column="1" Grid.Row="5" LastChildFill="False">
-                <Button DockPanel.Dock="Right" Content="_Save" />
+                <Button DockPanel.Dock="Right" Content="_Save" Command="{Binding SaveCommand}"/>
                 <Button DockPanel.Dock="Right" Content="_Cancel" Command="{Binding CloseCommand}" />
             </DockPanel>
         </Grid>
