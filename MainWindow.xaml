@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
 
         <userControls:Dashboard Grid.Row="0" />
-        <userControls:TodaysTickets Grid.Row="1" DataContext="{Binding TodaysTicketsViewModel}" />
+        <userControls:TicketList Grid.Row="1" DataContext="{Binding TodaysTicketsViewModel}" />
         <DockPanel Grid.Row="2" LastChildFill="False">
             <Button DockPanel.Dock="Right" Content="{x:Static strings:Strings+MainWindow.NewTicket}"
                     Command="{Binding NewTicketCommand}" />

@@ -1,5 +1,5 @@
 ﻿//  --------------------------------------------------------------------------------------
-// Tickinator.UI.Wpf.TodaysTickets.xaml.cs
+// Tickinator.UI.Wpf.TicketList.xaml.cs
 // 2016/11/23
 //  --------------------------------------------------------------------------------------
 
@@ -8,11 +8,11 @@ using System.Windows.Controls;
 namespace Tickinator.UI.Wpf.UserControls
 {
     /// <summary>
-    ///     Interaction logic for TodaysTickets.xaml
+    ///     Interaction logic for TicketList.xaml
     /// </summary>
-    public partial class TodaysTickets : UserControl
+    public partial class TicketList : UserControl
     {
-        public TodaysTickets()
+        public TicketList()
         {
             InitializeComponent();
         }
