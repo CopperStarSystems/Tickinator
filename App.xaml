@@ -11,6 +11,7 @@
                     Source="pack://application:,,,/Tickinator.UI.Wpf;component/Resources/Brushes.xaml" />
                 <ResourceDictionary
                     Source="pack://application:,,,/Tickinator.UI.Wpf;component/Resources/DashboardTemplate.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Tickinator.UI.Wpf;component/Resources/IntrinsicControlStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
