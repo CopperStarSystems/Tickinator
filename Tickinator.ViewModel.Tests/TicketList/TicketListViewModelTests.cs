@@ -36,6 +36,18 @@ namespace Tickinator.ViewModel.Tests.TicketList
         }
 
         [Test]
+        public void ShowOnlyMyTickets_AfterConstruction_IsFalse()
+        {
+            Assert.That(SystemUnderTest.ShowOnlyMyTickets, Is.False);
+        }
+
+        [Test]
+        public void ShowOnlyOpenTickets_AfterConstruction_IsTrue()
+        {
+            Assert.That(SystemUnderTest.ShowOnlyOpenTickets, Is.True);
+        }
+
+        [Test]
         public void ShowTicketDetailsCommand_AfterConstruction_IsExpectedValue()
         {
             Assert.That(SystemUnderTest.ShowTicketDetailsCommand, Is.Not.Null);
@@ -43,9 +55,9 @@ namespace Tickinator.ViewModel.Tests.TicketList
         }
 
         [Test]
-        public void TodaysTickets_AfterConstruction_IsNotNull()
+        public void TicketsView_AfterConstruction_IsNotNull()
         {
-            Assert.That(SystemUnderTest.TodaysTickets, Is.Not.Null);
+            Assert.That(SystemUnderTest.Tickets, Is.Not.Null);
         }
 
         protected override void CreateMocks()
@@ -87,6 +99,7 @@ namespace Tickinator.ViewModel.Tests.TicketList
             {
                 var mockListItemViewModel = CreateMock<ITicketListItemViewModel>();
                 mockTicketListItemViewModelFactory.Setup(p => p.Create(ticket)).Returns(mockListItemViewModel.Object);
+                mockListItemViewModel.SetupGet(p => p.DateClosed).Returns(DateTime.Today);
             }
         }
 

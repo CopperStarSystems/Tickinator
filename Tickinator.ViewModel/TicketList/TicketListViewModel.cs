@@ -5,6 +5,8 @@
 
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows.Data;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
@@ -21,7 +23,11 @@ namespace Tickinator.ViewModel.TicketList
         readonly ITicketListItemViewModelFactory ticketListItemViewModelFactory;
         readonly ITicketRepository ticketRepository;
 
+        readonly CollectionViewSource ticketsViewSource;
+
         ITicketListItemViewModel selectedItem;
+        bool showOnlyMyTickets;
+        bool showOnlyOpenTickets;
 
         public TicketListViewModel(ITicketRepository ticketRepository,
                                    ITicketListItemViewModelFactory ticketListItemViewModelFactory,
@@ -30,10 +36,12 @@ namespace Tickinator.ViewModel.TicketList
         {
             this.ticketRepository = ticketRepository;
             this.ticketListItemViewModelFactory = ticketListItemViewModelFactory;
-            TodaysTickets = new ObservableCollection<ITicketListItemViewModel>();
+            TicketList = new ObservableCollection<ITicketListItemViewModel>();
             PopulateTicketList();
             CreateShowDetailsCommand(showTicketDetailsCommandFactory);
+            ticketsViewSource = CreateViewSource();
             RegisterForTicketUpdatedMessage(messenger);
+            ShowOnlyOpenTickets = true;
         }
 
         public ITicketListItemViewModel SelectedItem
@@ -47,13 +55,59 @@ namespace Tickinator.ViewModel.TicketList
             }
         }
 
+        public bool ShowOnlyMyTickets
+        {
+            get { return showOnlyMyTickets; }
+            set
+            {
+                showOnlyMyTickets = value;
+                RefreshTicketsView();
+                RaisePropertyChanged(nameof(ShowOnlyMyTickets));
+            }
+        }
+
+        public bool ShowOnlyOpenTickets
+        {
+            get { return showOnlyOpenTickets; }
+            set
+            {
+                showOnlyOpenTickets = value;
+                RefreshTicketsView();
+                RaisePropertyChanged(nameof(ShowOnlyOpenTickets));
+            }
+        }
+
         public ICommand ShowTicketDetailsCommand { get; private set; }
 
-        public ObservableCollection<ITicketListItemViewModel> TodaysTickets { get; }
+        ObservableCollection<ITicketListItemViewModel> TicketList { get; }
+
+        public ICollectionView Tickets
+        {
+            get { return ticketsViewSource.View; }
+        }
+
+        void ApplyFilter(object sender, FilterEventArgs e)
+        {
+            var accepted = true;
+            var item = (ITicketListItemViewModel) e.Item;
+            if (ShowOnlyOpenTickets)
+                accepted &= !item.DateClosed.HasValue;
+            if (ShowOnlyMyTickets)
+                accepted &= item.AssignedToId == 1;
+            e.Accepted = accepted;
+        }
 
         void CreateShowDetailsCommand(IShowTicketDetailsCommandFactory showTicketDetailsCommandFactory)
         {
             ShowTicketDetailsCommand = showTicketDetailsCommandFactory.Create(this);
+        }
+
+        CollectionViewSource CreateViewSource()
+        {
+            var viewSource = new CollectionViewSource();
+            viewSource.Source = TicketList;
+            viewSource.Filter += ApplyFilter;
+            return viewSource;
         }
 
         void HandleTicketUpdated(ITicketUpdatedMessage payload)
@@ -63,9 +117,9 @@ namespace Tickinator.ViewModel.TicketList
 
         void PopulateTicketList()
         {
-            TodaysTickets.Clear();
+            TicketList.Clear();
             foreach (var ticket in ticketRepository.GetAll())
-                TodaysTickets.Add(ticketListItemViewModelFactory.Create(ticket));
+                TicketList.Add(ticketListItemViewModelFactory.Create(ticket));
         }
 
         void RaiseSelectedItemChanged()
@@ -73,6 +127,11 @@ namespace Tickinator.ViewModel.TicketList
             var handler = SelectedItemChanged;
             if (handler != null)
                 handler(this, EventArgs.Empty);
+        }
+
+        void RefreshTicketsView()
+        {
+            Tickets.Refresh();
         }
 
         void RegisterForTicketUpdatedMessage(IMessenger messenger)
