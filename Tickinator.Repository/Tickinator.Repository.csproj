@@ -43,6 +43,7 @@
     <Compile Include="IInsertRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="ITechnicianRepository.cs" />
+    <Compile Include="ITicketNoteRepository.cs" />
     <Compile Include="ITicketRepository.cs" />
     <Compile Include="IUpdateRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

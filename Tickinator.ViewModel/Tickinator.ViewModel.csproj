@@ -98,7 +98,10 @@
     <Compile Include="TicketDialog\TicketDialogViewModel.cs" />
     <Compile Include="TicketNoteList\ITicketNoteListViewModel.cs" />
     <Compile Include="TicketNoteList\ITicketNoteListViewModelFactory.cs" />
+    <Compile Include="TicketNoteList\ITicketNoteViewModel.cs" />
+    <Compile Include="TicketNoteList\ITicketNoteViewModelFactory.cs" />
     <Compile Include="TicketNoteList\TicketNoteListViewModel.cs" />
+    <Compile Include="TicketNoteList\TicketNoteViewModel.cs" />
     <Compile Include="View\Core\IView.cs" />
     <Compile Include="View\Core\IViewFactory.cs" />
     <Compile Include="Dashboard\DashboardViewModelBase.cs" />

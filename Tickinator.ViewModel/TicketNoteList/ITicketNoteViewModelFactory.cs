@@ -1,14 +1,14 @@
 ﻿//  --------------------------------------------------------------------------------------
-// Tickinator.ViewModel.ITicketNoteListViewModel.cs
+// Tickinator.ViewModel.ITicketNoteViewModelFactory.cs
 // 2016/12/13
 //  --------------------------------------------------------------------------------------
 
-using System.ComponentModel;
+using Tickinator.Model;
 
 namespace Tickinator.ViewModel.TicketNoteList
 {
-    public interface ITicketNoteListViewModel : IViewModel
+    public interface ITicketNoteViewModelFactory
     {
-        ICollectionView Notes { get; }
+        ITicketNoteViewModel Create(TicketNote note);
     }
 }

@@ -94,6 +94,7 @@
     <Compile Include="TicketList\TicketListItemViewModelTests.cs" />
     <Compile Include="TicketList\TicketListViewModelTests.cs" />
     <Compile Include="TicketNoteList\TicketNoteListViewModelTests.cs" />
+    <Compile Include="TicketNoteList\TicketNoteViewModelTests.cs" />
     <Compile Include="User\CurrentUserViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>

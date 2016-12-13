@@ -1,14 +1,13 @@
 ﻿//  --------------------------------------------------------------------------------------
-// Tickinator.ViewModel.ITicketNoteListViewModel.cs
+// Tickinator.ViewModel.TicketNoteViewModel.cs
 // 2016/12/13
 //  --------------------------------------------------------------------------------------
 
-using System.ComponentModel;
+using GalaSoft.MvvmLight;
 
 namespace Tickinator.ViewModel.TicketNoteList
 {
-    public interface ITicketNoteListViewModel : IViewModel
+    public class TicketNoteViewModel : ViewModelBase, ITicketNoteViewModel
     {
-        ICollectionView Notes { get; }
     }
 }
