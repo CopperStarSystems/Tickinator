@@ -12,6 +12,7 @@ using Tickinator.Model;
 using Tickinator.ViewModel.Command;
 using Tickinator.ViewModel.StatusList;
 using Tickinator.ViewModel.TechnicianList;
+using Tickinator.ViewModel.TicketNoteList;
 
 namespace Tickinator.ViewModel.TicketDialog
 {
@@ -24,6 +25,7 @@ namespace Tickinator.ViewModel.TicketDialog
 
         public TicketDialogViewModel(Ticket ticket, ICloseCommand closeCommand, IStatusListProvider statusListProvider,
                                      ITechnicianListProvider technicianListProvider,
+                                     ITicketNoteListViewModelFactory noteListViewModelFactory,
                                      ISaveTicketCommand saveTicketCommand, string header)
         {
             this.ticket = ticket;
@@ -32,6 +34,7 @@ namespace Tickinator.ViewModel.TicketDialog
             Statuses = statusListProvider.GetStatuses();
             Technicians = technicianListProvider.GetTechnicians();
             Header = header;
+            Notes = noteListViewModelFactory.Create(ticket.Id);
         }
 
         public int AssignedToId
@@ -85,6 +88,8 @@ namespace Tickinator.ViewModel.TicketDialog
                 RaisePropertyChanged(nameof(Id));
             }
         }
+
+        public ITicketNoteListViewModel Notes { get; }
 
         public ICommand SaveCommand { get; }
 

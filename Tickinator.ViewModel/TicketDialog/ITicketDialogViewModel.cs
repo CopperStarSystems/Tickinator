@@ -9,6 +9,7 @@ using System.Windows.Input;
 using Tickinator.Common.Enums;
 using Tickinator.ViewModel.StatusList;
 using Tickinator.ViewModel.TechnicianList;
+using Tickinator.ViewModel.TicketNoteList;
 
 namespace Tickinator.ViewModel.TicketDialog
 {
@@ -25,6 +26,8 @@ namespace Tickinator.ViewModel.TicketDialog
         string Header { get; set; }
 
         int Id { get; set; }
+
+        ITicketNoteListViewModel Notes { get; }
 
         ICommand SaveCommand { get; }
 
