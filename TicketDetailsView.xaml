@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tickinator.UI.Wpf"
         xmlns:common="clr-namespace:Tickinator.Common;assembly=Tickinator.Common"
+        xmlns:userControls="clr-namespace:Tickinator.UI.Wpf.UserControls"
         mc:Ignorable="d"
         Title="{Binding Header}" Height="300" Width="300">
     <Window.Resources>
@@ -49,7 +50,9 @@
             <TabControl Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Margin="5">
                 <TabItem Header="{x:Static common:Strings+TicketDetails.SummaryTabHeader}" />
                 <TabItem Header="{x:Static common:Strings+TicketDetails.HistoryTabHeader}" />
-                <TabItem Header="{x:Static common:Strings+TicketDetails.NotesTabHeader}" />
+                <TabItem Header="{x:Static common:Strings+TicketDetails.NotesTabHeader}" >
+                    <userControls:TicketNotes DataContext="{Binding Notes}"/>
+                </TabItem>
             </TabControl>
             <DockPanel Grid.Column="1" Grid.Row="5" LastChildFill="False">
                 <Button DockPanel.Dock="Right" Content="{x:Static common:Strings+Button.Save}"
