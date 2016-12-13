@@ -15,7 +15,7 @@
         <DataGrid ItemsSource="{Binding Notes}" AutoGenerateColumns="False" SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{x:Static common:Strings+TicketNotes.DateColumnHeader}"
-                                    Binding="{Binding Date}" />
+                                    Binding="{Binding Created}" />
                 <DataGridTextColumn Header="{x:Static common:Strings+TicketNotes.TechnicianColumnHeader}"
                                     Binding="{Binding Technician}" />
                 <DataGridTextColumn Header="{x:Static common:Strings+TicketNotes.NoteColumnHeader}"

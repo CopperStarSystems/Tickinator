@@ -13,9 +13,9 @@ namespace Tickinator.ViewModel.TicketNoteList
     {
         readonly TicketNote ticketNote;
 
-        public TicketNoteViewModel(TicketNote ticketNote)
+        public TicketNoteViewModel(TicketNote note)
         {
-            this.ticketNote = ticketNote;
+            this.ticketNote = note;
         }
 
         public DateTime Created
