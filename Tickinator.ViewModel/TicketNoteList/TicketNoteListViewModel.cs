@@ -19,8 +19,9 @@ namespace Tickinator.ViewModel.TicketNoteList
         ObservableCollection<ITicketNoteViewModel> notes;
         CollectionViewSource notesViewSource;
 
-        public TicketNoteListViewModel(int ticketId, ITicketNoteRepository ticketNoteRepository,
-                                       ITicketNoteViewModelFactory noteViewModelFactory)
+        public TicketNoteListViewModel(int ticketId, 
+            ITicketNoteRepository ticketNoteRepository,
+            ITicketNoteViewModelFactory noteViewModelFactory)
         {
             var noteEntities = GetNotes(ticketNoteRepository, ticketId);
             LoadTicketNotes(noteViewModelFactory, noteEntities);

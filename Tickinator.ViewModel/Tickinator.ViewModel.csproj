@@ -63,14 +63,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Command\CloseCommand.cs" />
-    <Compile Include="Command\Core\CanExecuteBase.cs" />
     <Compile Include="Command\Core\CommandBase.cs" />
-    <Compile Include="Command\Core\ComposableCommand.cs" />
     <Compile Include="Command\Core\GenericCommandBase.cs" />
-    <Compile Include="Command\Core\ICanExecute.cs" />
-    <Compile Include="Command\Core\IComposableCommand.cs" />
-    <Compile Include="Command\Core\IComposableCommandFactory.cs" />
-    <Compile Include="Command\Core\IExecute.cs" />
     <Compile Include="Command\ICloseCommand.cs" />
     <Compile Include="Command\ICloseCommandFactory.cs" />
     <Compile Include="Command\INewTicketCommand.cs" />

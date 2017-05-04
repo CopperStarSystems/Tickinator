@@ -25,6 +25,7 @@ namespace Tickinator.Common
         public class MainWindow
         {
             public const string NewTicket = "New Ticket";
+            public const string ApplicationTitle = "Tickinator!";
         }
 
         public class TicketDetails
