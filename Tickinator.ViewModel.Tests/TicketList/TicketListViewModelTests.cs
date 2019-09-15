@@ -85,7 +85,7 @@ namespace Tickinator.ViewModel.Tests.TicketList
             mockShowTicketDetailsCommandFactory.Setup(p => p.Create(It.IsAny<ISelectedItem<ITicketListItemViewModel>>()))
                                                .Returns(mockShowTicketDetailsCommand.Object);
             mockMessenger.Setup(
-                p => p.Register(It.IsAny<TicketListViewModel>(), It.IsAny<Action<ITicketUpdatedMessage>>()));
+                p => p.Register(It.IsAny<TicketListViewModel>(), It.IsAny<Action<ITicketUpdatedMessage>>(), false));
         }
 
         void HandleSelectedItemChanged(object sender, EventArgs e)
