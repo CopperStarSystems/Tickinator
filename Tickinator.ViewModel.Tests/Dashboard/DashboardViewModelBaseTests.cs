@@ -16,6 +16,13 @@ namespace Tickinator.ViewModel.Tests.Dashboard
     [TestFixture]
     public abstract class DashboardViewModelBaseTests<T> : TestBase<T> where T : IDashboardViewModel
     {
+        [SetUp]
+        public override void SetUp()
+        {
+            Tickets = new List<Ticket>();
+            base.SetUp();
+        }
+
         [TestCase(1)]
         [TestCase(5)]
         [TestCase(25)]
@@ -44,33 +51,22 @@ namespace Tickinator.ViewModel.Tests.Dashboard
         public void OpenTicketCount_Always_ReturnsExpectedCount(int expectedOpenTicketCount)
         {
             AddTickets(expectedOpenTicketCount);
+            SetupMocksForOpenTicketCountTest();
             SetupMockTicketRepository();
             Assert.That(SystemUnderTest.OpenTicketCount, Is.EqualTo(expectedOpenTicketCount));
         }
 
-        [Test]
-        public void Title_Always_ReturnsExpectedValue()
-        {
-            Assert.That(SystemUnderTest.Title, Is.EqualTo(GetExpectedTitle()));
-        }
-
         protected abstract string GetExpectedTitle();
-        [SetUp]
-        public override void SetUp()
-        {
-            Tickets = new List<Ticket>();
-            base.SetUp();
-        }
 
         protected void AddTicket(int id, DateTime? dateClosed, DateTime dateOpened, int assignedToId = 1)
         {
             Tickets.Add(new Ticket
-                        {
-                            Id = id,
-                            DateClosed = dateClosed,
-                            DateOpened = dateOpened,
-                            AssignedToId = assignedToId
-                        });
+            {
+                Id = id,
+                DateClosed = dateClosed,
+                DateOpened = dateOpened,
+                AssignedToId = assignedToId
+            });
         }
 
         protected void AddTickets(int ticketCount, DateTime? dateClosed = null, int assignedToId = 1)
@@ -91,19 +87,23 @@ namespace Tickinator.ViewModel.Tests.Dashboard
         {
         }
 
+        protected virtual void SetupMocksForOpenTicketCountTest()
+        {
+        }
+
         protected IList<Ticket> Tickets { get; private set; }
 
-        void SetupMockTicketRepository()
+        private void SetupMockTicketRepository()
         {
             MockTicketRepository.Setup(p => p.GetAll()).Returns(Tickets);
         }
 
-        double SetupTicketsForAverageDurationTest(int closedTicketCount)
+        private double SetupTicketsForAverageDurationTest(int closedTicketCount)
         {
             var expectedDuration = 0.0;
             for (var ctr = closedTicketCount; ctr < closedTicketCount; ctr++)
             {
-                var duration = new Random().NextDouble()*int.MaxValue;
+                var duration = new Random().NextDouble() * int.MaxValue;
                 expectedDuration += duration;
                 var timeSpan = TimeSpan.FromMilliseconds(duration);
                 AddTicket(ctr + 1, DateTime.Today, DateTime.Today.AddHours(-timeSpan.TotalHours));
@@ -112,7 +112,7 @@ namespace Tickinator.ViewModel.Tests.Dashboard
             return expectedDuration;
         }
 
-        void SetupTicketsForClosedTodayCountTest(int totalTicketCount, int expectedClosedTodayCount)
+        private void SetupTicketsForClosedTodayCountTest(int totalTicketCount, int expectedClosedTodayCount)
         {
             var openTicketCount = totalTicketCount - expectedClosedTodayCount;
 
@@ -123,6 +123,12 @@ namespace Tickinator.ViewModel.Tests.Dashboard
             // Create tickets with closed date of today
             for (var ctr = openTicketCount; ctr < totalTicketCount; ctr++)
                 AddTicket(ctr + 1, DateTime.Today, DateTime.Today.AddHours(-1));
+        }
+
+        [Test]
+        public void Title_Always_ReturnsExpectedValue()
+        {
+            Assert.That(SystemUnderTest.Title, Is.EqualTo(GetExpectedTitle()));
         }
     }
 }
