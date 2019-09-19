@@ -1,4 +1,5 @@
-﻿using Tickinator.ViewModel;
+﻿using System.Windows;
+using Tickinator.ViewModel;
 using Tickinator.ViewModel.Login;
 using Tickinator.ViewModel.User;
 using Tickinator.ViewModel.View;
@@ -16,6 +17,7 @@ namespace Tickinator.UI.Wpf.Bootstrap
         public ApplicationLauncher(IViewFactory viewFactory, ICurrentUserViewModelFactory currentUserViewModelFactory,
             IMainViewModelFactory mainViewModelFactory, ILoginViewModelFactory loginViewModelFactory)
         {
+            
             this.viewFactory = viewFactory;
             this.currentUserViewModelFactory = currentUserViewModelFactory;
             this.mainViewModelFactory = mainViewModelFactory;
@@ -26,7 +28,6 @@ namespace Tickinator.UI.Wpf.Bootstrap
         {
             var currentUser = Login();
 
-
             if (currentUser != null)
                 ShowMainWindow(currentUser);
         }
@@ -36,7 +37,8 @@ namespace Tickinator.UI.Wpf.Bootstrap
             var mainViewModel = mainViewModelFactory.Create(currentUser);
             var mainView = viewFactory.Create<IMainWindow>();
             mainView.DataContext = mainViewModel;
-            mainView.Show();
+            mainView.ShowDialog();
+            
         }
 
         private ICurrentUserViewModel Login()
@@ -45,7 +47,7 @@ namespace Tickinator.UI.Wpf.Bootstrap
             var viewModel = loginViewModelFactory.Create(view);
             view.DataContext = viewModel;
             view.ShowDialog();
-            return null;
+            return viewModel.CurrentUser;
         }
     }
 }

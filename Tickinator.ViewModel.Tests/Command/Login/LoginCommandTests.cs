@@ -6,6 +6,7 @@ using Tickinator.ViewModel.Command.Login;
 using Tickinator.ViewModel.Login;
 using Tickinator.ViewModel.Tests.Command.Core;
 using Tickinator.ViewModel.User;
+using Tickinator.ViewModel.View;
 
 namespace Tickinator.ViewModel.Tests.Command.Login
 {
@@ -23,6 +24,7 @@ namespace Tickinator.ViewModel.Tests.Command.Login
         private Mock<IUserRepository> mockUserRepository;
         private Mock<ICurrentUserViewModelFactory> mockCurrentUserViewModelFactory;
         private Mock<ICurrentUserViewModel> mockCurrentUserViewModel;
+        private Mock<IClosable> mockClosable;
 
         private IList<Model.User> users;
 
@@ -40,12 +42,13 @@ namespace Tickinator.ViewModel.Tests.Command.Login
             mockUserRepository = CreateMock<IUserRepository>();
             mockCurrentUserViewModelFactory = CreateMock<ICurrentUserViewModelFactory>();
             mockCurrentUserViewModel = CreateMock<ICurrentUserViewModel>();
+            mockClosable = CreateMock<IClosable>();
         }
 
         protected override LoginCommand CreateSystemUnderTest()
         {
             return new LoginCommand(mockLoginViewModel.Object, mockUserRepository.Object,
-                mockCurrentUserViewModelFactory.Object);
+                mockCurrentUserViewModelFactory.Object, mockClosable.Object);
         }
 
         [Test]
@@ -54,6 +57,7 @@ namespace Tickinator.ViewModel.Tests.Command.Login
             mockLoginViewModel.SetupGet(p => p.UserName).Returns("BadUser");
             mockLoginViewModel.SetupGet(p => p.Password).Returns("password");
             mockUserRepository.Setup(p => p.GetAll()).Returns(users);
+            mockClosable.Setup(p => p.Close());
             Execute();
         }
 
@@ -65,6 +69,7 @@ namespace Tickinator.ViewModel.Tests.Command.Login
             mockUserRepository.Setup(p => p.GetAll()).Returns(users);
             mockCurrentUserViewModelFactory.Setup(p => p.Create(1)).Returns(mockCurrentUserViewModel.Object);
             mockLoginViewModel.SetupSet(p => p.CurrentUser = mockCurrentUserViewModel.Object);
+            mockClosable.Setup(p => p.Close());
             Execute();
         }
     }

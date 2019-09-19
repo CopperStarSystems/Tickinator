@@ -1,6 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
 using Tickinator.ViewModel.Command;
+using Tickinator.ViewModel.Command.Login;
 using Tickinator.ViewModel.Login;
 using Tickinator.ViewModel.User;
 using Tickinator.ViewModel.View;
@@ -14,6 +15,8 @@ namespace Tickinator.ViewModel.Tests
         private Mock<ICloseCommand> mockCloseCommand;
         private Mock<IClosable> mockClosable;
         private Mock<ICurrentUserViewModelFactory> mockCurrentUserViewModelFactory;
+        private Mock<ILoginCommandFactory> mockLoginCommandFactory;
+        private Mock<ILoginCommand> mockLoginCommand;
 
         [Test]
         public void CloseCommand_AfterConstruction_IsCreatedInstance()
@@ -28,17 +31,20 @@ namespace Tickinator.ViewModel.Tests
             mockCloseCommandFactory = CreateMock<ICloseCommandFactory>();
             mockClosable = CreateMock<IClosable>();
             mockCurrentUserViewModelFactory = CreateMock<ICurrentUserViewModelFactory>();
+            mockLoginCommandFactory = CreateMock<ILoginCommandFactory>();
+            mockLoginCommand = CreateMock<ILoginCommand>();
         }
 
         protected override LoginViewModel CreateSystemUnderTest()
         {
-            return new LoginViewModel(mockCloseCommandFactory.Object, mockClosable.Object, mockCurrentUserViewModelFactory.Object);
+            return new LoginViewModel(mockCloseCommandFactory.Object, mockClosable.Object, mockCurrentUserViewModelFactory.Object, mockLoginCommandFactory.Object);
         }
 
         protected override void SetupConstructorRequiredMocks()
         {
             base.SetupConstructorRequiredMocks();
             mockCloseCommandFactory.Setup(p => p.Create(mockClosable.Object)).Returns(mockCloseCommand.Object);
+            mockLoginCommandFactory.Setup(p => p.Create(It.IsAny<ILoginViewModel>(), mockClosable.Object)).Returns(mockLoginCommand.Object);
         }
     }
 }

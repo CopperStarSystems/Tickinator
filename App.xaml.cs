@@ -22,8 +22,10 @@ namespace Tickinator.UI.Wpf
             // bootstrapping.  Since it is a Windsor-specific detail, we 
             // isolate that functionality in the Bootstrapper class.
             container = Bootstrapper.Bootstrap();
+            ShutdownMode = ShutdownMode.OnExplicitShutdown;
             var launcher = container.Resolve<IApplicationLauncher>();
             launcher.Launch();
+            Shutdown();
         }
     }
 }
