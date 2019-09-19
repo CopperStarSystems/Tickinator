@@ -79,7 +79,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Bootstrap\ApplicationLauncher.cs" />
     <Compile Include="Bootstrap\AssemblyInstallerBase.cs" />
+    <Compile Include="Bootstrap\IApplicationLauncher.cs" />
     <Compile Include="Bootstrap\MockDataAssemblyInstaller.cs" />
     <Compile Include="Bootstrap\ModelAssemblyInstaller.cs" />
     <Compile Include="Bootstrap\MvvmLightAssemblyInstaller.cs" />
