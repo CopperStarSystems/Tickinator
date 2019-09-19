@@ -68,7 +68,9 @@
     <Compile Include="Command\IShowTicketDetailsCommandFactory.cs" />
     <Compile Include="Command\NewTicketCommand.cs" />
     <Compile Include="Command\SaveTicketCommand.cs" />
+    <Compile Include="ILoginViewModel.cs" />
     <Compile Include="Infrastructure\ISelectedItem.cs" />
+    <Compile Include="LoginViewModel.cs" />
     <Compile Include="Messages\TicketUpdated\ITicketUpdatedMessage.cs" />
     <Compile Include="Messages\TicketUpdated\ITicketUpdatedMessageFactory.cs" />
     <Compile Include="Messages\TicketUpdated\TicketUpdatedMessage.cs" />
