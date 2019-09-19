@@ -9,6 +9,7 @@ using Tickinator.UI.Wpf.Bootstrap;
 using Tickinator.ViewModel;
 using Tickinator.ViewModel.User;
 using Tickinator.ViewModel.View;
+using Tickinator.ViewModel.View.Core;
 
 namespace Tickinator.UI.Wpf
 {
@@ -35,9 +36,10 @@ namespace Tickinator.UI.Wpf
             // bootstrapping.  Since it is a Windsor-specific detail, we 
             // isolate that functionality in the Bootstrapper class.
             container = Bootstrapper.Bootstrap();
+            var viewFactory = container.Resolve<IViewFactory>();
             var mainViewModel = CreateMainViewModel();
             // Ask the container for an instance of IMainView
-            var mainView = container.Resolve<IMainWindow>();
+            var mainView = viewFactory.Create<IMainWindow>();
             mainView.DataContext = mainViewModel;
             mainView.Show();
         }

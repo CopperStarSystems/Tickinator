@@ -11,6 +11,7 @@ namespace Tickinator.Common
         {
             public const string Cancel = "_Cancel";
             public const string Save = "_Save";
+            public const string Login = "_Login";
         }
 
         public class Dashboard
@@ -58,6 +59,12 @@ namespace Tickinator.Common
             public const string ShowOnlyOpenTickets = "Show only open tickets";
             public const string ShowOnlyMyTickets = "Show only my tickets";
             public const string TodaysTickets = "Today's Tickets:";
+        }
+
+        public class Login
+        {
+            public const string UserName = "User Name";
+            public const string Password = "Password";
         }
     }
 }

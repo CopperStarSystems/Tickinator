@@ -109,6 +109,7 @@
     <Compile Include="Dashboard\TeamDashboardViewModel.cs" />
     <Compile Include="Command\IShowTicketDetailsCommand.cs" />
     <Compile Include="View\IClosable.cs" />
+    <Compile Include="View\ILoginView.cs" />
     <Compile Include="View\ITicketDetailsView.cs" />
     <Compile Include="TicketList\ITicketListItemViewModel.cs" />
     <Compile Include="TicketList\ITicketListViewModel.cs" />
