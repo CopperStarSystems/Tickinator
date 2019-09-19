@@ -18,15 +18,15 @@ namespace Tickinator.ViewModel.TicketDialog
 {
     public class TicketDialogViewModel : ViewModelBase, ITicketDialogViewModel
     {
-        readonly Ticket ticket;
-        string header;
+        private readonly Ticket ticket;
+        private string header;
 
-        IEnumerable<IStatusListItemViewModel> statuses;
+        private IEnumerable<IStatusListItemViewModel> statuses;
 
         public TicketDialogViewModel(Ticket ticket, ICloseCommand closeCommand, IStatusListProvider statusListProvider,
-                                     ITechnicianListProvider technicianListProvider,
-                                     ITicketNoteListViewModelFactory noteListViewModelFactory,
-                                     ISaveTicketCommand saveTicketCommand, string header)
+            ITechnicianListProvider technicianListProvider,
+            ITicketNoteListViewModelFactory noteListViewModelFactory,
+            ISaveTicketCommand saveTicketCommand, string header)
         {
             this.ticket = ticket;
             CloseCommand = closeCommand;
@@ -39,7 +39,7 @@ namespace Tickinator.ViewModel.TicketDialog
 
         public int AssignedToId
         {
-            get { return ticket.AssignedToId; }
+            get => ticket.AssignedToId;
             set
             {
                 ticket.AssignedToId = value;
@@ -51,7 +51,7 @@ namespace Tickinator.ViewModel.TicketDialog
 
         public DateTime? DateClosed
         {
-            get { return ticket.DateClosed; }
+            get => ticket.DateClosed;
             set
             {
                 ticket.DateClosed = value;
@@ -61,7 +61,7 @@ namespace Tickinator.ViewModel.TicketDialog
 
         public DateTime DateOpened
         {
-            get { return ticket.DateOpened; }
+            get => ticket.DateOpened;
             set
             {
                 ticket.DateOpened = value;
@@ -71,7 +71,7 @@ namespace Tickinator.ViewModel.TicketDialog
 
         public string Header
         {
-            get { return header; }
+            get => header;
             set
             {
                 header = value;
@@ -79,9 +79,19 @@ namespace Tickinator.ViewModel.TicketDialog
             }
         }
 
+        public string Title
+        {
+            get => ticket.Title;
+            set
+            {
+                ticket.Title = value;
+                RaisePropertyChanged(nameof(Title));
+            }
+        }
+
         public int Id
         {
-            get { return ticket.Id; }
+            get => ticket.Id;
             set
             {
                 ticket.Id = value;
@@ -95,7 +105,7 @@ namespace Tickinator.ViewModel.TicketDialog
 
         public StatusEnum Status
         {
-            get { return ticket.Status; }
+            get => ticket.Status;
             set
             {
                 ticket.Status = value;
@@ -105,7 +115,7 @@ namespace Tickinator.ViewModel.TicketDialog
 
         public IEnumerable<IStatusListItemViewModel> Statuses
         {
-            get { return statuses; }
+            get => statuses;
             private set
             {
                 statuses = value;

@@ -25,6 +25,8 @@ namespace Tickinator.ViewModel.TicketDialog
 
         string Header { get; set; }
 
+        string Title { get; set; }
+
         int Id { get; set; }
 
         ITicketNoteListViewModel Notes { get; }

@@ -25,6 +25,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -37,24 +38,26 @@
             <!-- Labels -->
             <Label Grid.Column="0" Grid.Row="0" Content="{x:Static common:Strings+TicketDetails.TicketNumberLabel}" />
             <Label Grid.Column="0" Grid.Row="1" Content="{x:Static common:Strings+TicketDetails.DateLabel}" />
-            <Label Grid.Column="0" Grid.Row="2" Content="{x:Static common:Strings+TicketDetails.StatusLabel}" />
-            <Label Grid.Column="0" Grid.Row="3" Content="{x:Static common:Strings+TicketDetails.AssignedToLabel}" />
+            <Label Grid.Column="0" Grid.Row="2" Content="{x:Static common:Strings+TicketDetails.TitleLabel}"/>
+            <Label Grid.Column="0" Grid.Row="3" Content="{x:Static common:Strings+TicketDetails.StatusLabel}" />
+            <Label Grid.Column="0" Grid.Row="4" Content="{x:Static common:Strings+TicketDetails.AssignedToLabel}" />
 
             <!-- Controls -->
             <Label Grid.Column="1" Grid.Row="0" Content="{Binding Id}" />
             <Label Grid.Column="1" Grid.Row="1" Content="{Binding DateOpened}" />
-            <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Statuses}" SelectedValue="{Binding Status}"
+            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Title}"/>
+            <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Statuses}" SelectedValue="{Binding Status}"
                       DisplayMemberPath="DisplayText" SelectedValuePath="Value" />
-            <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Technicians}"
+            <ComboBox Grid.Column="1" Grid.Row="4" ItemsSource="{Binding Technicians}"
                       SelectedValue="{Binding AssignedToId}" DisplayMemberPath="FullName" SelectedValuePath="Id" />
-            <TabControl Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Margin="5">
+            <TabControl Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Margin="5">
                 <TabItem Header="{x:Static common:Strings+TicketDetails.SummaryTabHeader}" />
                 <TabItem Header="{x:Static common:Strings+TicketDetails.HistoryTabHeader}" />
                 <TabItem Header="{x:Static common:Strings+TicketDetails.NotesTabHeader}" >
                     <userControls:TicketNotes DataContext="{Binding Notes}"/>
                 </TabItem>
             </TabControl>
-            <DockPanel Grid.Column="1" Grid.Row="5" LastChildFill="False">
+            <DockPanel Grid.Column="1" Grid.Row="6" LastChildFill="False">
                 <Button DockPanel.Dock="Right" Content="{x:Static common:Strings+Button.Save}"
                         Command="{Binding SaveCommand}" Margin="5 0 5 5" />
                 <Button DockPanel.Dock="Right" Content="{x:Static common:Strings+Button.Cancel}"

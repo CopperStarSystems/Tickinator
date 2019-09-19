@@ -17,5 +17,7 @@ namespace Tickinator.Model
         public DateTime DateOpened { get; set; }
 
         public StatusEnum Status { get; set; }
+
+        public string Title { get; set; }
     }
 }

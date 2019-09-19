@@ -16,5 +16,7 @@ namespace Tickinator.ViewModel.TicketList
         DateTime DateOpened { get; set; }
 
         int Id { get; set; }
+
+        string Title { get; set; }
     }
 }

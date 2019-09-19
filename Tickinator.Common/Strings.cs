@@ -39,6 +39,7 @@ namespace Tickinator.Common
             public const string StatusLabel = "Status:";
             public const string SummaryTabHeader = "Summary";
             public const string TicketNumberLabel = "Ticket Number:";
+            public const string TitleLabel = "Title";
         }
 
         public class TicketNotes
@@ -53,6 +54,7 @@ namespace Tickinator.Common
             public const string IdColumnHeader = "Id";
             public const string DateOpenedColumnHeader = "Date Opened";
             public const string DateClosedColumnHeader = "Date Closed";
+            public const string TitleColumnHeader = "Title";
             public const string ShowOnlyOpenTickets = "Show only open tickets";
             public const string ShowOnlyMyTickets = "Show only my tickets";
             public const string TodaysTickets = "Today's Tickets:";
