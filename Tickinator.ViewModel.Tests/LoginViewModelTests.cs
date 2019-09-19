@@ -1,19 +1,35 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
+using Tickinator.ViewModel.Command;
+using Tickinator.ViewModel.Login;
+using Tickinator.ViewModel.View;
 
 namespace Tickinator.ViewModel.Tests
 {
     [TestFixture]
     public class LoginViewModelTests : TestBase<LoginViewModel>
     {
-        protected override LoginViewModel CreateSystemUnderTest()
+        private Mock<ICloseCommandFactory> mockCloseCommandFactory;
+        private Mock<ICloseCommand> mockCloseCommand;
+        private Mock<IClosable> mockClosable;
+
+        protected override void CreateMocks()
         {
-            return new LoginViewModel();
+            base.CreateMocks();
+            mockCloseCommand = CreateMock<ICloseCommand>();
+            mockCloseCommandFactory = CreateMock<ICloseCommandFactory>();
+            mockClosable = CreateMock<IClosable>();
         }
 
-        [Test]
-        public void Constructor_Always_PerformsExpectedWork()
+        protected override LoginViewModel CreateSystemUnderTest()
         {
-            Assert.That(SystemUnderTest, Is.Not.Null);
+            return new LoginViewModel(mockCloseCommandFactory.Object, mockClosable.Object);
+        }
+
+        protected override void SetupConstructorRequiredMocks()
+        {
+            base.SetupConstructorRequiredMocks();
+            mockCloseCommandFactory.Setup(p => p.Create(mockClosable.Object)).Returns(mockCloseCommand.Object);
         }
     }
 }

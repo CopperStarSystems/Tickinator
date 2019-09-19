@@ -6,7 +6,9 @@
         xmlns:common="clr-namespace:Tickinator.Common;assembly=Tickinator.Common"
         xmlns:local="clr-namespace:Tickinator.UI.Wpf"
         mc:Ignorable="d"
-        Title="Log In" >
+        Title="Log In" 
+        Height="Auto"
+        Width="Auto">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

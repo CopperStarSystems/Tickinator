@@ -7,6 +7,7 @@ using System.Windows;
 using Castle.Windsor;
 using Tickinator.UI.Wpf.Bootstrap;
 using Tickinator.ViewModel;
+using Tickinator.ViewModel.Login;
 using Tickinator.ViewModel.User;
 using Tickinator.ViewModel.View;
 using Tickinator.ViewModel.View.Core;
@@ -25,7 +26,7 @@ namespace Tickinator.UI.Wpf
     // http://blog.ploeh.dk/2010/02/03/ServiceLocatorisanAnti-Pattern/
     public partial class App : Application
     {
-        IWindsorContainer container;
+        private IWindsorContainer container;
 
         // This is the entry point for the application.
         protected override void OnStartup(StartupEventArgs e)
@@ -37,14 +38,16 @@ namespace Tickinator.UI.Wpf
             // isolate that functionality in the Bootstrapper class.
             container = Bootstrapper.Bootstrap();
             var viewFactory = container.Resolve<IViewFactory>();
+            var viewModelFactory = container.Resolve<ILoginViewModelFactory>();
             var mainViewModel = CreateMainViewModel();
             // Ask the container for an instance of IMainView
             var mainView = viewFactory.Create<IMainWindow>();
+
             mainView.DataContext = mainViewModel;
             mainView.Show();
         }
 
-        IMainViewModel CreateMainViewModel()
+        private IMainViewModel CreateMainViewModel()
         {
             // Temporarily preserved for comparison purposes:
             //

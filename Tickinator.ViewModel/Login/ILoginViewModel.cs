@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace Tickinator.ViewModel
+namespace Tickinator.ViewModel.Login
 {
     public interface ILoginViewModel : IViewModel
     {
