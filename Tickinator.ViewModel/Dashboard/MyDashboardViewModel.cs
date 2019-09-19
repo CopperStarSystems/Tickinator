@@ -25,7 +25,7 @@ namespace Tickinator.ViewModel.Dashboard
 
         protected override IEnumerable<Ticket> GetOpenTickets()
         {
-            return Repository.GetAll().Where(p => p.AssignedToId == 1);
+            return Repository.GetAll().Where(p => p.AssignedToId == currentUserViewModel.Id && !p.DateClosed.HasValue);
         }
 
         protected override IEnumerable<Ticket> GetTodaysClosedTickets()
