@@ -66,6 +66,9 @@
     <Compile Include="Command\ISaveTicketCommand.cs" />
     <Compile Include="Command\ISaveTicketCommandFactory.cs" />
     <Compile Include="Command\IShowTicketDetailsCommandFactory.cs" />
+    <Compile Include="Command\Login\ILoginCommand.cs" />
+    <Compile Include="Command\Login\ILoginCommandFactory.cs" />
+    <Compile Include="Command\Login\LoginCommand.cs" />
     <Compile Include="Command\NewTicketCommand.cs" />
     <Compile Include="Command\SaveTicketCommand.cs" />
     <Compile Include="Login\ILoginViewModel.cs" />

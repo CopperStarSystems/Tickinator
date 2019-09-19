@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using Tickinator.ViewModel.User;
 
 namespace Tickinator.ViewModel.Login
 {
@@ -9,5 +10,7 @@ namespace Tickinator.ViewModel.Login
         ICommand LoginCommand { get; }
 
         ICommand CloseCommand { get; }
+
+        ICurrentUserViewModel CurrentUser { get; set; }
     }
 }
