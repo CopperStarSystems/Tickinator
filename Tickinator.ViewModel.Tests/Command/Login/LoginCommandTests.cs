@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using Moq;
 using NUnit.Framework;
 using Tickinator.Repository;
@@ -51,6 +53,18 @@ namespace Tickinator.ViewModel.Tests.Command.Login
                 mockCurrentUserViewModelFactory.Object, mockClosable.Object);
         }
 
+        [TestCase("", "", false)]
+        [TestCase("user", "", false)]
+        [TestCase("", "password", false)]
+        [TestCase("user", "password", true)]
+        [TestCase("anything", "anything", true)]
+        public void CanExecute_Always_ReturnsExpectedValue(string userName, string password, bool expectedResult)
+        {
+            mockLoginViewModel.SetupGet(p => p.UserName).Returns(userName);
+            mockLoginViewModel.SetupGet(p => p.Password).Returns(password);
+            Assert.That(SystemUnderTest.CanExecute(null), Is.EqualTo(expectedResult));
+        }
+
         [Test]
         public void Execute_WhenLoginFails_PerformsExpectedWork()
         {
@@ -75,6 +89,15 @@ namespace Tickinator.ViewModel.Tests.Command.Login
             mockClosable.Setup(p => p.Close());
             Execute();
             VerifyAllMocks();
+        }
+
+        [TestCase("UserName")]
+        [TestCase("Password")]
+        public void Command_WhenLoginInputChanges_RaisesCanExecuteChanged(string propertyName)
+        {
+            mockLoginViewModel.Raise(p=>p.PropertyChanged += null, new PropertyChangedEventArgs(propertyName));
+            Assert.That(MockCanExecuteChangedEventHandler.TimesCalled, Is.EqualTo(1));
+            
         }
     }
 }

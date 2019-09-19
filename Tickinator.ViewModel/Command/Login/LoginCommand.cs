@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.ComponentModel;
+using System.Linq;
 using Tickinator.Repository;
 using Tickinator.ViewModel.Command.Core;
 using Tickinator.ViewModel.Login;
@@ -18,6 +19,8 @@ namespace Tickinator.ViewModel.Command.Login
             ICurrentUserViewModelFactory currentUserViewModelFactory, IClosable view)
         {
             this.loginViewModel = loginViewModel;
+            loginViewModel.PropertyChanged += LoginViewModel_PropertyChanged
+                ;
             this.userRepository = userRepository;
             this.currentUserViewModelFactory = currentUserViewModelFactory;
             this.view = view;
@@ -37,6 +40,23 @@ namespace Tickinator.ViewModel.Command.Login
             loginViewModel.ShowLoginFailure = true;
             loginViewModel.UserName = string.Empty;
             loginViewModel.Password = string.Empty;
+        }
+
+        public override bool CanExecute(object parameter)
+        {
+            return !string.IsNullOrEmpty(loginViewModel.UserName) && !string.IsNullOrEmpty(loginViewModel.Password);
+        }
+
+        private void LoginViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (UserNameOrPasswordChanged(e))
+                RaiseCanExecuteChanged();
+        }
+
+        private bool UserNameOrPasswordChanged(PropertyChangedEventArgs e)
+        {
+            return e.PropertyName == nameof(loginViewModel.UserName) ||
+                   e.PropertyName == nameof(loginViewModel.Password);
         }
     }
 }
