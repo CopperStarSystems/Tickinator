@@ -1,32 +1,71 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
+using Tickinator.Repository;
 using Tickinator.ViewModel.Command.Login;
 using Tickinator.ViewModel.Login;
+using Tickinator.ViewModel.Tests.Command.Core;
+using Tickinator.ViewModel.User;
 
 namespace Tickinator.ViewModel.Tests.Command.Login
 {
-    [TestFixture()]
-    public class LoginCommandTests : TestBase<LoginCommand>
+    [TestFixture]
+    public class LoginCommandTests : CommandBaseTests<LoginCommand>
     {
-        private Mock<ILoginViewModel> mockLoginViewModel;
-
-        [Test]
-        public void Execute_Always_PerformsExpectedWork()
+        [SetUp]
+        public override void SetUp()
         {
-            Assert.Throws<NotImplementedException>(() => SystemUnderTest.Execute(null));
+            base.SetUp();
+            CreateUsers();
         }
+
+        private Mock<ILoginViewModel> mockLoginViewModel;
+        private Mock<IUserRepository> mockUserRepository;
+        private Mock<ICurrentUserViewModelFactory> mockCurrentUserViewModelFactory;
+        private Mock<ICurrentUserViewModel> mockCurrentUserViewModel;
+
+        private IList<Model.User> users;
+
+        private void CreateUsers()
+        {
+            users = new List<Model.User>();
+            users.Add(new Model.User {Id = 1, UserName = "user", Password = "password"});
+        }
+
 
         protected override void CreateMocks()
         {
             base.CreateMocks();
             mockLoginViewModel = CreateMock<ILoginViewModel>();
+            mockUserRepository = CreateMock<IUserRepository>();
+            mockCurrentUserViewModelFactory = CreateMock<ICurrentUserViewModelFactory>();
+            mockCurrentUserViewModel = CreateMock<ICurrentUserViewModel>();
         }
 
         protected override LoginCommand CreateSystemUnderTest()
         {
-            return new LoginCommand(mockLoginViewModel.Object);
+            return new LoginCommand(mockLoginViewModel.Object, mockUserRepository.Object,
+                mockCurrentUserViewModelFactory.Object);
+        }
+
+        [Test]
+        public void Execute_WhenLoginFails_PerformsExpectedWork()
+        {
+            mockLoginViewModel.SetupGet(p => p.UserName).Returns("BadUser");
+            mockLoginViewModel.SetupGet(p => p.Password).Returns("password");
+            mockUserRepository.Setup(p => p.GetAll()).Returns(users);
+            Execute();
+        }
+
+        [Test]
+        public void Execute_WhenLoginSucceeds_PerformsExpectedWork()
+        {
+            mockLoginViewModel.SetupGet(p => p.UserName).Returns("user");
+            mockLoginViewModel.SetupGet(p => p.Password).Returns("password");
+            mockUserRepository.Setup(p => p.GetAll()).Returns(users);
+            mockCurrentUserViewModelFactory.Setup(p => p.Create(1)).Returns(mockCurrentUserViewModel.Object);
+            mockLoginViewModel.SetupSet(p => p.CurrentUser = mockCurrentUserViewModel.Object);
+            Execute();
         }
     }
 }
