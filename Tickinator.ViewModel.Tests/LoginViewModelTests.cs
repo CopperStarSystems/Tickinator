@@ -13,6 +13,12 @@ namespace Tickinator.ViewModel.Tests
         private Mock<ICloseCommand> mockCloseCommand;
         private Mock<IClosable> mockClosable;
 
+        [Test]
+        public void CloseCommand_AfterConstruction_IsCreatedInstance()
+        {
+            Assert.That(SystemUnderTest.CloseCommand, Is.SameAs(mockCloseCommand.Object));
+        }
+
         protected override void CreateMocks()
         {
             base.CreateMocks();
