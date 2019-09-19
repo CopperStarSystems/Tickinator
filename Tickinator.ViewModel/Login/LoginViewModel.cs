@@ -9,15 +9,49 @@ namespace Tickinator.ViewModel.Login
 {
     public class LoginViewModel : ViewModelBase, ILoginViewModel
     {
-        public LoginViewModel(ICloseCommandFactory closeCommandFactory, IClosable closable, ICurrentUserViewModelFactory currentUserViewModelFactory, ILoginCommandFactory loginCommandFactory)
+        private string password;
+        private bool showLoginFailure;
+        private string userName;
+
+        public LoginViewModel(ICloseCommandFactory closeCommandFactory, IClosable closable,
+            ICurrentUserViewModelFactory currentUserViewModelFactory, ILoginCommandFactory loginCommandFactory)
         {
             CloseCommand = closeCommandFactory.Create(closable);
             LoginCommand = loginCommandFactory.Create(this, closable);
         }
-        public string UserName { get; set; }
-        public string Password { get; set; }
+
+        public string UserName
+        {
+            get => userName;
+            set
+            {
+                userName = value;
+                RaisePropertyChanged(nameof(UserName));
+            }
+        }
+
+        public string Password
+        {
+            get => password;
+            set
+            {
+                password = value;
+                RaisePropertyChanged(nameof(Password));
+            }
+        }
+
         public ICommand LoginCommand { get; }
         public ICommand CloseCommand { get; }
         public ICurrentUserViewModel CurrentUser { get; set; }
+
+        public bool ShowLoginFailure
+        {
+            get => showLoginFailure;
+            set
+            {
+                showLoginFailure = value;
+                RaisePropertyChanged(nameof(ShowLoginFailure));
+            }
+        }
     }
 }

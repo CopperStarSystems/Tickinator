@@ -10,9 +10,9 @@ namespace Tickinator.ViewModel.Command.Login
     public class LoginCommand : CommandBase, ILoginCommand
     {
         private readonly ICurrentUserViewModelFactory currentUserViewModelFactory;
-        private readonly IClosable view;
         private readonly ILoginViewModel loginViewModel;
         private readonly IUserRepository userRepository;
+        private readonly IClosable view;
 
         public LoginCommand(ILoginViewModel loginViewModel, IUserRepository userRepository,
             ICurrentUserViewModelFactory currentUserViewModelFactory, IClosable view)
@@ -30,8 +30,13 @@ namespace Tickinator.ViewModel.Command.Login
             if (user != null)
             {
                 loginViewModel.CurrentUser = currentUserViewModelFactory.Create(user.Id);
+                view.Close();
+                return;
             }
-            view.Close();
+
+            loginViewModel.ShowLoginFailure = true;
+            loginViewModel.UserName = string.Empty;
+            loginViewModel.Password = string.Empty;
         }
     }
 }

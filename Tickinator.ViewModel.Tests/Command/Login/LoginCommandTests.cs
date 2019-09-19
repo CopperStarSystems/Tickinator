@@ -54,11 +54,14 @@ namespace Tickinator.ViewModel.Tests.Command.Login
         [Test]
         public void Execute_WhenLoginFails_PerformsExpectedWork()
         {
-            mockLoginViewModel.SetupGet(p => p.UserName).Returns("BadUser");
-            mockLoginViewModel.SetupGet(p => p.Password).Returns("password");
+            mockLoginViewModel.SetupGet(p => p.UserName).Returns("user");
+            mockLoginViewModel.SetupGet(p => p.Password).Returns("badPassword");
             mockUserRepository.Setup(p => p.GetAll()).Returns(users);
-            mockClosable.Setup(p => p.Close());
+            mockLoginViewModel.SetupSet(p => p.ShowLoginFailure = true);
+            mockLoginViewModel.SetupSet(p => p.UserName = string.Empty);
+            mockLoginViewModel.SetupSet(p => p.Password = string.Empty);
             Execute();
+            VerifyAllMocks();
         }
 
         [Test]
@@ -71,6 +74,7 @@ namespace Tickinator.ViewModel.Tests.Command.Login
             mockLoginViewModel.SetupSet(p => p.CurrentUser = mockCurrentUserViewModel.Object);
             mockClosable.Setup(p => p.Close());
             Execute();
+            VerifyAllMocks();
         }
     }
 }

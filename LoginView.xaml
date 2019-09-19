@@ -11,18 +11,21 @@
     <Window.Resources>
         <ResourceDictionary>
             <Style TargetType="{x:Type TextBox}">
-                <Setter Property="Width" Value="300"></Setter>
+                <Setter Property="Width" Value="300"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
             </Style>
             <Style TargetType="{x:Type Grid}">
-                <Setter Property="Margin" Value="10"></Setter>
+                <Setter Property="Margin" Value="10"/>
             </Style>
             <Style TargetType="{x:Type DockPanel}">
-                <Setter Property="Margin" Value="10 10 0 0"></Setter>
+                <Setter Property="Margin" Value="10 10 0 0"/>
             </Style>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -35,7 +38,8 @@
         <Label Grid.Column="0" Grid.Row="1" Content="{x:Static common:Strings+Login.Password}"/>
         <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding UserName}"/>
         <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Password}"/>
-        <DockPanel Grid.Column="1" Grid.Row="2" LastChildFill="False">
+        <TextBlock Text="User name or password is incorrect" Grid.Column="0"  Grid.ColumnSpan="2" Grid.Row="2" Visibility="{Binding ShowLoginFailure, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource ErrorText}"/>
+        <DockPanel Grid.Column="1" Grid.Row="3" LastChildFill="False">
             <Button DockPanel.Dock="Right" Content="{x:Static common:Strings+Button.Login}"
                     Command="{Binding LoginCommand}" Margin="5 0 0 5" />
             <Button DockPanel.Dock="Right" Content="{x:Static common:Strings+Button.Cancel}"

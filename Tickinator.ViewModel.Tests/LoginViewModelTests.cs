@@ -21,7 +21,14 @@ namespace Tickinator.ViewModel.Tests
         [Test]
         public void CloseCommand_AfterConstruction_IsCreatedInstance()
         {
+            
+        }
+
+        [Test]
+        public void Constructor_Always_SetsExpectedDefaults()
+        {
             Assert.That(SystemUnderTest.CloseCommand, Is.SameAs(mockCloseCommand.Object));
+            Assert.That(SystemUnderTest.ShowLoginFailure, Is.False);
         }
 
         protected override void CreateMocks()

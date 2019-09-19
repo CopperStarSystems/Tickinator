@@ -12,5 +12,7 @@ namespace Tickinator.ViewModel.Login
         ICommand CloseCommand { get; }
 
         ICurrentUserViewModel CurrentUser { get; set; }
+
+        bool ShowLoginFailure { get; set; }
     }
 }
