@@ -46,6 +46,7 @@
     <Compile Include="ITicketNoteRepository.cs" />
     <Compile Include="ITicketRepository.cs" />
     <Compile Include="IUpdateRepository.cs" />
+    <Compile Include="IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -78,10 +78,12 @@
     <Compile Include="Command\CloseCommandTests.cs" />
     <Compile Include="Command\Core\CommandBaseTests.cs" />
     <Compile Include="Command\Core\ComposableCommandTests.cs" />
+    <Compile Include="Command\Login\LoginCommandTests.cs" />
     <Compile Include="Command\NewTicketCommandTests.cs" />
     <Compile Include="Command\SaveTicketCommandTests.cs" />
     <Compile Include="Common\MockEventHandler.cs" />
     <Compile Include="Dashboard\DashboardViewModelBaseTests.cs" />
+    <Compile Include="LoginViewModelTests.cs" />
     <Compile Include="MainViewModelTests.cs" />
     <Compile Include="Dashboard\MyDashboardViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

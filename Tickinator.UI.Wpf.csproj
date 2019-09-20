@@ -79,7 +79,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Bootstrap\ApplicationLauncher.cs" />
     <Compile Include="Bootstrap\AssemblyInstallerBase.cs" />
+    <Compile Include="Bootstrap\IApplicationLauncher.cs" />
     <Compile Include="Bootstrap\MockDataAssemblyInstaller.cs" />
     <Compile Include="Bootstrap\ModelAssemblyInstaller.cs" />
     <Compile Include="Bootstrap\MvvmLightAssemblyInstaller.cs" />
@@ -88,6 +90,9 @@
     <Compile Include="Bootstrap\Bootstrapper.cs" />
     <Compile Include="Bootstrap\ViewModelAssemblyInstaller.cs" />
     <Compile Include="Infrastructure\WindsorContainerHelper.cs" />
+    <Compile Include="LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TicketDetailsView.xaml.cs">
       <DependentUpon>TicketDetailsView.xaml</DependentUpon>
     </Compile>
@@ -107,6 +112,10 @@
     <Compile Include="UserControls\TicketList.xaml.cs">
       <DependentUpon>TicketList.xaml</DependentUpon>
     </Compile>
+    <Page Include="LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -132,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\IntrinsicControlStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

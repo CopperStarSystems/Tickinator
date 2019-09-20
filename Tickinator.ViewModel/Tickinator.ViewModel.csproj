@@ -66,9 +66,15 @@
     <Compile Include="Command\ISaveTicketCommand.cs" />
     <Compile Include="Command\ISaveTicketCommandFactory.cs" />
     <Compile Include="Command\IShowTicketDetailsCommandFactory.cs" />
+    <Compile Include="Command\Login\ILoginCommand.cs" />
+    <Compile Include="Command\Login\ILoginCommandFactory.cs" />
+    <Compile Include="Command\Login\LoginCommand.cs" />
     <Compile Include="Command\NewTicketCommand.cs" />
     <Compile Include="Command\SaveTicketCommand.cs" />
+    <Compile Include="Login\ILoginViewModel.cs" />
     <Compile Include="Infrastructure\ISelectedItem.cs" />
+    <Compile Include="Login\ILoginViewModelFactory.cs" />
+    <Compile Include="Login\LoginViewModel.cs" />
     <Compile Include="Messages\TicketUpdated\ITicketUpdatedMessage.cs" />
     <Compile Include="Messages\TicketUpdated\ITicketUpdatedMessageFactory.cs" />
     <Compile Include="Messages\TicketUpdated\TicketUpdatedMessage.cs" />
@@ -109,6 +115,7 @@
     <Compile Include="Dashboard\TeamDashboardViewModel.cs" />
     <Compile Include="Command\IShowTicketDetailsCommand.cs" />
     <Compile Include="View\IClosable.cs" />
+    <Compile Include="View\ILoginView.cs" />
     <Compile Include="View\ITicketDetailsView.cs" />
     <Compile Include="TicketList\ITicketListItemViewModel.cs" />
     <Compile Include="TicketList\ITicketListViewModel.cs" />

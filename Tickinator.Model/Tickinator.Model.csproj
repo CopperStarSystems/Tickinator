@@ -48,6 +48,7 @@
     <Compile Include="Technician.cs" />
     <Compile Include="Ticket.cs" />
     <Compile Include="TicketNote.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tickinator.Common\Tickinator.Common.csproj">

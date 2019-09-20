@@ -12,7 +12,7 @@ namespace Tickinator.ViewModel.Tests.Dashboard
 {
     public class MyDashboardViewModelTests : DashboardViewModelBaseTests<MyDashboardViewModel>
     {
-        Mock<ICurrentUserViewModel> mockCurrentUserViewModel;
+        private Mock<ICurrentUserViewModel> mockCurrentUserViewModel;
 
         protected override void CreateMocks()
         {
@@ -33,6 +33,12 @@ namespace Tickinator.ViewModel.Tests.Dashboard
         protected override void SetupMocksForClosedTodayCountTest()
         {
             base.SetupMocksForClosedTodayCountTest();
+            mockCurrentUserViewModel.SetupGet(p => p.Id).Returns(1);
+        }
+
+        protected override void SetupMocksForOpenTicketCountTest()
+        {
+            base.SetupMocksForOpenTicketCountTest();
             mockCurrentUserViewModel.SetupGet(p => p.Id).Returns(1);
         }
     }
